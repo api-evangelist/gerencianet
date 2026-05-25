@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gerencianet/main/json-schema/efi-pix-pix-received-schema.json",
+  "title": "Received Pix",
+  "description": "A Pix transaction credited to the merchant account, as returned by /v2/pix.",
+  "type": "object",
+  "required": ["endToEndId", "txid", "valor", "horario"],
+  "properties": {
+    "endToEndId": { "type": "string", "minLength": 32, "maxLength": 32 },
+    "txid": { "type": "string" },
+    "valor": { "type": "string", "pattern": "^[0-9]+\\.[0-9]{2}$" },
+    "horario": { "type": "string", "format": "date-time" },
+    "infoPagador": { "type": "string", "maxLength": 140 },
+    "pagador": {
+      "type": "object",
+      "properties": {
+        "cpf": { "type": "string" },
+        "cnpj": { "type": "string" },
+        "nome": { "type": "string" }
+      }
+    },
+    "devolucoes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "valor": { "type": "string" },
+          "horario": {
+            "type": "object",
+            "properties": {
+              "solicitacao": { "type": "string", "format": "date-time" },
+              "liquidacao": { "type": "string", "format": "date-time" }
+            }
+          },
+          "status": { "type": "string", "enum": ["EM_PROCESSAMENTO", "DEVOLVIDO", "NAO_REALIZADO"] }
+        }
+      }
+    }
+  }
+}

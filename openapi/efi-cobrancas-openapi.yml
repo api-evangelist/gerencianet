@@ -1,0 +1,409 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças API
+  description: >-
+    Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank
+    slips), Bolix (next-business-day boletos), carnês (installment booklets),
+    payment links, credit card charges, subscriptions/recurring billing, and
+    marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: "1.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+  - url: https://cobrancas.api.efipay.com.br/v1
+    description: Production
+  - url: https://cobrancas-h.api.efipay.com.br/v1
+    description: Homologation (Sandbox)
+security:
+  - oauth2ClientCredentials: []
+tags:
+  - name: Authorization
+  - name: Charges
+  - name: Carnets
+  - name: Subscriptions
+  - name: Plans
+  - name: Payment Links
+  - name: Notifications
+  - name: Card Payments
+paths:
+  /authorize:
+    post:
+      tags: [Authorization]
+      summary: Issue Access Token
+      description: Exchange client_id and client_secret (HTTP Basic) for an OAuth2 access token used to authenticate subsequent Cobranças API calls.
+      operationId: authorize
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum: [client_credentials]
+      responses:
+        "200":
+          description: Access token issued
+  /charge:
+    post:
+      tags: [Charges]
+      summary: Create Charge
+      operationId: createCharge
+      responses: { "200": { description: Charge created } }
+  /charge/one-step:
+    post:
+      tags: [Charges]
+      summary: Create One Step Charge
+      operationId: createOneStepCharge
+      responses: { "200": { description: Charge created } }
+  /charge/one-step/link:
+    post:
+      tags: [Payment Links]
+      summary: Create One Step Charge Link
+      operationId: createOneStepLink
+      responses: { "200": { description: Link created } }
+  /charge/{id}:
+    get:
+      tags: [Charges]
+      summary: Detail Charge
+      operationId: detailCharge
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Charge detail } }
+  /charges:
+    get:
+      tags: [Charges]
+      summary: List Charges
+      operationId: listCharges
+      responses: { "200": { description: Charges list } }
+  /charge/{id}/cancel:
+    put:
+      tags: [Charges]
+      summary: Cancel Charge
+      operationId: cancelCharge
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Cancelled } }
+  /charge/{id}/pay:
+    post:
+      tags: [Charges]
+      summary: Define Payment Method
+      operationId: definePayMethod
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Method applied } }
+  /charge/{id}/billet:
+    put:
+      tags: [Charges]
+      summary: Update Billet
+      operationId: updateBillet
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Updated } }
+  /charge/{id}/billet/resend:
+    post:
+      tags: [Charges]
+      summary: Send Billet Email
+      operationId: sendBilletEmail
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Email queued } }
+  /charge/{id}/metadata:
+    put:
+      tags: [Charges]
+      summary: Update Charge Metadata
+      operationId: updateChargeMetadata
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Metadata updated } }
+  /charge/{id}/history:
+    post:
+      tags: [Charges]
+      summary: Create Charge History Note
+      operationId: createChargeHistory
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Note added } }
+  /charge/{id}/balance-sheet:
+    post:
+      tags: [Charges]
+      summary: Define Balance Sheet Billet
+      operationId: defineBalanceSheetBillet
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Balance sheet set } }
+  /charge/{id}/settle:
+    put:
+      tags: [Charges]
+      summary: Settle Charge Manually
+      operationId: settleCharge
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Settled } }
+  /charge/{id}/retry:
+    post:
+      tags: [Card Payments]
+      summary: Retry Card Payment
+      operationId: cardPaymentRetry
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Retried } }
+  /charge/card/{id}/refund:
+    post:
+      tags: [Card Payments]
+      summary: Refund Card Charge
+      operationId: refundCard
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Refund issued } }
+  /charge/{id}/link:
+    post:
+      tags: [Payment Links]
+      summary: Create Charge Link
+      operationId: linkCharge
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Link created } }
+    put:
+      tags: [Payment Links]
+      summary: Update Charge Link
+      operationId: updateChargeLink
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Link updated } }
+  /charge/{id}/link/resend:
+    post:
+      tags: [Payment Links]
+      summary: Send Link Email
+      operationId: sendLinkEmail
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Email queued } }
+  /carnet:
+    post:
+      tags: [Carnets]
+      summary: Create Carnet
+      operationId: createCarnet
+      responses: { "200": { description: Carnet created } }
+  /carnet/{id}:
+    get:
+      tags: [Carnets]
+      summary: Detail Carnet
+      operationId: detailCarnet
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Carnet detail } }
+  /carnet/{id}/parcels:
+    put:
+      tags: [Carnets]
+      summary: Update Carnet Parcels
+      operationId: updateCarnetParcels
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Parcels updated } }
+  /carnet/{id}/parcel/{parcel}:
+    put:
+      tags: [Carnets]
+      summary: Update Carnet Parcel
+      operationId: updateCarnetParcel
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: parcel, in: path, required: true, schema: { type: integer } }
+      responses: { "200": { description: Parcel updated } }
+  /carnet/{id}/parcel/{parcel}/cancel:
+    put:
+      tags: [Carnets]
+      summary: Cancel Carnet Parcel
+      operationId: cancelCarnetParcel
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: parcel, in: path, required: true, schema: { type: integer } }
+      responses: { "200": { description: Cancelled } }
+  /carnet/{id}/parcel/{parcel}/settle:
+    put:
+      tags: [Carnets]
+      summary: Settle Carnet Parcel
+      operationId: settleCarnetParcel
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: parcel, in: path, required: true, schema: { type: integer } }
+      responses: { "200": { description: Settled } }
+  /carnet/{id}/parcel/{parcel}/resend:
+    post:
+      tags: [Carnets]
+      summary: Send Carnet Parcel Email
+      operationId: sendCarnetParcelEmail
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: integer } }
+        - { name: parcel, in: path, required: true, schema: { type: integer } }
+      responses: { "200": { description: Email queued } }
+  /carnet/{id}/cancel:
+    put:
+      tags: [Carnets]
+      summary: Cancel Carnet
+      operationId: cancelCarnet
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Cancelled } }
+  /carnet/{id}/settle:
+    put:
+      tags: [Carnets]
+      summary: Settle Carnet
+      operationId: settleCarnet
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Settled } }
+  /carnet/{id}/history:
+    post:
+      tags: [Carnets]
+      summary: Create Carnet History Note
+      operationId: createCarnetHistory
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Note added } }
+  /carnet/{id}/metadata:
+    put:
+      tags: [Carnets]
+      summary: Update Carnet Metadata
+      operationId: updateCarnetMetadata
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Metadata updated } }
+  /carnet/{id}/resend:
+    post:
+      tags: [Carnets]
+      summary: Send Carnet Email
+      operationId: sendCarnetEmail
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Email queued } }
+  /plans:
+    get:
+      tags: [Plans]
+      summary: List Plans
+      operationId: listPlans
+      responses: { "200": { description: Plans } }
+  /plan:
+    post:
+      tags: [Plans]
+      summary: Create Plan
+      operationId: createPlan
+      responses: { "200": { description: Plan created } }
+  /plan/{id}:
+    put:
+      tags: [Plans]
+      summary: Update Plan
+      operationId: updatePlan
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Updated } }
+    delete:
+      tags: [Plans]
+      summary: Delete Plan
+      operationId: deletePlan
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Deleted } }
+  /plan/{id}/subscription:
+    post:
+      tags: [Subscriptions]
+      summary: Create Subscription
+      operationId: createSubscription
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Subscription created } }
+  /plan/{id}/subscription/one-step:
+    post:
+      tags: [Subscriptions]
+      summary: Create One Step Subscription
+      operationId: createOneStepSubscription
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Subscription created } }
+  /plan/{id}/subscription/one-step/link:
+    post:
+      tags: [Subscriptions]
+      summary: Create One Step Subscription Link
+      operationId: createOneStepSubscriptionLink
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Link created } }
+  /subscription/{id}:
+    get:
+      tags: [Subscriptions]
+      summary: Detail Subscription
+      operationId: detailSubscription
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Subscription detail } }
+    put:
+      tags: [Subscriptions]
+      summary: Update Subscription
+      operationId: updateSubscription
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Updated } }
+  /subscription/{id}/pay:
+    post:
+      tags: [Subscriptions]
+      summary: Define Subscription Payment Method
+      operationId: defineSubscriptionPayMethod
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Applied } }
+  /subscription/{id}/cancel:
+    put:
+      tags: [Subscriptions]
+      summary: Cancel Subscription
+      operationId: cancelSubscription
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Cancelled } }
+  /subscription/{id}/metadata:
+    put:
+      tags: [Subscriptions]
+      summary: Update Subscription Metadata
+      operationId: updateSubscriptionMetadata
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Updated } }
+  /subscription/{id}/history:
+    post:
+      tags: [Subscriptions]
+      summary: Create Subscription History Note
+      operationId: createSubscriptionHistory
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Note added } }
+  /charge/{id}/subscription/resend:
+    post:
+      tags: [Subscriptions]
+      summary: Send Subscription Link Email
+      operationId: sendSubscriptionLinkEmail
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Email queued } }
+  /installments:
+    get:
+      tags: [Card Payments]
+      summary: Get Installments
+      operationId: getInstallments
+      responses: { "200": { description: Installments } }
+  /notification/{token}:
+    get:
+      tags: [Notifications]
+      summary: Get Notification
+      operationId: getNotification
+      parameters: [{ name: token, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Notification payload } }
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}
+  schemas:
+    Charge:
+      type: object
+      properties:
+        charge_id: { type: integer }
+        status: { type: string, enum: [new, waiting, paid, unpaid, refunded, contested, settled, link, identified, canceled, expired] }
+        total: { type: integer, description: Total in cents }
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              value: { type: integer }
+              amount: { type: integer }
+        payment:
+          type: object
+        created_at: { type: string, format: date-time }
+    Subscription:
+      type: object
+      properties:
+        subscription_id: { type: integer }
+        plan_id: { type: integer }
+        status: { type: string }
+        next_execution: { type: string, format: date }
+    Plan:
+      type: object
+      properties:
+        plan_id: { type: integer }
+        name: { type: string }
+        interval: { type: integer }
+        repeats: { type: integer, nullable: true }

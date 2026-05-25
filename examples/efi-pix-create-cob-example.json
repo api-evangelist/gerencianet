@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://pix.api.efipay.com.br/v2/cob/7978c0c97ea847e78e8849634473c1f1",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOi...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "calendario": { "expiracao": 3600 },
+      "devedor": { "cpf": "12345678909", "nome": "Francisco da Silva" },
+      "valor": { "original": "100.00" },
+      "chave": "efipay-evangelist@example.com",
+      "solicitacaoPagador": "Cobrança serviços prestados.",
+      "infoAdicionais": [
+        { "nome": "Pedido", "valor": "12345" }
+      ]
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "calendario": { "criacao": "2026-05-24T13:00:00Z", "expiracao": 3600 },
+      "txid": "7978c0c97ea847e78e8849634473c1f1",
+      "revisao": 0,
+      "loc": { "id": 789, "location": "pix.example.com/qr/cob/v2/9d36b8...", "tipoCob": "cob" },
+      "status": "ATIVA",
+      "devedor": { "cpf": "12345678909", "nome": "Francisco da Silva" },
+      "valor": { "original": "100.00" },
+      "chave": "efipay-evangelist@example.com",
+      "solicitacaoPagador": "Cobrança serviços prestados.",
+      "pixCopiaECola": "00020126360014BR.GOV.BCB.PIX0114efipay-evangelist@example.com..."
+    }
+  }
+}

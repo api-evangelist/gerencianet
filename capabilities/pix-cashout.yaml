@@ -1,0 +1,63 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Efí Pay Pix — Cash-Out (Pix Send)
+  description: >-
+    Send a Pix payment from the merchant's Efí account to a third party using
+    the proprietary pixSend (Cash-Out) endpoints, list sent Pix, and retrieve
+    a signed PDF receipt.
+  tags:
+    - Efí Pay
+    - Pix
+    - Cash Out
+    - Payouts
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      EFI_PIX_CLIENT_ID: EFI_PIX_CLIENT_ID
+      EFI_PIX_CLIENT_SECRET: EFI_PIX_CLIENT_SECRET
+      EFI_PIX_CERT_PATH: EFI_PIX_CERT_PATH
+capability:
+  consumes:
+    - type: http
+      namespace: efi-pix-send
+      baseUri: https://pix.api.efipay.com.br
+      description: Efí Pay Pix Send (Cash-Out) endpoints (mTLS required)
+      resources:
+        - name: pix-send
+          path: /v3/gn/pix/{idEnvio}
+          operations:
+            - name: pixSend
+              method: PUT
+              description: Send Pix Cash-Out using caller-chosen idEnvio
+        - name: pix-send-qrcode
+          path: /v2/gn/pix/{idEnvio}/qrcode
+          operations:
+            - name: pixQrCodePay
+              method: PUT
+              description: Pay a third-party Pix QR Code from the account
+        - name: pix-send-list
+          path: /v2/gn/pix/enviados
+          operations:
+            - name: pixSendList
+              method: GET
+              description: List sent Pix
+        - name: pix-send-detail
+          path: /v2/gn/pix/enviados/{e2eid}
+          operations:
+            - name: pixSendDetail
+              method: GET
+              description: Detail a sent Pix by EndToEndId
+        - name: pix-receipt
+          path: /v2/gn/pix/comprovantes
+          operations:
+            - name: pixGetReceipt
+              method: GET
+              description: Download signed PDF receipt
+        - name: balance
+          path: /v2/gn/saldo
+          operations:
+            - name: getAccountBalance
+              method: GET
+              description: Get account balance

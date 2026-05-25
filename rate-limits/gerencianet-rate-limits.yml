@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Efí Pay (Gerencianet)
+providerId: gerencianet
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Pix
+  - Brazil
+description: >-
+  Efí Pay's published rate-limit policy follows Banco Central's Pix specification
+  for endpoints under /v2/cob, /v2/cobv, /v2/pix, /v2/loc, /v2/webhook (token
+  bucket per integration), plus internal limits on Cobranças, Open Finance, and
+  Contas APIs. Exact per-second caps are not published — request raises via
+  developer support.
+sources:
+  - https://dev.efipay.com.br
+  - https://www.bcb.gov.br/estabilidadefinanceira/pix
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  serverBusy: 503
+limits:
+  - name: Pix authorization
+    scope: client
+    metric: requests_per_minute
+    limit: 60
+    timeFrame: minute
+    notes: BCB-aligned token-bucket on /oauth/token issuance.
+  - name: Pix immediate charges (cob)
+    scope: client
+    metric: requests_per_second
+    limit: 50
+    timeFrame: second
+    notes: BCB Pix manual reference figure; actual enforcement varies.
+  - name: Pix Cash-Out (pixSend)
+    scope: client
+    metric: requests_per_second
+    limit: 30
+    timeFrame: second
+  - name: Cobranças API
+    scope: client
+    metric: requests_per_second
+    limit: 30
+    timeFrame: second
+  - name: Open Finance
+    scope: client
+    metric: requests_per_second
+    limit: 20
+    timeFrame: second
+    notes: Each request requires a unique x-idempotency-key (72 alphanumeric chars).
+policies:
+  - name: Idempotency
+    description: Open Finance mandates an x-idempotency-key header on every request; Pix Cash-Out also accepts caller-chosen idEnvio for idempotent retries.
+  - name: mTLS exhaustion
+    description: Pix and Open Finance require mutual TLS — invalid certs are rejected before reaching the rate-limit layer.
+  - name: Webhook back-pressure
+    description: Failed webhook deliveries are retried with exponential backoff; use /v2/gn/webhook/reenviar to manually replay.
+  - name: Sandbox isolation
+    description: Homologation (https://*-h.api.efipay.com.br) shares quota separately from production.

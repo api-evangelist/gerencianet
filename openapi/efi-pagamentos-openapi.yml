@@ -1,0 +1,73 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Pagamentos (Bill Payment) API
+  description: >-
+    Brazilian bill-payment automation for Efí Pay. Decode a boleto/concessionária
+    barcode (linha digitável), submit it for payment from the account balance,
+    and reconcile the payment status. Supports same-day and scheduled debits.
+  version: "1.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  license:
+    name: Proprietary
+servers:
+  - url: https://pagarcontas.api.efipay.com.br/v1
+    description: Production
+  - url: https://pagarcontas-h.api.efipay.com.br/v1
+    description: Homologation (Sandbox)
+security:
+  - oauth2Pagamentos: []
+tags:
+  - name: Authorization
+  - name: Bill Payments
+paths:
+  /oauth/token:
+    post:
+      tags: [Authorization]
+      summary: Issue Pagamentos Access Token
+      operationId: pagamentosAuthorize
+      responses: { "200": { description: Token } }
+  /codBarras/{codBarras}:
+    get:
+      tags: [Bill Payments]
+      summary: Detail Bar Code
+      operationId: payDetailBarCode
+      parameters: [{ name: codBarras, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Decoded bar code } }
+    post:
+      tags: [Bill Payments]
+      summary: Request Bar Code Payment
+      operationId: payRequestBarCode
+      parameters: [{ name: codBarras, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Payment scheduled } }
+  /{idPagamento}:
+    get:
+      tags: [Bill Payments]
+      summary: Detail Bill Payment
+      operationId: payDetailPayment
+      parameters: [{ name: idPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Payment detail } }
+  /resumo:
+    get:
+      tags: [Bill Payments]
+      summary: List Bill Payments
+      operationId: payListPayments
+      responses: { "200": { description: Payments } }
+components:
+  securitySchemes:
+    oauth2Pagamentos:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pagarcontas.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+  schemas:
+    BillPayment:
+      type: object
+      properties:
+        idPagamento: { type: string }
+        codBarras: { type: string }
+        valor: { type: integer }
+        dataAgendamento: { type: string, format: date }
+        status: { type: string }

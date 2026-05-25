@@ -1,0 +1,20 @@
+{
+  "structure": "JSON Structure 0.1",
+  "id": "https://raw.githubusercontent.com/api-evangelist/gerencianet/main/json-structure/efi-pix-cob-structure.json",
+  "title": "Pix Immediate Charge — Structure",
+  "description": "Operational shape of a Pix immediate charge as exchanged with the Efí Pay /v2/cob endpoints.",
+  "tags": ["Pix", "Cob", "Brazil"],
+  "fields": [
+    { "name": "txid", "type": "string", "required": true, "description": "Caller-chosen transaction id; 26–35 alphanumerics" },
+    { "name": "valor.original", "type": "decimal-string", "required": true, "description": "Charge amount in BRL with two decimals" },
+    { "name": "chave", "type": "string", "required": true, "description": "Receiver Pix key" },
+    { "name": "calendario.expiracao", "type": "integer", "required": false, "description": "Expiration in seconds from creation" },
+    { "name": "devedor.cpf", "type": "string", "required": false },
+    { "name": "devedor.cnpj", "type": "string", "required": false },
+    { "name": "devedor.nome", "type": "string", "required": false },
+    { "name": "solicitacaoPagador", "type": "string", "required": false, "maxLength": 140 },
+    { "name": "infoAdicionais", "type": "array", "required": false, "description": "Key/value pairs shown to the payer" },
+    { "name": "loc.id", "type": "integer", "required": false, "description": "Linked location id" },
+    { "name": "status", "type": "string", "required": false, "description": "ATIVA | CONCLUIDA | REMOVIDA_*" }
+  ]
+}

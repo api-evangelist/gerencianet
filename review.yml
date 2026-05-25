@@ -1,0 +1,53 @@
+executed: '2026-05-24T00:00:00.000Z'
+results:
+  - code: apis-json-specification-aid-info
+    message: There is an aid.
+    severity: 2
+  - code: apis-json-apis-info
+    message: Has APIs
+    severity: 2
+  - code: apis-json-apis-aid-info
+    message: Each API has an aid property.
+    severity: 2
+  - code: apis-json-apis-name-info
+    message: Each API has a Name.
+    severity: 2
+  - code: apis-json-apis-tags-info
+    message: Each API has a Tags object.
+    severity: 2
+  - code: apis-json-apis-properties-openapi-info
+    message: Each API has an OpenAPI property.
+    severity: 2
+  - code: apis-json-apis-properties-documentation-info
+    message: Each API has a Documentation property.
+    severity: 2
+  - code: apis-json-apis-description-info
+    message: Each API has a Description.
+    severity: 2
+  - code: apis-json-common-info
+    message: Common properties section present.
+    severity: 2
+  - code: apis-json-common-portal-info
+    message: Has a portal URL.
+    severity: 2
+  - code: apis-json-common-pricing-info
+    message: Has a pricing URL.
+    severity: 2
+  - code: apis-json-common-statuspage-info
+    message: Has a status page URL.
+    severity: 2
+  - code: apis-json-common-githuborganization-info
+    message: Has a GitHub organization URL.
+    severity: 2
+  - code: apis-json-common-sdk-info
+    message: Has SDK references (PHP, Node, Python, Java, Go, Ruby, .NET, TypeScript, Dart, Delphi).
+    severity: 2
+  - code: apis-json-common-plans-info
+    message: Has API Commons Plans 0.1 file.
+    severity: 2
+  - code: apis-json-common-ratelimits-info
+    message: Has API Commons Rate Limits 0.1 file.
+    severity: 2
+  - code: apis-json-common-finops-info
+    message: Has FinOps Framework alignment file.
+    severity: 2

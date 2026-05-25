@@ -1,0 +1,59 @@
+extends: spectral:oas
+rules:
+  efi-info-contact:
+    description: Every Efí Pay API must list dev.efipay.com.br as the contact URL.
+    given: $.info.contact
+    severity: error
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://dev\\.efipay\\.com\\.br"
+  efi-server-base-url:
+    description: Production and homologation servers must use the *.api.efipay.com.br base.
+    given: $.servers[*].url
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://[a-z-]+(-h)?\\.api\\.efipay\\.com\\.br"
+  efi-oauth-required:
+    description: Every Efí Pay API uses OAuth2 client_credentials.
+    given: $.components.securitySchemes
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              type: { const: oauth2 }
+              flows:
+                type: object
+                required: [clientCredentials]
+  efi-operation-id-camel:
+    description: operationId must be camelCase matching the Node SDK constants.
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+  efi-summary-title-case:
+    description: Operation summaries should use Title Case.
+    given: $.paths[*][get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 /(){}-]+$"
+  efi-pix-mtls:
+    description: Pix and Open Finance descriptions must mention mTLS.
+    given: $.info.description
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "(mTLS|mutual TLS|mutual-TLS|P12|PEM|certificate)"

@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://pix.api.efipay.com.br/v3/gn/pix/9aab1e1c11e64c1ab8d6ee85d68bff3a",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOi...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "valor": "50.00",
+      "pagador": { "chave": "efipay-evangelist@example.com" },
+      "favorecido": {
+        "chave": "fornecedor@example.com.br",
+        "identificacao": { "cpf": "11122233344", "nome": "João Fornecedor" }
+      },
+      "infoPagador": "Pagamento NF 0042"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "idEnvio": "9aab1e1c11e64c1ab8d6ee85d68bff3a",
+      "e2eId": "E0900000020260524T130000A1B2C3D4E5F",
+      "valor": "50.00",
+      "horario": { "solicitacao": "2026-05-24T13:00:00Z" },
+      "status": "EM_PROCESSAMENTO"
+    }
+  }
+}

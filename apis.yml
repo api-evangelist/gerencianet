@@ -1,0 +1,378 @@
+aid: gerencianet
+name: Efí Pay (Gerencianet)
+description: >-
+  Efí Pay (formerly Gerencianet) is a Brazilian fintech and Banco Central-licensed
+  payment institution headquartered in Belo Horizonte, Brazil. It provides a
+  developer-first payments stack covering Pix (instant payments), Boleto / Bolix
+  / Carnê (Brazilian bank slips), credit-card processing, recurring billing
+  (assinaturas + carnês), marketplace splits, programmatic account opening
+  (BaaS), Open Finance payment initiation, bill-payment automation, and CNAB
+  statement extraction. The company rebranded from Gerencianet to Efí Pay /
+  Efí Bank in 2022 and is rated at the top tier by Banco Central for its Pix
+  API. The technical surface is exposed as five distinct REST APIs (Cobranças,
+  Pix, Open Finance, Pagamentos, Contas) with twelve official SDKs plus
+  e-commerce plugins.
+image: https://efipay.com.br/efi-logo.png
+url: https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml
+created: '2026-05-24'
+modified: '2026-05-24'
+specificationVersion: '0.18'
+tags:
+  - Payments
+  - Pix
+  - Boleto
+  - Subscriptions
+  - Recurring Billing
+  - Marketplace
+  - Split Payments
+  - Open Finance
+  - Banking as a Service
+  - Account Opening
+  - Bill Payment
+  - CNAB
+  - Brazil
+  - Fintech
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    url: https://apievangelist.com
+apis:
+  - aid: gerencianet:efi-cobrancas
+    name: Efí Pay Cobranças API
+    tags:
+      - Cobranças
+      - Boleto
+      - Bolix
+      - Carnê
+      - Credit Card
+      - Subscriptions
+      - Payment Links
+      - Marketplace Split
+    properties:
+      - url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+        type: Documentation
+      - url: https://dev.efipay.com.br
+        type: APIReference
+      - url: https://cobrancas.api.efipay.com.br/v1
+        type: BaseURL
+      - url: https://cobrancas-h.api.efipay.com.br/v1
+        type: SandboxURL
+      - url: openapi/efi-cobrancas-openapi.yml
+        type: OpenAPI
+      - url: json-schema/efi-cobrancas-charge-schema.json
+        type: JSONSchema
+      - url: json-structure/efi-cobrancas-charge-structure.json
+        type: JSONStructure
+      - url: examples/efi-cobrancas-onestep-example.json
+        type: Example
+      - url: capabilities/cobrancas-billing.yaml
+        type: NaftikoCapability
+      - url: capabilities/subscriptions.yaml
+        type: NaftikoCapability
+    description: >-
+      Brazilian billing API for boletos, Bolix (next-business-day boletos),
+      carnês (installment booklets), payment links, credit cards, subscriptions,
+      and marketplace splits. OAuth2 with HTTP Basic authentication;
+      cobrancas-h.api.efipay.com.br for sandbox.
+  - aid: gerencianet:efi-pix
+    name: Efí Pay Pix API
+    tags:
+      - Pix
+      - Cob
+      - CobV
+      - Cobr
+      - Recurring Pix
+      - Cash Out
+      - Marketplace Split
+      - MED
+      - Reconciliation
+    properties:
+      - url: https://dev.efipay.com.br/docs/api-pix/credenciais
+        type: Documentation
+      - url: https://dev.efipay.com.br/docs/api-pix
+        type: APIReference
+      - url: https://pix.api.efipay.com.br
+        type: BaseURL
+      - url: https://pix-h.api.efipay.com.br
+        type: SandboxURL
+      - url: openapi/efi-pix-openapi.yml
+        type: OpenAPI
+      - url: json-schema/efi-pix-cob-schema.json
+        type: JSONSchema
+      - url: json-schema/efi-pix-pix-received-schema.json
+        type: JSONSchema
+      - url: json-structure/efi-pix-cob-structure.json
+        type: JSONStructure
+      - url: examples/efi-pix-create-cob-example.json
+        type: Example
+      - url: examples/efi-pix-send-example.json
+        type: Example
+      - url: capabilities/pix-cob.yaml
+        type: NaftikoCapability
+      - url: capabilities/pix-cashout.yaml
+        type: NaftikoCapability
+      - url: capabilities/marketplace-split.yaml
+        type: NaftikoCapability
+    description: >-
+      Banco Central Pix API plus Efí Pay extensions (Cash-Out, splits, MED,
+      automatic and recurring Pix, statements, signed PDF receipts, webhooks).
+      OAuth2 client_credentials with mandatory mutual TLS (P12 or PEM
+      certificate) and granular scopes.
+  - aid: gerencianet:efi-openfinance
+    name: Efí Pay Open Finance API
+    tags:
+      - Open Finance
+      - Payment Initiation
+      - Pix
+      - Biometric Pix
+      - Automatic Pix
+    properties:
+      - url: https://dev.efipay.com.br/docs/open-finance
+        type: Documentation
+      - url: https://openfinance.api.efipay.com.br/v1
+        type: BaseURL
+      - url: https://openfinance-h.api.efipay.com.br/v1
+        type: SandboxURL
+      - url: openapi/efi-openfinance-openapi.yml
+        type: OpenAPI
+      - url: capabilities/openfinance-initiation.yaml
+        type: NaftikoCapability
+    description: >-
+      Open Finance Brasil payment-initiation flows — initiate, schedule, refund,
+      and recur Pix payments from any participating bank/fintech directly inside
+      your app. Requires mTLS, OAuth2, and a 72-char x-idempotency-key per
+      request.
+  - aid: gerencianet:efi-contas
+    name: Efí Pay Contas (Account Opening) API
+    tags:
+      - Account Opening
+      - Banking as a Service
+      - KYC
+      - Conta-Simplificada
+    properties:
+      - url: https://dev.efipay.com.br/docs/abertura-de-contas
+        type: Documentation
+      - url: https://abrircontas.api.efipay.com.br/v1
+        type: BaseURL
+      - url: https://abrircontas-h.api.efipay.com.br/v1
+        type: SandboxURL
+      - url: openapi/efi-contas-openapi.yml
+        type: OpenAPI
+      - url: capabilities/account-opening.yaml
+        type: NaftikoCapability
+    description: >-
+      Open Brazilian conta-simplificada accounts programmatically for
+      end-customers, generate per-account P12 certificates, retrieve
+      generated API credentials, and listen for account lifecycle events.
+  - aid: gerencianet:efi-pagamentos
+    name: Efí Pay Pagamentos (Bill Payment) API
+    tags:
+      - Bill Payment
+      - Boleto
+      - Pagar Contas
+    properties:
+      - url: https://dev.efipay.com.br/docs/api-pagamentos
+        type: Documentation
+      - url: https://pagarcontas.api.efipay.com.br/v1
+        type: BaseURL
+      - url: https://pagarcontas-h.api.efipay.com.br/v1
+        type: SandboxURL
+      - url: openapi/efi-pagamentos-openapi.yml
+        type: OpenAPI
+      - url: capabilities/bill-payment.yaml
+        type: NaftikoCapability
+    description: >-
+      Decode a Brazilian boleto or utility-bill barcode (linha digitável) and
+      schedule its payment from the Efí account balance, then track payment
+      status through completion.
+  - aid: gerencianet:efi-extratos
+    name: Efí Pay Extratos (Statements) API
+    tags:
+      - Statements
+      - CNAB
+      - Reconciliation
+      - SFTP
+    properties:
+      - url: https://dev.efipay.com.br/docs/extrato-cnab
+        type: Documentation
+      - url: https://extratos.api.efipay.com.br/v1
+        type: BaseURL
+      - url: https://extratos-h.api.efipay.com.br/v1
+        type: SandboxURL
+      - url: openapi/efi-extratos-openapi.yml
+        type: OpenAPI
+      - url: capabilities/statements.yaml
+        type: NaftikoCapability
+    description: >-
+      Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule
+      jobs, list/download generated files, and provision SFTP keys for
+      automated pickup.
+common:
+  - url: https://sejaefi.com.br
+    type: Portal
+  - url: https://dev.efipay.com.br
+    type: GettingStarted
+  - url: https://app.efipay.com.br
+    type: Console
+  - url: https://sejaefi.com.br/cadastro
+    type: SignUp
+  - url: https://sejaefi.com.br/tarifas
+    type: Pricing
+  - url: https://sejaefi.com.br/termos-e-contratos
+    type: TermsOfService
+  - url: https://sejaefi.com.br/termos-e-contratos/politica-de-privacidade
+    type: PrivacyPolicy
+  - url: https://sejaefi.com.br/blog
+    type: Blog
+  - url: https://status.sejaefi.com.br
+    type: StatusPage
+  - url: https://sejaefi.com.br/central-de-ajuda
+    type: Support
+  - url: https://sejaefi.com.br/central-de-ajuda
+    type: FAQ
+  - url: https://github.com/efipay
+    type: GitHubOrganization
+  - url: https://discord.gg/efipay
+    type: Discord
+  - url: https://github.com/efipay/sdk-php-apis-efi
+    type: SDK
+    name: PHP SDK
+  - url: https://github.com/efipay/sdk-node-apis-efi
+    type: SDK
+    name: Node.js SDK
+  - url: https://github.com/efipay/sdk-python-apis-efi
+    type: SDK
+    name: Python SDK
+  - url: https://github.com/efipay/sdk-java-apis-efi
+    type: SDK
+    name: Java SDK
+  - url: https://github.com/efipay/sdk-go-apis-efi
+    type: SDK
+    name: Go SDK
+  - url: https://github.com/efipay/sdk-ruby-apis-efi
+    type: SDK
+    name: Ruby SDK
+  - url: https://github.com/efipay/sdk-dotnet-apis-efi
+    type: SDK
+    name: .NET SDK
+  - url: https://github.com/efipay/sdk-typescript-apis-efi
+    type: SDK
+    name: TypeScript SDK
+  - url: https://github.com/efipay/sdk-dart-apis-efi
+    type: SDK
+    name: Dart/Flutter SDK
+  - url: https://github.com/efipay/sdk-delphi-apis-efi
+    type: SDK
+    name: Delphi SDK
+  - url: https://github.com/efipay/Plugin-Wordpress-Efi
+    type: Plugin
+    name: WordPress / WooCommerce Plugin
+  - url: https://github.com/efipay/Plugin-Magento2-Efi
+    type: Plugin
+    name: Magento 2 Plugin
+  - url: https://github.com/efipay/prestashop-efi-module
+    type: Plugin
+    name: PrestaShop Module
+  - url: https://github.com/efipay/opencart-efi-module
+    type: Plugin
+    name: OpenCart Module
+  - url: https://github.com/efipay/whmcs-efi-module
+    type: Plugin
+    name: WHMCS Module
+  - url: https://github.com/efipay/n8n-nodes-efibank
+    type: Tool
+    name: n8n Custom Node
+  - url: https://github.com/efipay/mcp-server-efi-bank
+    type: Tool
+    name: MCP Server (Model Context Protocol)
+  - url: https://github.com/efipay/js-payment-token-efi
+    type: Tool
+    name: Browser Card Tokenization Library
+  - url: https://github.com/efipay/conversor-p12-efi
+    type: Tool
+    name: P12 to PEM Certificate Converter
+  - url: https://github.com/efipay/mtls-webhook
+    type: Tool
+    name: mTLS Webhook Proxy (Nginx)
+  - url: plans/gerencianet-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/gerencianet-rate-limits.yml
+    type: RateLimits
+  - url: finops/gerencianet-finops.yml
+    type: FinOps
+  - url: rules/efi-rules.yml
+    type: SpectralRules
+  - url: vocabulary/gerencianet-vocabulary.yml
+    type: Vocabulary
+  - url: json-ld/gerencianet-context.jsonld
+    type: JSON-LD
+  - type: Features
+    data:
+      - name: Pix API (Banco Central rated tier-1)
+        description: Cash-in / cash-out / immediate (cob) / due (cobv) / automatic (cobr) / recurring (rec) Pix flows.
+      - name: Boleto and Bolix
+        description: Brazilian bank slips with optional next-business-day settlement (Bolix).
+      - name: Carnê
+        description: Installment booklets — a single charge that emits a series of dated boletos.
+      - name: Credit-Card Processing
+        description: Card transactions with installments up to 12x and antecipação.
+      - name: Subscriptions and Plans
+        description: Recurring billing via the Cobranças API.
+      - name: Payment Links
+        description: Shareable payment URLs requiring no merchant site.
+      - name: Marketplace Splits
+        description: Automatic distribution of received funds across multiple Efí accounts.
+      - name: Open Finance Payment Initiation
+        description: Initiate Pix payments from any participating Brazilian bank/fintech.
+      - name: Programmatic Account Opening
+        description: Conta-simplificada accounts opened via API with auto-generated certificates and credentials.
+      - name: Bill Payment Automation
+        description: Decode boleto barcodes and pay them from the account balance.
+      - name: CNAB Statement Extraction
+        description: Scheduled CNAB statement files retrievable via API or SFTP.
+      - name: MED Infraction Defense
+        description: Submit defenses for Pix infraction notices via /v2/gn/infracoes.
+      - name: Webhooks With Optional mTLS Skip
+        description: Configurable Pix, recurring, and automatic-charge webhook delivery with replay endpoint.
+  - type: UseCases
+    data:
+      - name: Brazilian E-Commerce Checkout
+        description: Accept boleto, Pix QR Code, and credit card via a single transparent checkout.
+      - name: SaaS Subscription Billing
+        description: Charge recurring fees via plan + subscription on boleto or card.
+      - name: Marketplace Disbursement
+        description: Split incoming Pix and boleto payments across multiple sellers.
+      - name: White-Label BaaS / Sub-Account Onboarding
+        description: Open conta-simplificada accounts for partners and issue per-account credentials.
+      - name: AP Automation
+        description: Pay supplier boletos via /codBarras and Pix Cash-Out via /v3/gn/pix.
+      - name: Treasury Reconciliation
+        description: Pull daily CNAB statements + Pix reconciliation reports.
+      - name: AI Agent Payments
+        description: Use the official MCP server (efipay/mcp-server-efi-bank) to expose Pix/billing as LLM tools.
+  - type: Integrations
+    data:
+      - name: WordPress / WooCommerce
+        description: Official plugin for WooCommerce checkout.
+      - name: Magento 2
+        description: Official Magento 2 plugin.
+      - name: PrestaShop
+        description: Official PrestaShop module.
+      - name: OpenCart
+        description: Official OpenCart module.
+      - name: WHMCS
+        description: Official WHMCS billing plugin.
+      - name: n8n
+        description: Community/official n8n custom node (efipay/n8n-nodes-efibank).
+      - name: Model Context Protocol
+        description: Official MCP server exposing Efí Pay APIs to LLM agents.
+      - name: Banco Central do Brasil
+        description: Pix and Open Finance flows implement the BCB normative specifications.
+  - type: Solutions
+    data:
+      - name: Efí Pro
+        description: Account for self-employed individuals (no CNPJ required).
+      - name: Efí Empresas
+        description: Digital business account for registered companies.
+      - name: Efí Bank
+        description: Banco-rated institution providing Visa Platinum credit card and prepaid card issuance.

@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://cobrancas.api.efipay.com.br/v1/charge/one-step",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOi...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "items": [
+        { "name": "Plano Premium Anual", "value": 24900, "amount": 1 }
+      ],
+      "payment": {
+        "banking_billet": {
+          "customer": {
+            "name": "Maria Souza",
+            "cpf": "94271564656",
+            "email": "maria.souza@example.com",
+            "phone_number": "5511999999999",
+            "birth": "1985-04-12",
+            "address": {
+              "street": "Rua das Acácias",
+              "number": "123",
+              "neighborhood": "Centro",
+              "zipcode": "01001000",
+              "city": "São Paulo",
+              "state": "SP"
+            }
+          },
+          "expire_at": "2026-06-20",
+          "configurations": { "fine": 200, "interest": { "value": 33, "type": "monthly" } }
+        }
+      },
+      "metadata": { "custom_id": "ORDER-2026-0042", "notification_url": "https://merchant.example.com/efi/webhook" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "code": 200,
+      "data": {
+        "charge_id": 91283091,
+        "total": 24900,
+        "status": "waiting",
+        "custom_id": "ORDER-2026-0042",
+        "billet": {
+          "barcode": "23793.39001 60083.418004 84020.000003 1 12340000024900",
+          "link": "https://cobrancas.api.efipay.com.br/emissao/91283091/v9hKsT...",
+          "pdf": { "charge": "https://cobrancas.api.efipay.com.br/emissao/91283091/pdf/v9hKsT..." },
+          "expire_at": "2026-06-20"
+        },
+        "created_at": "2026-05-24 10:00:11"
+      }
+    }
+  }
+}

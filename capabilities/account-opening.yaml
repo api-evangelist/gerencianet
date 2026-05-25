@@ -1,0 +1,51 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Efí Pay — Programmatic Account Opening
+  description: >-
+    Open Brazilian conta-simplificada accounts for end customers, generate their
+    P12 certificates, retrieve their API credentials, and listen for account
+    lifecycle webhooks.
+  tags:
+    - Efí Pay
+    - Account Opening
+    - BaaS
+    - KYC
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      EFI_CONTAS_CLIENT_ID: EFI_CONTAS_CLIENT_ID
+      EFI_CONTAS_CLIENT_SECRET: EFI_CONTAS_CLIENT_SECRET
+      EFI_CONTAS_CERT_PATH: EFI_CONTAS_CERT_PATH
+capability:
+  consumes:
+    - type: http
+      namespace: efi-contas
+      baseUri: https://abrircontas.api.efipay.com.br
+      description: Efí Pay Account Opening API
+      resources:
+        - name: account
+          path: /v1/conta-simplificada
+          operations:
+            - name: createAccount
+              method: POST
+              description: Create simplified account
+        - name: account-cert
+          path: /v1/conta-simplificada/{identificador}/certificado
+          operations:
+            - name: getAccountCertificate
+              method: POST
+              description: Generate account P12 certificate
+        - name: account-creds
+          path: /v1/conta-simplificada/{identificador}/credenciais
+          operations:
+            - name: getAccountCredentials
+              method: GET
+              description: Get account API credentials
+        - name: webhook
+          path: /v1/webhook
+          operations:
+            - name: accountConfigWebhook
+              method: POST
+              description: Configure account webhook

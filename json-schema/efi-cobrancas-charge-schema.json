@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/gerencianet/main/json-schema/efi-cobrancas-charge-schema.json",
+  "title": "Efí Pay Charge",
+  "description": "A charge issued via the Efí Pay Cobranças API (boleto, credit card, or payment link).",
+  "type": "object",
+  "required": ["items"],
+  "properties": {
+    "charge_id": { "type": "integer" },
+    "status": { "type": "string", "enum": ["new", "waiting", "paid", "unpaid", "refunded", "contested", "settled", "link", "identified", "canceled", "expired"] },
+    "total": { "type": "integer", "description": "Total in cents" },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "amount"],
+        "properties": {
+          "name": { "type": "string" },
+          "value": { "type": "integer", "description": "Unit value in cents" },
+          "amount": { "type": "integer", "minimum": 1 },
+          "marketplace": {
+            "type": "object",
+            "properties": {
+              "mode": { "type": "string", "enum": ["percentage", "fixed"] },
+              "repasses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["payee_code"],
+                  "properties": {
+                    "payee_code": { "type": "string" },
+                    "percentage": { "type": "number" },
+                    "fixed": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "custom_id": { "type": "string" },
+        "notification_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "oneOf": [
+        { "required": ["banking_billet"] },
+        { "required": ["credit_card"] }
+      ],
+      "properties": {
+        "banking_billet": { "type": "object" },
+        "credit_card": { "type": "object" }
+      }
+    }
+  }
+}

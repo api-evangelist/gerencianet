@@ -1,0 +1,21 @@
+{
+  "structure": "JSON Structure 0.1",
+  "id": "https://raw.githubusercontent.com/api-evangelist/gerencianet/main/json-structure/efi-cobrancas-charge-structure.json",
+  "title": "Efí Cobranças Charge — Structure",
+  "description": "Operational structure of an Efí Pay Cobranças charge.",
+  "tags": ["Boleto", "Credit Card", "Charge", "Brazil"],
+  "fields": [
+    { "name": "charge_id", "type": "integer", "required": false, "description": "Server-assigned charge id" },
+    { "name": "status", "type": "string", "required": false, "description": "Charge lifecycle status" },
+    { "name": "total", "type": "integer", "required": false, "description": "Total in cents" },
+    { "name": "items[].name", "type": "string", "required": true },
+    { "name": "items[].value", "type": "integer", "required": true, "description": "Unit value in cents" },
+    { "name": "items[].amount", "type": "integer", "required": true },
+    { "name": "items[].marketplace.repasses[].payee_code", "type": "string", "required": false },
+    { "name": "items[].marketplace.repasses[].percentage", "type": "number", "required": false },
+    { "name": "metadata.custom_id", "type": "string", "required": false },
+    { "name": "metadata.notification_url", "type": "string", "required": false },
+    { "name": "payment.banking_billet", "type": "object", "required": false },
+    { "name": "payment.credit_card", "type": "object", "required": false }
+  ]
+}

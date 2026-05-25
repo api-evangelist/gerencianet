@@ -1,0 +1,54 @@
+vocabulary: API Commons Vocabulary 0.1
+provider: Efí Pay (Gerencianet)
+providerId: gerencianet
+created: '2026-05-24'
+modified: '2026-05-24'
+description: >-
+  Controlled vocabulary mapping the operational surface of Efí Pay's APIs to
+  Brazilian payments concepts: Pix, boleto, carnê, recurring billing,
+  marketplace splits, account opening, Open Finance payment initiation, and
+  CNAB reconciliation.
+sources:
+  - https://dev.efipay.com.br
+  - https://github.com/efipay
+domains:
+  - name: Payments
+    terms:
+      - { term: Pix, definition: Brazilian Central Bank instant payments rail (Banco Central do Brasil) }
+      - { term: Boleto, definition: Brazilian printable/scanable bank slip used for offline and online payments }
+      - { term: Bolix, definition: Efí Pay product — next-business-day-settling boleto }
+      - { term: Carnê, definition: Sequence of dated boletos used as an installment booklet }
+      - { term: Pix Cob, definition: Immediate Pix charge (sem vencimento) }
+      - { term: Pix CobV, definition: Pix charge with a future due date }
+      - { term: Pix Cobr, definition: Automatic recurring Pix charge }
+      - { term: Pix Send, definition: Efí Pay proprietary cash-out endpoint }
+      - { term: Open Finance, definition: Brazil's Open Banking + payment initiation regime }
+      - { term: MED, definition: Mecanismo Especial de Devolução — Pix infraction/recovery channel }
+  - name: Identity
+    terms:
+      - { term: CPF, definition: Brazilian individual taxpayer registry (Cadastro de Pessoas Físicas) }
+      - { term: CNPJ, definition: Brazilian legal-entity taxpayer registry (Cadastro Nacional da Pessoa Jurídica) }
+      - { term: Chave Pix / EVP, definition: Pix routing key (CPF/CNPJ/email/phone or random EVP) }
+      - { term: Conta-Simplificada, definition: Brazilian simplified bank account opened via Contas API }
+  - name: Authentication
+    terms:
+      - { term: client_credentials, definition: OAuth2 flow used by every Efí Pay API }
+      - { term: mTLS, definition: Mutual TLS using a P12/PEM certificate, mandatory for Pix and Open Finance }
+      - { term: x-idempotency-key, definition: 72-char header required on every Open Finance request }
+      - { term: partner-token, definition: Optional header used by partner integrators }
+  - name: Reconciliation
+    terms:
+      - { term: CNAB, definition: Brazilian banking text-file format used for batch statement extraction }
+      - { term: EndToEndId, definition: Globally-unique BCB-assigned id for each Pix transaction }
+      - { term: TXID, definition: Caller-assigned 26–35-char id used to bind a Pix charge to a payment }
+      - { term: Comprovante, definition: Signed PDF receipt downloadable from /v2/gn/pix/comprovantes }
+tags:
+  - Brazil
+  - Payments
+  - Pix
+  - Boleto
+  - Subscriptions
+  - Marketplace
+  - Open Finance
+  - Banking as a Service
+  - Reconciliation

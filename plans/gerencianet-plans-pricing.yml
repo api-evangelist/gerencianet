@@ -1,0 +1,196 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Efí Pay (Gerencianet)
+providerId: gerencianet
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: true
+tags:
+  - Payments
+  - Pix
+  - Boleto
+  - Billing
+  - Brazil
+description: >-
+  Efí Pay is product-priced rather than tiered. Account creation is free; fees
+  accrue only on successful settlements. Rates below are the publicly listed
+  Brazilian (BRL) prices and are subject to commercial negotiation for
+  enterprise volume.
+sources:
+  - https://sejaefi.com.br/tarifas
+  - https://sejaefi.com.br
+plans:
+  - id: efi-cobrancas-boleto
+    name: Boleto / Bolix / Carnê
+    type: usage-based
+    description: Brazilian bank slip issuance. Charged per paid receipt; issuance and unpaid slips are free.
+    entries:
+      - label: Paid boleto, Bolix, or carnê parcel
+        name: paid_boleto
+        type: metered
+        metric: receipt
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: R$3.45
+        userMultiplied: false
+      - label: Receivables advance
+        name: antecipacao
+        type: metered
+        metric: event
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 4% (cap R$30/batch)
+        userMultiplied: false
+  - id: efi-cobrancas-card
+    name: Credit Card
+    type: usage-based
+    description: Per-transaction take rate for Brazilian credit-card payments.
+    entries:
+      - label: À vista
+        name: card_avista
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 3.49%
+        userMultiplied: false
+      - label: Parcelado 2–6x
+        name: card_parc_2_6
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 3.99%
+        userMultiplied: false
+      - label: Parcelado 7–12x
+        name: card_parc_7_12
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 4.39%
+        userMultiplied: false
+      - label: Antecipação de parcelas
+        name: card_antec
+        type: metered
+        metric: installment
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 1.29% per installment + 3.49%
+        userMultiplied: false
+  - id: efi-pix
+    name: Pix
+    type: usage-based
+    description: Per-transaction Pix fees. The Efí mobile app includes 30 free incoming Pix per month.
+    entries:
+      - label: Pix via app (after 30 free)
+        name: pix_app
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: month
+        geo: BR
+        unit: 1
+        price: 1.19%
+        userMultiplied: false
+      - label: Pix via API (Cob / Cobv / QR dinâmico)
+        name: pix_api
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: 1.19%
+        userMultiplied: false
+      - label: Pix Automático
+        name: pix_automatico
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: R$3.50
+        userMultiplied: false
+    elements:
+      - name: Pix Cash-In and Cash-Out
+      - name: Pix Open Finance initiation
+      - name: Pix Automático (recurring Pix)
+      - name: MED infraction defense
+  - id: efi-transfers
+    name: Account Transfers
+    type: usage-based
+    description: Outbound transfers from the Efí account.
+    entries:
+      - label: Pix transfer
+        name: pix_transfer
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: Free
+        userMultiplied: false
+      - label: TED (same holder, > R$300)
+        name: ted_same_holder
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: Free
+        userMultiplied: false
+      - label: TED (other conditions)
+        name: ted_other
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: R$5.00
+        userMultiplied: false
+  - id: efi-cards
+    name: Issued Cards
+    type: usage-based
+    description: Cards issued by Efí Bank to account holders.
+    entries:
+      - label: Visa Platinum credit card
+        name: visa_platinum
+        type: metered
+        metric: card
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: Free (credit-analysis dependent)
+        userMultiplied: false
+      - label: Prepaid card
+        name: prepaid
+        type: metered
+        metric: card
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: R$19.00 issuance
+        userMultiplied: false
+notes:
+  - Tariffs vary by contract date and commercial negotiation.
+  - Sandbox (homologation) usage is free across all APIs.

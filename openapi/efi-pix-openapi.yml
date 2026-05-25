@@ -1,0 +1,599 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Pix API
+  description: >-
+    Brazilian Pix instant-payments API for Efí Pay (formerly Gerencianet).
+    Implements the Banco Central do Brasil Pix specification (cob/cobv/cobr,
+    locations, devolutions, Pix keys/EVP) plus Efí Pay extensions for Cash-Out
+    (pixSend), splits, MED infractions, recurring/automatic Pix, statements,
+    receipts, and webhooks. OAuth2 client_credentials with mandatory mutual TLS
+    (P12/PEM certificate).
+  version: "2.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br/docs/api-pix
+  license:
+    name: Proprietary
+servers:
+  - url: https://pix.api.efipay.com.br
+    description: Production
+  - url: https://pix-h.api.efipay.com.br
+    description: Homologation (Sandbox)
+security:
+  - oauth2Pix: []
+tags:
+  - name: Authorization
+  - name: Immediate Charges
+  - name: Due Charges
+  - name: Due Charge Batches
+  - name: Automatic Charges
+  - name: Recurring Pix
+  - name: Pix Send
+  - name: Received Pix
+  - name: Devolutions
+  - name: Locations
+  - name: QR Codes
+  - name: Pix Keys
+  - name: Account
+  - name: Splits
+  - name: MED Infractions
+  - name: Reports
+  - name: Receipts
+  - name: Webhooks
+paths:
+  /oauth/token:
+    post:
+      tags: [Authorization]
+      summary: Issue Pix Access Token
+      operationId: pixAuthorize
+      responses: { "200": { description: Token } }
+  /v2/cob:
+    post:
+      tags: [Immediate Charges]
+      summary: Create Immediate Pix Charge
+      operationId: pixCreateImmediateCharge
+      responses: { "201": { description: Charge created } }
+    get:
+      tags: [Immediate Charges]
+      summary: List Immediate Pix Charges
+      operationId: pixListCharges
+      responses: { "200": { description: Charges } }
+  /v2/cob/{txid}:
+    put:
+      tags: [Immediate Charges]
+      summary: Create Immediate Pix Charge With Txid
+      operationId: pixCreateCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Created } }
+    patch:
+      tags: [Immediate Charges]
+      summary: Update Immediate Pix Charge
+      operationId: pixUpdateCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+    get:
+      tags: [Immediate Charges]
+      summary: Detail Immediate Pix Charge
+      operationId: pixDetailCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Charge } }
+  /v2/cobv:
+    get:
+      tags: [Due Charges]
+      summary: List Pix Due Charges
+      operationId: pixListDueCharges
+      responses: { "200": { description: Due charges } }
+  /v2/cobv/{txid}:
+    put:
+      tags: [Due Charges]
+      summary: Create Pix Due Charge
+      operationId: pixCreateDueCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Created } }
+    patch:
+      tags: [Due Charges]
+      summary: Update Pix Due Charge
+      operationId: pixUpdateDueCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+    get:
+      tags: [Due Charges]
+      summary: Detail Pix Due Charge
+      operationId: pixDetailDueCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Due charge } }
+  /v2/lotecobv:
+    get:
+      tags: [Due Charge Batches]
+      summary: List Due Charge Batches
+      operationId: pixListDueChargeBatch
+      responses: { "200": { description: Batches } }
+  /v2/lotecobv/{id}:
+    put:
+      tags: [Due Charge Batches]
+      summary: Create Due Charge Batch
+      operationId: pixCreateDueChargeBatch
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Created } }
+    patch:
+      tags: [Due Charge Batches]
+      summary: Update Due Charge Batch
+      operationId: pixUpdateDueChargeBatch
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+    get:
+      tags: [Due Charge Batches]
+      summary: Detail Due Charge Batch
+      operationId: pixDetailDueChargeBatch
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Batch } }
+  /v2/cobr:
+    post:
+      tags: [Automatic Charges]
+      summary: Create Automatic Pix Charge
+      operationId: pixCreateAutomaticCharge
+      responses: { "201": { description: Created } }
+    get:
+      tags: [Automatic Charges]
+      summary: List Automatic Pix Charges
+      operationId: pixListAutomaticCharge
+      responses: { "200": { description: Charges } }
+  /v2/cobr/{txid}:
+    put:
+      tags: [Automatic Charges]
+      summary: Create Automatic Pix Charge With Txid
+      operationId: pixCreateAutomaticChargeTxid
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Created } }
+    patch:
+      tags: [Automatic Charges]
+      summary: Update Automatic Pix Charge
+      operationId: pixUpdateAutomaticCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+    get:
+      tags: [Automatic Charges]
+      summary: Detail Automatic Pix Charge
+      operationId: pixDetailAutomaticCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Charge } }
+  /v2/cobr/{txid}/retentativa/{data}:
+    post:
+      tags: [Automatic Charges]
+      summary: Retry Automatic Pix Charge
+      operationId: pixRetryRequestAutomaticCharge
+      parameters:
+        - { name: txid, in: path, required: true, schema: { type: string } }
+        - { name: data, in: path, required: true, schema: { type: string, format: date } }
+      responses: { "200": { description: Retried } }
+  /v2/rec:
+    post:
+      tags: [Recurring Pix]
+      summary: Create Recurring Pix
+      operationId: pixCreateRecurrenceAutomatic
+      responses: { "201": { description: Created } }
+    get:
+      tags: [Recurring Pix]
+      summary: List Recurring Pix
+      operationId: pixListRecurrenceAutomatic
+      responses: { "200": { description: Recurrences } }
+  /v2/rec/{idRec}:
+    get:
+      tags: [Recurring Pix]
+      summary: Detail Recurring Pix
+      operationId: pixDetailRecurrenceAutomatic
+      parameters: [{ name: idRec, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Recurrence } }
+    patch:
+      tags: [Recurring Pix]
+      summary: Update Recurring Pix
+      operationId: pixUpdateRecurrenceAutomatic
+      parameters: [{ name: idRec, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+  /v2/solicrec:
+    post:
+      tags: [Recurring Pix]
+      summary: Create Recurring Pix Request
+      operationId: pixCreateRequestRecurrenceAutomatic
+      responses: { "201": { description: Created } }
+  /v2/solicrec/{idSolicRec}:
+    get:
+      tags: [Recurring Pix]
+      summary: Detail Recurring Pix Request
+      operationId: pixDetailRequestRecurrenceAutomatic
+      parameters: [{ name: idSolicRec, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Request } }
+    patch:
+      tags: [Recurring Pix]
+      summary: Update Recurring Pix Request
+      operationId: pixUpdateRequestRecurrenceAutomatic
+      parameters: [{ name: idSolicRec, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+  /v2/locrec:
+    post:
+      tags: [Recurring Pix]
+      summary: Create Recurring Pix Location
+      operationId: pixCreateLocationRecurrenceAutomatic
+      responses: { "201": { description: Created } }
+    get:
+      tags: [Recurring Pix]
+      summary: List Recurring Pix Locations
+      operationId: pixListLocationRecurrenceAutomatic
+      responses: { "200": { description: Locations } }
+  /v2/locrec/{id}:
+    get:
+      tags: [Recurring Pix]
+      summary: Detail Recurring Pix Location
+      operationId: pixDetailLocationRecurrenceAutomatic
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Location } }
+  /v2/locrec/{id}/idRec:
+    delete:
+      tags: [Recurring Pix]
+      summary: Unlink Recurring Pix Location
+      operationId: pixUnlinkLocationRecurrenceAutomatic
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "204": { description: Unlinked } }
+  /v3/gn/pix/{idEnvio}:
+    put:
+      tags: [Pix Send]
+      summary: Send Pix Cash Out
+      operationId: pixSend
+      parameters: [{ name: idEnvio, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Sent } }
+  /v2/gn/pix/{idEnvio}/qrcode:
+    put:
+      tags: [Pix Send]
+      summary: Pay Pix QR Code
+      operationId: pixQrCodePay
+      parameters: [{ name: idEnvio, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Paid } }
+  /v2/gn/pix/{idEnvio}/mesma-titularidade:
+    put:
+      tags: [Pix Send]
+      summary: Send Pix Same Ownership
+      operationId: pixSendSameOwnership
+      parameters: [{ name: idEnvio, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Sent } }
+  /v2/gn/pix/enviados:
+    get:
+      tags: [Pix Send]
+      summary: List Sent Pix
+      operationId: pixSendList
+      responses: { "200": { description: Sent Pix list } }
+  /v2/gn/pix/enviados/{e2eid}:
+    get:
+      tags: [Pix Send]
+      summary: Detail Sent Pix
+      operationId: pixSendDetail
+      parameters: [{ name: e2eid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Detail } }
+  /v2/gn/pix/enviados/id-envio/{idEnvio}:
+    get:
+      tags: [Pix Send]
+      summary: Detail Sent Pix By Send Id
+      operationId: pixSendDetailId
+      parameters: [{ name: idEnvio, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Detail } }
+  /v2/pix:
+    get:
+      tags: [Received Pix]
+      summary: List Received Pix
+      operationId: pixReceivedList
+      responses: { "200": { description: Received Pix } }
+  /v2/pix/{e2eId}:
+    get:
+      tags: [Received Pix]
+      summary: Detail Received Pix
+      operationId: pixDetailReceived
+      parameters: [{ name: e2eId, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Received Pix } }
+  /v2/pix/{e2eId}/devolucao/{id}:
+    put:
+      tags: [Devolutions]
+      summary: Create Pix Devolution
+      operationId: pixDevolution
+      parameters:
+        - { name: e2eId, in: path, required: true, schema: { type: string } }
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses: { "201": { description: Devolution issued } }
+    get:
+      tags: [Devolutions]
+      summary: Detail Pix Devolution
+      operationId: pixDetailDevolution
+      parameters:
+        - { name: e2eId, in: path, required: true, schema: { type: string } }
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses: { "200": { description: Devolution } }
+  /v2/loc:
+    post:
+      tags: [Locations]
+      summary: Create Pix Location
+      operationId: pixCreateLocation
+      responses: { "201": { description: Location } }
+    get:
+      tags: [Locations]
+      summary: List Pix Locations
+      operationId: pixLocationList
+      responses: { "200": { description: Locations } }
+  /v2/loc/{id}:
+    get:
+      tags: [Locations]
+      summary: Detail Pix Location
+      operationId: pixDetailLocation
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: Location } }
+  /v2/loc/{id}/qrcode:
+    get:
+      tags: [QR Codes]
+      summary: Generate Pix QR Code
+      operationId: pixGenerateQRCode
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "200": { description: QR Code payload } }
+  /v2/loc/{id}/txid:
+    delete:
+      tags: [Locations]
+      summary: Unlink Txid From Location
+      operationId: pixUnlinkTxidLocation
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { "204": { description: Unlinked } }
+  /v2/gn/qrcodes/detalhar:
+    post:
+      tags: [QR Codes]
+      summary: Detail Pix QR Code
+      operationId: pixQrCodeDetail
+      responses: { "200": { description: Decoded QR Code } }
+  /v2/gn/evp:
+    post:
+      tags: [Pix Keys]
+      summary: Create Random Pix Key
+      operationId: pixCreateEvp
+      responses: { "201": { description: Key created } }
+    get:
+      tags: [Pix Keys]
+      summary: List Random Pix Keys
+      operationId: pixListEvp
+      responses: { "200": { description: Keys } }
+  /v2/gn/evp/{chave}:
+    delete:
+      tags: [Pix Keys]
+      summary: Delete Random Pix Key
+      operationId: pixDeleteEvp
+      parameters: [{ name: chave, in: path, required: true, schema: { type: string } }]
+      responses: { "204": { description: Deleted } }
+  /v2/gn/chaves/balde:
+    get:
+      tags: [Pix Keys]
+      summary: List Pix Keys Bucket
+      operationId: pixKeysBucket
+      responses: { "200": { description: Bucket } }
+  /v2/gn/saldo:
+    get:
+      tags: [Account]
+      summary: Get Account Balance
+      operationId: getAccountBalance
+      responses: { "200": { description: Balance } }
+  /v2/gn/config:
+    get:
+      tags: [Account]
+      summary: List Account Config
+      operationId: listAccountConfig
+      responses: { "200": { description: Config } }
+    put:
+      tags: [Account]
+      summary: Update Account Config
+      operationId: updateAccountConfig
+      responses: { "200": { description: Updated } }
+  /v2/gn/split/cob/{txid}:
+    get:
+      tags: [Splits]
+      summary: Detail Charge Split
+      operationId: pixSplitDetailCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Split } }
+  /v2/gn/split/cob/{txid}/vinculo/{splitConfigId}:
+    put:
+      tags: [Splits]
+      summary: Link Split To Charge
+      operationId: pixSplitLinkCharge
+      parameters:
+        - { name: txid, in: path, required: true, schema: { type: string } }
+        - { name: splitConfigId, in: path, required: true, schema: { type: string } }
+      responses: { "200": { description: Linked } }
+    delete:
+      tags: [Splits]
+      summary: Unlink Split From Charge
+      operationId: pixSplitUnlinkCharge
+      parameters:
+        - { name: txid, in: path, required: true, schema: { type: string } }
+        - { name: splitConfigId, in: path, required: true, schema: { type: string } }
+      responses: { "204": { description: Unlinked } }
+  /v2/gn/split/cobv/{txid}:
+    get:
+      tags: [Splits]
+      summary: Detail Due Charge Split
+      operationId: pixSplitDetailDueCharge
+      parameters: [{ name: txid, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Split } }
+  /v2/gn/split/cobv/{txid}/vinculo/{splitConfigId}:
+    put:
+      tags: [Splits]
+      summary: Link Split To Due Charge
+      operationId: pixSplitLinkDueCharge
+      parameters:
+        - { name: txid, in: path, required: true, schema: { type: string } }
+        - { name: splitConfigId, in: path, required: true, schema: { type: string } }
+      responses: { "200": { description: Linked } }
+    delete:
+      tags: [Splits]
+      summary: Unlink Split From Due Charge
+      operationId: pixSplitUnlinkDueCharge
+      parameters:
+        - { name: txid, in: path, required: true, schema: { type: string } }
+        - { name: splitConfigId, in: path, required: true, schema: { type: string } }
+      responses: { "204": { description: Unlinked } }
+  /v2/gn/split/config:
+    post:
+      tags: [Splits]
+      summary: Create Split Config
+      operationId: pixSplitConfig
+      responses: { "201": { description: Created } }
+  /v2/gn/split/config/{id}:
+    put:
+      tags: [Splits]
+      summary: Update Split Config
+      operationId: pixSplitConfigId
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+    get:
+      tags: [Splits]
+      summary: Detail Split Config
+      operationId: pixSplitDetailConfig
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Config } }
+  /v2/gn/infracoes:
+    get:
+      tags: [MED Infractions]
+      summary: List MED Infractions
+      operationId: medList
+      responses: { "200": { description: Infractions } }
+  /v2/gn/infracoes/{idInfracao}/defesa:
+    post:
+      tags: [MED Infractions]
+      summary: Submit MED Defense
+      operationId: medDefense
+      parameters: [{ name: idInfracao, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Submitted } }
+  /v2/gn/relatorios/extrato-conciliacao:
+    post:
+      tags: [Reports]
+      summary: Create Reconciliation Report
+      operationId: createReport
+      responses: { "201": { description: Report queued } }
+  /v2/gn/relatorios/{id}:
+    get:
+      tags: [Reports]
+      summary: Detail Reconciliation Report
+      operationId: detailReport
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Report } }
+  /v2/gn/pix/comprovantes:
+    get:
+      tags: [Receipts]
+      summary: Get Pix Receipt
+      operationId: pixGetReceipt
+      responses: { "200": { description: Receipt PDF } }
+  /v2/webhook/{chave}:
+    put:
+      tags: [Webhooks]
+      summary: Configure Pix Webhook
+      operationId: pixConfigWebhook
+      parameters: [{ name: chave, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Configured } }
+    get:
+      tags: [Webhooks]
+      summary: Detail Pix Webhook
+      operationId: pixDetailWebhook
+      parameters: [{ name: chave, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Webhook } }
+    delete:
+      tags: [Webhooks]
+      summary: Delete Pix Webhook
+      operationId: pixDeleteWebhook
+      parameters: [{ name: chave, in: path, required: true, schema: { type: string } }]
+      responses: { "204": { description: Deleted } }
+  /v2/webhook:
+    get:
+      tags: [Webhooks]
+      summary: List Pix Webhooks
+      operationId: pixListWebhook
+      responses: { "200": { description: Webhooks } }
+  /v2/webhookrec:
+    put:
+      tags: [Webhooks]
+      summary: Configure Recurring Pix Webhook
+      operationId: pixConfigWebhookRecurrenceAutomatic
+      responses: { "200": { description: Configured } }
+    get:
+      tags: [Webhooks]
+      summary: List Recurring Pix Webhooks
+      operationId: pixListWebhookRecurrenceAutomatic
+      responses: { "200": { description: Webhooks } }
+    delete:
+      tags: [Webhooks]
+      summary: Delete Recurring Pix Webhook
+      operationId: pixDeleteWebhookRecurrenceAutomatic
+      responses: { "204": { description: Deleted } }
+  /v2/webhookcobr:
+    put:
+      tags: [Webhooks]
+      summary: Configure Automatic Charge Webhook
+      operationId: pixConfigWebhookAutomaticCharge
+      responses: { "200": { description: Configured } }
+    get:
+      tags: [Webhooks]
+      summary: List Automatic Charge Webhooks
+      operationId: pixListWebhookAutomaticCharge
+      responses: { "200": { description: Webhooks } }
+    delete:
+      tags: [Webhooks]
+      summary: Delete Automatic Charge Webhook
+      operationId: pixDeleteWebhookAutomaticCharge
+      responses: { "204": { description: Deleted } }
+  /v2/gn/webhook/reenviar:
+    post:
+      tags: [Webhooks]
+      summary: Resend Pix Webhook
+      operationId: pixResendWebhook
+      responses: { "200": { description: Resent } }
+components:
+  securitySchemes:
+    oauth2Pix:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pix.api.efipay.com.br/oauth/token
+          scopes:
+            cob.read: Read immediate charges
+            cob.write: Create/update immediate charges
+            cobv.read: Read due charges
+            cobv.write: Create/update due charges
+            pix.read: Read received Pix
+            pix.write: Manage devolutions
+            pix.send: Send Pix
+            webhook.read: Read webhook config
+            webhook.write: Configure webhooks
+            gn.balance.read: Read account balance
+  schemas:
+    Cob:
+      type: object
+      properties:
+        txid: { type: string }
+        status: { type: string, enum: [ATIVA, CONCLUIDA, REMOVIDA_PELO_USUARIO_RECEBEDOR, REMOVIDA_PELO_PSP] }
+        valor:
+          type: object
+          properties:
+            original: { type: string }
+        chave: { type: string, description: Receiver Pix key }
+        calendario:
+          type: object
+          properties:
+            criacao: { type: string, format: date-time }
+            expiracao: { type: integer }
+        devedor:
+          type: object
+        loc:
+          type: object
+          properties:
+            id: { type: integer }
+            location: { type: string }
+    Pix:
+      type: object
+      properties:
+        endToEndId: { type: string }
+        txid: { type: string }
+        valor: { type: string }
+        horario: { type: string, format: date-time }
+        infoPagador: { type: string }
+        pagador:
+          type: object

@@ -1,0 +1,73 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Efí Pay Pix — Immediate Charge (Cob)
+  description: >-
+    Create a Brazilian Pix immediate charge (cob), retrieve its txid + location
+    QR code payload, watch for the received Pix via the /v2/pix listing or
+    webhook, and issue a devolution if needed. Aligned with the Banco Central
+    Pix specification.
+  tags:
+    - Efí Pay
+    - Pix
+    - Cob
+    - Immediate Charge
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+  - namespace: env
+    keys:
+      EFI_PIX_CLIENT_ID: EFI_PIX_CLIENT_ID
+      EFI_PIX_CLIENT_SECRET: EFI_PIX_CLIENT_SECRET
+      EFI_PIX_CERT_PATH: EFI_PIX_CERT_PATH
+capability:
+  consumes:
+    - type: http
+      namespace: efi-pix
+      baseUri: https://pix.api.efipay.com.br
+      description: Efí Pay Pix API (mTLS required)
+      resources:
+        - name: oauth
+          path: /oauth/token
+          operations:
+            - name: pixAuthorize
+              method: POST
+              description: Issue Pix OAuth2 token via mTLS + HTTP Basic
+        - name: cob
+          path: /v2/cob
+          operations:
+            - name: pixCreateImmediateCharge
+              method: POST
+              description: Create immediate Pix charge
+            - name: pixListCharges
+              method: GET
+              description: List immediate Pix charges
+        - name: cob-txid
+          path: /v2/cob/{txid}
+          operations:
+            - name: pixCreateCharge
+              method: PUT
+              description: Create immediate Pix charge with caller-chosen txid
+            - name: pixDetailCharge
+              method: GET
+              description: Retrieve immediate Pix charge by txid
+            - name: pixUpdateCharge
+              method: PATCH
+              description: Update immediate Pix charge
+        - name: loc-qrcode
+          path: /v2/loc/{id}/qrcode
+          operations:
+            - name: pixGenerateQRCode
+              method: GET
+              description: Generate BR Code (copia-e-cola + image) for a location
+        - name: pix-received
+          path: /v2/pix/{e2eId}
+          operations:
+            - name: pixDetailReceived
+              method: GET
+              description: Detail a received Pix by EndToEndId
+        - name: pix-devolution
+          path: /v2/pix/{e2eId}/devolucao/{id}
+          operations:
+            - name: pixDevolution
+              method: PUT
+              description: Issue a Pix devolution (refund)
