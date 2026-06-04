@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Efí CNAB Statement Schedule
+  summary: Schedule a recurring CNAB statement job and confirm it is registered.
+  description: >-
+    The Efí Pay Extratos flow for automating recurring CNAB (Brazilian banking
+    text-file) statement extraction. The workflow authenticates, creates a
+    recurring statement schedule (agendamento) for the chosen cadence, reads the
+    schedule list back to confirm the new agendamento is present, and lists the
+    statement files already generated for the account. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiExtratosApi
+  url: ../openapi/efi-extratos-openapi.yml
+  type: openapi
+workflows:
+- workflowId: statement-schedule
+  summary: Create a recurring CNAB statement schedule and confirm registration.
+  description: >-
+    Authenticates, creates a CNAB statement schedule for the chosen cadence,
+    confirms it appears in the schedule list, and lists existing statement files.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - frequency
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      frequency:
+        type: string
+        description: The cadence of the CNAB schedule (e.g. "DIARIO" or "SEMANAL").
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Extratos API.
+    operationId: extratosAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: createSchedule
+    description: >-
+      Create the recurring CNAB statement schedule for the requested cadence. The
+      server returns the schedule identificador.
+    operationId: createStatementRecurrency
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        frequencia: $inputs.frequency
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      identificador: $response.body#/identificador
+  - stepId: confirmSchedule
+    description: >-
+      List the statement schedules and confirm at least one agendamento is now
+      registered for the account.
+    operationId: listStatementRecurrences
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.agendamentos.length > 0
+      type: jsonpath
+    outputs:
+      schedules: $response.body#/agendamentos
+  - stepId: listFiles
+    description: >-
+      List the CNAB statement files already generated for the account so the
+      caller knows what is available to download.
+    operationId: listStatementFiles
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      files: $response.body#/arquivos
+  outputs:
+    identificador: $steps.createSchedule.outputs.identificador
+    schedules: $steps.confirmSchedule.outputs.schedules
+    files: $steps.listFiles.outputs.files

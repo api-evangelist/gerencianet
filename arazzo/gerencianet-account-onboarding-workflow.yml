@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Efí Account Onboarding
+  summary: Open a simplified Efí account, issue its certificate, and fetch its API credentials.
+  description: >-
+    The Efí Pay Contas (account opening) onboarding flow used by marketplaces and
+    BaaS integrators. The workflow authenticates with the partner credentials,
+    opens a conta-simplificada for an end customer, generates the P12 certificate
+    that the new account will use for mutual TLS, and retrieves the client_id and
+    client_secret pair the account uses to call the other Efí APIs. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiContasApi
+  url: ../openapi/efi-contas-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-onboarding
+  summary: Open a simplified account, generate its certificate, and fetch credentials.
+  description: >-
+    Authenticates as the partner, creates a conta-simplificada for the customer,
+    generates the account certificate, and reads back the account's API
+    credentials.
+  inputs:
+    type: object
+    required:
+    - partnerClientId
+    - partnerClientSecret
+    - cpfCnpj
+    - email
+    properties:
+      partnerClientId:
+        type: string
+        description: The partner OAuth2 client_id authorized to open accounts.
+      partnerClientSecret:
+        type: string
+        description: The partner OAuth2 client_secret authorized to open accounts.
+      cpfCnpj:
+        type: string
+        description: The CPF or CNPJ of the account holder being onboarded.
+      name:
+        type: string
+        description: The legal name (razao_social) of the account holder.
+      email:
+        type: string
+        description: The contact email for the new account.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the partner client_id and client_secret for an OAuth2 access
+      token using the client_credentials grant required by the Contas API.
+    operationId: contasAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: openAccount
+    description: >-
+      Open a conta-simplificada for the customer. The server returns the account
+      identificador used to issue the certificate and credentials.
+    operationId: createAccount
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        cpf_cnpj: $inputs.cpfCnpj
+        razao_social: $inputs.name
+        email: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      identificador: $response.body#/identificador
+      status: $response.body#/status
+  - stepId: generateCertificate
+    description: >-
+      Generate the P12 certificate the new account will use for mutual TLS when
+      calling the Efí APIs.
+    operationId: getAccountCertificate
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: identificador
+      in: path
+      value: $steps.openAccount.outputs.identificador
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      certificate: $response.body#/certificado
+  - stepId: getCredentials
+    description: >-
+      Retrieve the client_id and client_secret pair the new account uses to call
+      the other Efí APIs.
+    operationId: getAccountCredentials
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: identificador
+      in: path
+      value: $steps.openAccount.outputs.identificador
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accountClientId: $response.body#/client_id
+      accountClientSecret: $response.body#/client_secret
+  outputs:
+    identificador: $steps.openAccount.outputs.identificador
+    accountClientId: $steps.getCredentials.outputs.accountClientId
+    accountClientSecret: $steps.getCredentials.outputs.accountClientSecret

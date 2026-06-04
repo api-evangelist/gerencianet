@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Charge Status and Refund
+  summary: Detail a Pix charge, branch on its status, and refund the received Pix when paid.
+  description: >-
+    A reconciliation-and-refund flow for Efí Pay Pix. The workflow authenticates,
+    reads an existing immediate Pix charge by txid, and branches on the charge
+    status: when the charge has been settled (CONCLUIDA) it resolves the received
+    Pix end-to-end id from the charge, then issues a full or partial devolution
+    (refund) against that received Pix. When the charge is not yet paid the flow
+    ends without refunding. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-charge-status-refund
+  summary: Check a Pix charge status and refund it via devolution when it is paid.
+  description: >-
+    Authenticates, details the charge by txid, and only when the charge is
+    CONCLUIDA resolves the received Pix e2eId and issues a devolution for the
+    requested refund amount.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - txid
+    - refundId
+    - refundAmount
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      txid:
+        type: string
+        description: The transaction id of the immediate Pix charge to inspect.
+      refundId:
+        type: string
+        description: A client-generated id for the devolution (refund) request.
+      refundAmount:
+        type: string
+        description: The refund amount in BRL as a decimal string (e.g. "50.00").
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: detailCharge
+    description: >-
+      Read the immediate Pix charge by txid and capture its status plus the
+      first received-Pix end-to-end id so a refund can be targeted.
+    operationId: pixDetailCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $inputs.txid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      e2eId: $response.body#/pix/0/endToEndId
+    onSuccess:
+    - name: chargePaid
+      type: goto
+      stepId: refundReceivedPix
+      criteria:
+      - context: $response.body
+        condition: $.status == "CONCLUIDA"
+        type: jsonpath
+    - name: chargeUnpaid
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "CONCLUIDA"
+        type: jsonpath
+  - stepId: refundReceivedPix
+    description: >-
+      Issue a devolution (refund) against the received Pix identified by its
+      end-to-end id for the requested refund amount.
+    operationId: pixDevolution
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: e2eId
+      in: path
+      value: $steps.detailCharge.outputs.e2eId
+    - name: id
+      in: path
+      value: $inputs.refundId
+    requestBody:
+      contentType: application/json
+      payload:
+        valor: $inputs.refundAmount
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      devolutionId: $response.body#/id
+      refundStatus: $response.body#/status
+      rtrId: $response.body#/rtrId
+  outputs:
+    chargeStatus: $steps.detailCharge.outputs.status
+    devolutionId: $steps.refundReceivedPix.outputs.devolutionId
+    refundStatus: $steps.refundReceivedPix.outputs.refundStatus

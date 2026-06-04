@@ -1,0 +1,143 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Due Charge to QR Code
+  summary: Create a Pix due charge with a due date, confirm it, and render its QR Code.
+  description: >-
+    The Pix "cobv" (cobrança com vencimento) flow used for boleto-style Pix
+    charges that carry a due date, fines, and interest. The workflow
+    authenticates, creates a due charge under a caller-supplied txid, reads it
+    back to confirm registration and resolve its location id, and generates the
+    QR Code payload the payer scans. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-due-charge-qrcode
+  summary: Create a dated Pix due charge and produce its scannable QR Code.
+  description: >-
+    Authenticates, creates a Pix due charge (cobv) under the supplied txid with
+    a due date and amount, confirms it, and renders the QR Code for the bound
+    location.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - txid
+    - amount
+    - pixKey
+    - dueDate
+    - payerCpf
+    - payerName
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      txid:
+        type: string
+        description: The 26-35 char transaction id to register the due charge under.
+      amount:
+        type: string
+        description: The original charge amount in BRL as a decimal string.
+      pixKey:
+        type: string
+        description: The receiving Pix key (chave) the charge is credited to.
+      dueDate:
+        type: string
+        description: The due date of the charge (calendario.dataDeVencimento), YYYY-MM-DD.
+      payerCpf:
+        type: string
+        description: The CPF of the payer (devedor).
+      payerName:
+        type: string
+        description: The full name of the payer (devedor).
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: createDueCharge
+    description: >-
+      Create a Pix due charge (cobv) under the supplied txid with a due date,
+      amount, payer, and receiving Pix key.
+    operationId: pixCreateDueCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $inputs.txid
+    requestBody:
+      contentType: application/json
+      payload:
+        calendario:
+          dataDeVencimento: $inputs.dueDate
+        devedor:
+          cpf: $inputs.payerCpf
+          nome: $inputs.payerName
+        valor:
+          original: $inputs.amount
+        chave: $inputs.pixKey
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      txid: $response.body#/txid
+      locationId: $response.body#/loc/id
+  - stepId: confirmDueCharge
+    description: >-
+      Read the due charge back by txid to confirm it registered as ATIVA before
+      rendering its QR Code.
+    operationId: pixDetailDueCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $steps.createDueCharge.outputs.txid
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "ATIVA"
+      type: jsonpath
+    outputs:
+      status: $response.body#/status
+      pixCopiaECola: $response.body#/pixCopiaECola
+  - stepId: generateQrCode
+    description: >-
+      Generate the QR Code image payload for the location bound to the due
+      charge so the payer can scan it to pay.
+    operationId: pixGenerateQRCode
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $steps.createDueCharge.outputs.locationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      qrcode: $response.body#/qrcode
+      imagemQrcode: $response.body#/imagemQrcode
+  outputs:
+    txid: $steps.createDueCharge.outputs.txid
+    status: $steps.confirmDueCharge.outputs.status
+    qrcode: $steps.generateQrCode.outputs.qrcode

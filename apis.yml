@@ -208,6 +208,45 @@ apis:
       jobs, list/download generated files, and provision SFTP keys for
       automated pickup.
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/gerencianet-account-onboarding-workflow.yml
+      name: "Ef\xED Account Onboarding"
+      summary: "Open a simplified Ef\xED account, issue its certificate, and fetch its API credentials."
+    - url: arazzo/gerencianet-account-webhook-setup-workflow.yml
+      name: "Ef\xED Account Webhook Setup"
+      summary: Register an account-level webhook and verify it was stored.
+    - url: arazzo/gerencianet-bill-payment-workflow.yml
+      name: "Ef\xED Bill Payment by Bar Code"
+      summary: Decode a boleto bar code, pay it from the account, and reconcile the status.
+    - url: arazzo/gerencianet-boleto-charge-issue-workflow.yml
+      name: "Ef\xED Boleto Charge Issue"
+      summary: "Create a Cobran\xE7as charge, set the boleto payment method, and read its status."
+    - url: arazzo/gerencianet-card-charge-refund-workflow.yml
+      name: "Ef\xED Card Charge Refund"
+      summary: "Detail a Cobran\xE7as card charge, branch on its status, and refund it when paid."
+    - url: arazzo/gerencianet-pix-charge-qrcode-workflow.yml
+      name: "Ef\xED Pix Immediate Charge to QR Code"
+      summary: Create an immediate Pix charge, confirm it, and render its payable QR Code.
+    - url: arazzo/gerencianet-pix-charge-revise-workflow.yml
+      name: "Ef\xED Pix Charge Revise"
+      summary: Create a Pix charge under a fixed txid, check its status, and revise it while still active.
+    - url: arazzo/gerencianet-pix-charge-status-refund-workflow.yml
+      name: "Ef\xED Pix Charge Status and Refund"
+      summary: Detail a Pix charge, branch on its status, and refund the received Pix when paid.
+    - url: arazzo/gerencianet-pix-due-charge-qrcode-workflow.yml
+      name: "Ef\xED Pix Due Charge to QR Code"
+      summary: Create a Pix due charge with a due date, confirm it, and render its QR Code.
+    - url: arazzo/gerencianet-pix-send-cashout-workflow.yml
+      name: "Ef\xED Pix Cash-Out Send"
+      summary: Send a Pix payout to a key and confirm the outbound transfer status.
+    - url: arazzo/gerencianet-pix-webhook-setup-workflow.yml
+      name: "Ef\xED Pix Webhook Setup"
+      summary: Register a Pix webhook for a Pix key and verify it was stored.
+    - url: arazzo/gerencianet-statement-schedule-workflow.yml
+      name: "Ef\xED CNAB Statement Schedule"
+      summary: Schedule a recurring CNAB statement job and confirm it is registered.
   - url: https://sejaefi.com.br
     type: Portal
   - url: https://dev.efipay.com.br

@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Webhook Setup
+  summary: Register a Pix webhook for a Pix key and verify it was stored.
+  description: >-
+    Stands up payment notifications for an Efí Pay Pix key. The workflow
+    authenticates, configures (PUT) the webhook callback URL for the supplied
+    Pix key, then reads the webhook back to confirm Efí stored the same callback
+    URL. Use this once per Pix key so settlement events are delivered to your
+    endpoint. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-webhook-setup
+  summary: Configure and verify a Pix webhook for a given Pix key.
+  description: >-
+    Authenticates, registers the webhook callback URL against the Pix key, and
+    reads it back to confirm the stored URL matches.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - pixKey
+    - webhookUrl
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      pixKey:
+        type: string
+        description: The Pix key (chave) to attach the webhook to.
+      webhookUrl:
+        type: string
+        description: The HTTPS callback URL Efí will POST Pix notifications to.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: configureWebhook
+    description: >-
+      Register the webhook callback URL for the Pix key so settlement events are
+      delivered to the caller's endpoint.
+    operationId: pixConfigWebhook
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: chave
+      in: path
+      value: $inputs.pixKey
+    requestBody:
+      contentType: application/json
+      payload:
+        webhookUrl: $inputs.webhookUrl
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      webhookUrl: $response.body#/webhookUrl
+  - stepId: confirmWebhook
+    description: >-
+      Read the webhook back for the Pix key and confirm Efí stored the same
+      callback URL that was submitted.
+    operationId: pixDetailWebhook
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: chave
+      in: path
+      value: $inputs.pixKey
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.webhookUrl == $inputs.webhookUrl
+      type: jsonpath
+    outputs:
+      storedWebhookUrl: $response.body#/webhookUrl
+      creationDate: $response.body#/criacao
+  outputs:
+    storedWebhookUrl: $steps.confirmWebhook.outputs.storedWebhookUrl
+    creationDate: $steps.confirmWebhook.outputs.creationDate

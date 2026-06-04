@@ -1,0 +1,136 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Immediate Charge to QR Code
+  summary: Create an immediate Pix charge, confirm it, and render its payable QR Code.
+  description: >-
+    The canonical Efí Pay Pix collection flow. The workflow first exchanges the
+    client credentials for an OAuth2 access token, then creates an immediate Pix
+    charge (cob) for a payer and amount, reads the charge back to confirm it is
+    active and to resolve the location id that the Pix specification attaches to
+    the charge, and finally generates the BR Code / QR Code image payload that a
+    payer can scan to settle the charge. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-charge-qrcode
+  summary: Create an immediate Pix charge and produce its scannable QR Code.
+  description: >-
+    Authenticates against the Pix API, creates an immediate charge for the given
+    payer and amount, confirms the charge is active, and renders the QR Code for
+    the location bound to the charge.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - amount
+    - pixKey
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      amount:
+        type: string
+        description: The charge amount in BRL as a decimal string (e.g. "123.45").
+      pixKey:
+        type: string
+        description: The receiving Pix key (chave) that the charge is credited to.
+      payerCpf:
+        type: string
+        description: The CPF of the payer (devedor) for the charge.
+      payerName:
+        type: string
+        description: The full name of the payer (devedor) for the charge.
+      expiration:
+        type: integer
+        description: Seconds the charge stays valid (calendario.expiracao). Defaults to 3600.
+        default: 3600
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: createCharge
+    description: >-
+      Create an immediate Pix charge (cob) for the payer and amount, crediting
+      the supplied Pix key. The server assigns a txid and a location id.
+    operationId: pixCreateImmediateCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        calendario:
+          expiracao: $inputs.expiration
+        devedor:
+          cpf: $inputs.payerCpf
+          nome: $inputs.payerName
+        valor:
+          original: $inputs.amount
+        chave: $inputs.pixKey
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      txid: $response.body#/txid
+      locationId: $response.body#/loc/id
+  - stepId: confirmCharge
+    description: >-
+      Read the charge back by txid to confirm it was registered and is in the
+      ATIVA status before exposing its QR Code to a payer.
+    operationId: pixDetailCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $steps.createCharge.outputs.txid
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.status == "ATIVA"
+      type: jsonpath
+    outputs:
+      status: $response.body#/status
+      pixCopiaECola: $response.body#/pixCopiaECola
+  - stepId: generateQrCode
+    description: >-
+      Generate the QR Code image payload for the location bound to the charge so
+      the payer can scan it to pay.
+    operationId: pixGenerateQRCode
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $steps.createCharge.outputs.locationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      qrcode: $response.body#/qrcode
+      imagemQrcode: $response.body#/imagemQrcode
+  outputs:
+    txid: $steps.createCharge.outputs.txid
+    status: $steps.confirmCharge.outputs.status
+    pixCopiaECola: $steps.confirmCharge.outputs.pixCopiaECola
+    qrcode: $steps.generateQrCode.outputs.qrcode

@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Cash-Out Send
+  summary: Send a Pix payout to a key and confirm the outbound transfer status.
+  description: >-
+    The Efí Pay Pix Cash-Out (pixSend) flow for paying money out of the account
+    to a destination Pix key. The workflow authenticates, submits the outbound
+    Pix under a caller-supplied idEnvio, then reads the send back by idEnvio and
+    branches on its status: a REALIZADO status ends successfully, while any other
+    status routes to a final detail read for inspection. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-send-cashout
+  summary: Submit an outbound Pix payout and confirm its settlement status.
+  description: >-
+    Authenticates, sends a Pix to the destination key under the supplied
+    idEnvio, and reads the send status back to confirm whether it was REALIZADO.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - idEnvio
+    - amount
+    - payerPixKey
+    - destinationPixKey
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      idEnvio:
+        type: string
+        description: A caller-generated idempotency id for the outbound Pix send.
+      amount:
+        type: string
+        description: The payout amount in BRL as a decimal string.
+      payerPixKey:
+        type: string
+        description: The account's own Pix key debited for the payout (pagador.chave).
+      destinationPixKey:
+        type: string
+        description: The destination Pix key credited by the payout (favorecido.chave).
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: sendPix
+    description: >-
+      Submit the outbound Pix payout from the account's Pix key to the
+      destination Pix key under the supplied idEnvio.
+    operationId: pixSend
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: idEnvio
+      in: path
+      value: $inputs.idEnvio
+    requestBody:
+      contentType: application/json
+      payload:
+        valor: $inputs.amount
+        pagador:
+          chave: $inputs.payerPixKey
+        favorecido:
+          chave: $inputs.destinationPixKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      idEnvio: $response.body#/idEnvio
+      e2eId: $response.body#/e2eId
+  - stepId: confirmSend
+    description: >-
+      Read the outbound Pix back by idEnvio and branch on its status to confirm
+      whether the payout has been settled (REALIZADO).
+    operationId: pixSendDetailId
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: idEnvio
+      in: path
+      value: $steps.sendPix.outputs.idEnvio
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      e2eId: $response.body#/e2eId
+    onSuccess:
+    - name: payoutSettled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "REALIZADO"
+        type: jsonpath
+  outputs:
+    idEnvio: $steps.sendPix.outputs.idEnvio
+    status: $steps.confirmSend.outputs.status
+    e2eId: $steps.confirmSend.outputs.e2eId

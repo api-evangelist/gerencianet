@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: Efí Boleto Charge Issue
+  summary: Create a Cobranças charge, set the boleto payment method, and read its status.
+  description: >-
+    The classic Efí Pay Cobranças (charges) boleto flow. The workflow exchanges
+    client credentials for an access token, creates a charge for one or more
+    line items, defines the banking_billet (boleto) payment method with the
+    payer customer and expiry, and then reads the charge back to confirm it was
+    issued and to capture the boleto link and barcode. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiCobrancasApi
+  url: ../openapi/efi-cobrancas-openapi.yml
+  type: openapi
+workflows:
+- workflowId: boleto-charge-issue
+  summary: Create a charge, apply the boleto payment method, and confirm issuance.
+  description: >-
+    Authenticates, creates a Cobranças charge for the supplied items, sets the
+    banking_billet payment method with the customer and expiry, and reads the
+    charge back to capture the boleto link and barcode.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - itemName
+    - itemValue
+    - itemAmount
+    - customerName
+    - customerCpf
+    - expireAt
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      itemName:
+        type: string
+        description: The name of the line item being charged.
+      itemValue:
+        type: integer
+        description: The unit value of the line item in cents (e.g. 1000 for R$10,00).
+      itemAmount:
+        type: integer
+        description: The quantity of the line item.
+      customerName:
+        type: string
+        description: The full name of the paying customer.
+      customerCpf:
+        type: string
+        description: The CPF of the paying customer.
+      expireAt:
+        type: string
+        description: The boleto expiry date (YYYY-MM-DD).
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Cobranças API.
+    operationId: authorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: createCharge
+    description: >-
+      Create a Cobranças charge for the supplied line item. The server returns a
+      charge_id used to apply a payment method.
+    operationId: createCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        items:
+        - name: $inputs.itemName
+          value: $inputs.itemValue
+          amount: $inputs.itemAmount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      chargeId: $response.body#/data/charge_id
+      status: $response.body#/data/status
+  - stepId: defineBoleto
+    description: >-
+      Define the banking_billet (boleto) payment method on the charge with the
+      paying customer and the boleto expiry date.
+    operationId: definePayMethod
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $steps.createCharge.outputs.chargeId
+    requestBody:
+      contentType: application/json
+      payload:
+        payment:
+          banking_billet:
+            expire_at: $inputs.expireAt
+            customer:
+              name: $inputs.customerName
+              cpf: $inputs.customerCpf
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      barcode: $response.body#/data/barcode
+      billetLink: $response.body#/data/link
+      paymentStatus: $response.body#/data/status
+  - stepId: confirmCharge
+    description: >-
+      Read the charge back by id to confirm it moved into a waiting state and to
+      capture its current status after the boleto was issued.
+    operationId: detailCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $steps.createCharge.outputs.chargeId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+      total: $response.body#/data/total
+  outputs:
+    chargeId: $steps.createCharge.outputs.chargeId
+    barcode: $steps.defineBoleto.outputs.barcode
+    billetLink: $steps.defineBoleto.outputs.billetLink
+    status: $steps.confirmCharge.outputs.status

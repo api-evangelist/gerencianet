@@ -1,0 +1,146 @@
+arazzo: 1.0.1
+info:
+  title: Efí Pix Charge Revise
+  summary: Create a Pix charge under a fixed txid, check its status, and revise it while still active.
+  description: >-
+    A charge-correction flow for Efí Pay Pix. The workflow authenticates, creates
+    an immediate Pix charge under a caller-supplied txid (PUT cob), reads the
+    charge back, and branches on its status: while the charge is still ATIVA it
+    patches the charge to a revised amount, and if the charge is no longer active
+    it ends without modifying it. This guards updates so a paid or expired charge
+    is never altered. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiPixApi
+  url: ../openapi/efi-pix-openapi.yml
+  type: openapi
+workflows:
+- workflowId: pix-charge-revise
+  summary: Create a Pix charge by txid and revise its amount only while it is active.
+  description: >-
+    Authenticates, creates an immediate Pix charge under the supplied txid,
+    details it, and patches a revised amount only when the charge is still ATIVA.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - txid
+    - amount
+    - pixKey
+    - revisedAmount
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      txid:
+        type: string
+        description: The 26-35 char transaction id to register the charge under.
+      amount:
+        type: string
+        description: The original charge amount in BRL as a decimal string.
+      pixKey:
+        type: string
+        description: The receiving Pix key (chave) the charge is credited to.
+      revisedAmount:
+        type: string
+        description: The corrected charge amount in BRL as a decimal string.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Pix API.
+    operationId: pixAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: createCharge
+    description: >-
+      Create an immediate Pix charge under the supplied txid crediting the given
+      Pix key for the original amount.
+    operationId: pixCreateCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $inputs.txid
+    requestBody:
+      contentType: application/json
+      payload:
+        calendario:
+          expiracao: 3600
+        valor:
+          original: $inputs.amount
+        chave: $inputs.pixKey
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      txid: $response.body#/txid
+      status: $response.body#/status
+  - stepId: detailCharge
+    description: >-
+      Read the charge back by txid and branch on its status so only an active
+      charge is revised.
+    operationId: pixDetailCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $steps.createCharge.outputs.txid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: chargeActive
+      type: goto
+      stepId: reviseCharge
+      criteria:
+      - context: $response.body
+        condition: $.status == "ATIVA"
+        type: jsonpath
+    - name: chargeNotActive
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != "ATIVA"
+        type: jsonpath
+  - stepId: reviseCharge
+    description: >-
+      Patch the active charge to the revised amount, leaving the rest of the
+      charge intact.
+    operationId: pixUpdateCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: txid
+      in: path
+      value: $steps.createCharge.outputs.txid
+    requestBody:
+      contentType: application/json
+      payload:
+        valor:
+          original: $inputs.revisedAmount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revisedStatus: $response.body#/status
+      revisedValue: $response.body#/valor/original
+  outputs:
+    txid: $steps.createCharge.outputs.txid
+    status: $steps.detailCharge.outputs.status
+    revisedValue: $steps.reviseCharge.outputs.revisedValue

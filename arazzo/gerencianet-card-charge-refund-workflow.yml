@@ -1,0 +1,111 @@
+arazzo: 1.0.1
+info:
+  title: Efí Card Charge Refund
+  summary: Detail a Cobranças card charge, branch on its status, and refund it when paid.
+  description: >-
+    A card-payment reconciliation-and-refund flow for Efí Pay Cobranças. The
+    workflow authenticates, reads a charge by id, and branches on its status:
+    when the card charge has been paid it issues a refund against the card,
+    otherwise it ends without refunding. Refunds only apply to charges that were
+    actually captured, so the status branch guards the refund call. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiCobrancasApi
+  url: ../openapi/efi-cobrancas-openapi.yml
+  type: openapi
+workflows:
+- workflowId: card-charge-refund
+  summary: Check a card charge status and refund the card when the charge is paid.
+  description: >-
+    Authenticates, details the charge by id, and only when its status is paid
+    issues a card refund for the requested amount.
+  inputs:
+    type: object
+    required:
+    - clientId
+    - clientSecret
+    - chargeId
+    - refundAmount
+    properties:
+      clientId:
+        type: string
+        description: The OAuth2 client_id issued for the Efí Pay account.
+      clientSecret:
+        type: string
+        description: The OAuth2 client_secret issued for the Efí Pay account.
+      chargeId:
+        type: integer
+        description: The id of the card charge to inspect and potentially refund.
+      refundAmount:
+        type: integer
+        description: The refund amount in cents to credit back to the card.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the client_id and client_secret for an OAuth2 access token using
+      the client_credentials grant required by the Cobranças API.
+    operationId: authorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: detailCharge
+    description: >-
+      Read the charge by id and capture its status so the refund branch can be
+      gated on whether the card charge was paid.
+    operationId: detailCharge
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $inputs.chargeId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/data/status
+      total: $response.body#/data/total
+    onSuccess:
+    - name: chargePaid
+      type: goto
+      stepId: refundCard
+      criteria:
+      - context: $response.body
+        condition: $.data.status == "paid"
+        type: jsonpath
+    - name: chargeUnpaid
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.data.status != "paid"
+        type: jsonpath
+  - stepId: refundCard
+    description: >-
+      Issue a refund against the card for the requested amount on the paid
+      charge.
+    operationId: refundCard
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: id
+      in: path
+      value: $inputs.chargeId
+    requestBody:
+      contentType: application/json
+      payload:
+        value: $inputs.refundAmount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      refundStatus: $response.body#/data/status
+  outputs:
+    chargeStatus: $steps.detailCharge.outputs.status
+    refundStatus: $steps.refundCard.outputs.refundStatus

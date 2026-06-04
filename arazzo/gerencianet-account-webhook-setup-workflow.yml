@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Efí Account Webhook Setup
+  summary: Register an account-level webhook and verify it was stored.
+  description: >-
+    Stands up partner-level account notifications on the Efí Pay Contas API. The
+    workflow authenticates with the partner credentials, configures (POST) the
+    account webhook callback URL, and reads the webhook back by its returned
+    identifier to confirm Efí stored the same callback URL. Use this to receive
+    account lifecycle events for accounts opened through the partner. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: efiContasApi
+  url: ../openapi/efi-contas-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-webhook-setup
+  summary: Configure and verify an account-level webhook for the partner.
+  description: >-
+    Authenticates as the partner, registers the account webhook callback URL,
+    and reads it back by identifier to confirm the stored URL matches.
+  inputs:
+    type: object
+    required:
+    - partnerClientId
+    - partnerClientSecret
+    - webhookUrl
+    properties:
+      partnerClientId:
+        type: string
+        description: The partner OAuth2 client_id authorized to manage account webhooks.
+      partnerClientSecret:
+        type: string
+        description: The partner OAuth2 client_secret authorized to manage account webhooks.
+      webhookUrl:
+        type: string
+        description: The HTTPS callback URL Efí will POST account events to.
+  steps:
+  - stepId: authenticate
+    description: >-
+      Exchange the partner client_id and client_secret for an OAuth2 access
+      token using the client_credentials grant required by the Contas API.
+    operationId: contasAuthorize
+    requestBody:
+      contentType: application/json
+      payload:
+        grant_type: client_credentials
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      accessToken: $response.body#/access_token
+  - stepId: configureWebhook
+    description: >-
+      Register the account webhook callback URL. The server returns the webhook
+      identifier used to read it back.
+    operationId: accountConfigWebhook
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        url: $inputs.webhookUrl
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      identificadorWebhook: $response.body#/identificadorWebhook
+  - stepId: confirmWebhook
+    description: >-
+      Read the webhook back by its identifier and confirm Efí stored the same
+      callback URL that was submitted.
+    operationId: accountDetailWebhook
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $steps.authenticate.outputs.accessToken
+    - name: identificadorWebhook
+      in: path
+      value: $steps.configureWebhook.outputs.identificadorWebhook
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.url == $inputs.webhookUrl
+      type: jsonpath
+    outputs:
+      storedWebhookUrl: $response.body#/url
+      identificadorWebhook: $response.body#/identificadorWebhook
+  outputs:
+    identificadorWebhook: $steps.configureWebhook.outputs.identificadorWebhook
+    storedWebhookUrl: $steps.confirmWebhook.outputs.storedWebhookUrl
