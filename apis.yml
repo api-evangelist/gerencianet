@@ -1,17 +1,13 @@
 aid: gerencianet
 name: Efí Pay (Gerencianet)
 description: >-
-  Efí Pay (formerly Gerencianet) is a Brazilian fintech and Banco Central-licensed
-  payment institution headquartered in Belo Horizonte, Brazil. It provides a
-  developer-first payments stack covering Pix (instant payments), Boleto / Bolix
-  / Carnê (Brazilian bank slips), credit-card processing, recurring billing
-  (assinaturas + carnês), marketplace splits, programmatic account opening
-  (BaaS), Open Finance payment initiation, bill-payment automation, and CNAB
-  statement extraction. The company rebranded from Gerencianet to Efí Pay /
-  Efí Bank in 2022 and is rated at the top tier by Banco Central for its Pix
-  API. The technical surface is exposed as five distinct REST APIs (Cobranças,
-  Pix, Open Finance, Pagamentos, Contas) with twelve official SDKs plus
-  e-commerce plugins.
+  Efí Pay (formerly Gerencianet) is a Brazilian fintech and Banco Central-licensed payment institution headquartered in
+  Belo Horizonte, Brazil. It provides a developer-first payments stack covering Pix (instant payments), Boleto / Bolix /
+  Carnê (Brazilian bank slips), credit-card processing, recurring billing (assinaturas + carnês), marketplace splits,
+  programmatic account opening (BaaS), Open Finance payment initiation, bill-payment automation, and CNAB statement
+  extraction. The company rebranded from Gerencianet to Efí Pay / Efí Bank in 2022 and is rated at the top tier by Banco
+  Central for its Pix API. The technical surface is exposed as five distinct REST APIs (Cobranças, Pix, Open Finance,
+  Pagamentos, Contas) with twelve official SDKs plus e-commerce plugins.
 image: https://efipay.com.br/efi-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml
 created: '2026-05-24'
@@ -65,14 +61,9 @@ apis:
         type: JSONStructure
       - url: examples/efi-cobrancas-onestep-example.json
         type: Example
-      - url: capabilities/cobrancas-billing.yaml
-        type: NaftikoCapability
-      - url: capabilities/subscriptions.yaml
-        type: NaftikoCapability
     description: >-
-      Brazilian billing API for boletos, Bolix (next-business-day boletos),
-      carnês (installment booklets), payment links, credit cards, subscriptions,
-      and marketplace splits. OAuth2 with HTTP Basic authentication;
+      Brazilian billing API for boletos, Bolix (next-business-day boletos), carnês (installment booklets), payment
+      links, credit cards, subscriptions, and marketplace splits. OAuth2 with HTTP Basic authentication;
       cobrancas-h.api.efipay.com.br for sandbox.
   - aid: gerencianet:efi-pix
     name: Efí Pay Pix API
@@ -107,17 +98,10 @@ apis:
         type: Example
       - url: examples/efi-pix-send-example.json
         type: Example
-      - url: capabilities/pix-cob.yaml
-        type: NaftikoCapability
-      - url: capabilities/pix-cashout.yaml
-        type: NaftikoCapability
-      - url: capabilities/marketplace-split.yaml
-        type: NaftikoCapability
     description: >-
-      Banco Central Pix API plus Efí Pay extensions (Cash-Out, splits, MED,
-      automatic and recurring Pix, statements, signed PDF receipts, webhooks).
-      OAuth2 client_credentials with mandatory mutual TLS (P12 or PEM
-      certificate) and granular scopes.
+      Banco Central Pix API plus Efí Pay extensions (Cash-Out, splits, MED, automatic and recurring Pix, statements,
+      signed PDF receipts, webhooks). OAuth2 client_credentials with mandatory mutual TLS (P12 or PEM certificate) and
+      granular scopes.
   - aid: gerencianet:efi-openfinance
     name: Efí Pay Open Finance API
     tags:
@@ -135,12 +119,9 @@ apis:
         type: SandboxURL
       - url: openapi/efi-openfinance-openapi.yml
         type: OpenAPI
-      - url: capabilities/openfinance-initiation.yaml
-        type: NaftikoCapability
     description: >-
-      Open Finance Brasil payment-initiation flows — initiate, schedule, refund,
-      and recur Pix payments from any participating bank/fintech directly inside
-      your app. Requires mTLS, OAuth2, and a 72-char x-idempotency-key per
+      Open Finance Brasil payment-initiation flows — initiate, schedule, refund, and recur Pix payments from any
+      participating bank/fintech directly inside your app. Requires mTLS, OAuth2, and a 72-char x-idempotency-key per
       request.
   - aid: gerencianet:efi-contas
     name: Efí Pay Contas (Account Opening) API
@@ -158,12 +139,9 @@ apis:
         type: SandboxURL
       - url: openapi/efi-contas-openapi.yml
         type: OpenAPI
-      - url: capabilities/account-opening.yaml
-        type: NaftikoCapability
     description: >-
-      Open Brazilian conta-simplificada accounts programmatically for
-      end-customers, generate per-account P12 certificates, retrieve
-      generated API credentials, and listen for account lifecycle events.
+      Open Brazilian conta-simplificada accounts programmatically for end-customers, generate per-account P12
+      certificates, retrieve generated API credentials, and listen for account lifecycle events.
   - aid: gerencianet:efi-pagamentos
     name: Efí Pay Pagamentos (Bill Payment) API
     tags:
@@ -179,12 +157,9 @@ apis:
         type: SandboxURL
       - url: openapi/efi-pagamentos-openapi.yml
         type: OpenAPI
-      - url: capabilities/bill-payment.yaml
-        type: NaftikoCapability
     description: >-
-      Decode a Brazilian boleto or utility-bill barcode (linha digitável) and
-      schedule its payment from the Efí account balance, then track payment
-      status through completion.
+      Decode a Brazilian boleto or utility-bill barcode (linha digitável) and schedule its payment from the Efí account
+      balance, then track payment status through completion.
   - aid: gerencianet:efi-extratos
     name: Efí Pay Extratos (Statements) API
     tags:
@@ -201,52 +176,51 @@ apis:
         type: SandboxURL
       - url: openapi/efi-extratos-openapi.yml
         type: OpenAPI
-      - url: capabilities/statements.yaml
-        type: NaftikoCapability
     description: >-
-      Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule
-      jobs, list/download generated files, and provision SFTP keys for
-      automated pickup.
+      Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule jobs, list/download generated files,
+      and provision SFTP keys for automated pickup.
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ef-pay-gerencianet/overview
   - type: ArazzoWorkflows
     url: arazzo/
     workflows:
-    - url: arazzo/gerencianet-account-onboarding-workflow.yml
-      name: "Ef\xED Account Onboarding"
-      summary: "Open a simplified Ef\xED account, issue its certificate, and fetch its API credentials."
-    - url: arazzo/gerencianet-account-webhook-setup-workflow.yml
-      name: "Ef\xED Account Webhook Setup"
-      summary: Register an account-level webhook and verify it was stored.
-    - url: arazzo/gerencianet-bill-payment-workflow.yml
-      name: "Ef\xED Bill Payment by Bar Code"
-      summary: Decode a boleto bar code, pay it from the account, and reconcile the status.
-    - url: arazzo/gerencianet-boleto-charge-issue-workflow.yml
-      name: "Ef\xED Boleto Charge Issue"
-      summary: "Create a Cobran\xE7as charge, set the boleto payment method, and read its status."
-    - url: arazzo/gerencianet-card-charge-refund-workflow.yml
-      name: "Ef\xED Card Charge Refund"
-      summary: "Detail a Cobran\xE7as card charge, branch on its status, and refund it when paid."
-    - url: arazzo/gerencianet-pix-charge-qrcode-workflow.yml
-      name: "Ef\xED Pix Immediate Charge to QR Code"
-      summary: Create an immediate Pix charge, confirm it, and render its payable QR Code.
-    - url: arazzo/gerencianet-pix-charge-revise-workflow.yml
-      name: "Ef\xED Pix Charge Revise"
-      summary: Create a Pix charge under a fixed txid, check its status, and revise it while still active.
-    - url: arazzo/gerencianet-pix-charge-status-refund-workflow.yml
-      name: "Ef\xED Pix Charge Status and Refund"
-      summary: Detail a Pix charge, branch on its status, and refund the received Pix when paid.
-    - url: arazzo/gerencianet-pix-due-charge-qrcode-workflow.yml
-      name: "Ef\xED Pix Due Charge to QR Code"
-      summary: Create a Pix due charge with a due date, confirm it, and render its QR Code.
-    - url: arazzo/gerencianet-pix-send-cashout-workflow.yml
-      name: "Ef\xED Pix Cash-Out Send"
-      summary: Send a Pix payout to a key and confirm the outbound transfer status.
-    - url: arazzo/gerencianet-pix-webhook-setup-workflow.yml
-      name: "Ef\xED Pix Webhook Setup"
-      summary: Register a Pix webhook for a Pix key and verify it was stored.
-    - url: arazzo/gerencianet-statement-schedule-workflow.yml
-      name: "Ef\xED CNAB Statement Schedule"
-      summary: Schedule a recurring CNAB statement job and confirm it is registered.
+      - url: arazzo/gerencianet-account-onboarding-workflow.yml
+        name: Efí Account Onboarding
+        summary: Open a simplified Efí account, issue its certificate, and fetch its API credentials.
+      - url: arazzo/gerencianet-account-webhook-setup-workflow.yml
+        name: Efí Account Webhook Setup
+        summary: Register an account-level webhook and verify it was stored.
+      - url: arazzo/gerencianet-bill-payment-workflow.yml
+        name: Efí Bill Payment by Bar Code
+        summary: Decode a boleto bar code, pay it from the account, and reconcile the status.
+      - url: arazzo/gerencianet-boleto-charge-issue-workflow.yml
+        name: Efí Boleto Charge Issue
+        summary: Create a Cobranças charge, set the boleto payment method, and read its status.
+      - url: arazzo/gerencianet-card-charge-refund-workflow.yml
+        name: Efí Card Charge Refund
+        summary: Detail a Cobranças card charge, branch on its status, and refund it when paid.
+      - url: arazzo/gerencianet-pix-charge-qrcode-workflow.yml
+        name: Efí Pix Immediate Charge to QR Code
+        summary: Create an immediate Pix charge, confirm it, and render its payable QR Code.
+      - url: arazzo/gerencianet-pix-charge-revise-workflow.yml
+        name: Efí Pix Charge Revise
+        summary: Create a Pix charge under a fixed txid, check its status, and revise it while still active.
+      - url: arazzo/gerencianet-pix-charge-status-refund-workflow.yml
+        name: Efí Pix Charge Status and Refund
+        summary: Detail a Pix charge, branch on its status, and refund the received Pix when paid.
+      - url: arazzo/gerencianet-pix-due-charge-qrcode-workflow.yml
+        name: Efí Pix Due Charge to QR Code
+        summary: Create a Pix due charge with a due date, confirm it, and render its QR Code.
+      - url: arazzo/gerencianet-pix-send-cashout-workflow.yml
+        name: Efí Pix Cash-Out Send
+        summary: Send a Pix payout to a key and confirm the outbound transfer status.
+      - url: arazzo/gerencianet-pix-webhook-setup-workflow.yml
+        name: Efí Pix Webhook Setup
+        summary: Register a Pix webhook for a Pix key and verify it was stored.
+      - url: arazzo/gerencianet-statement-schedule-workflow.yml
+        name: Efí CNAB Statement Schedule
+        summary: Schedule a recurring CNAB statement job and confirm it is registered.
   - url: https://sejaefi.com.br
     type: Portal
   - url: https://dev.efipay.com.br
