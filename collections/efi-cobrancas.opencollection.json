@@ -1,0 +1,892 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange client_id and client_secret (HTTP Basic) for an OAuth2 access token used to authenticate subsequent Cobranças API calls."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge"
+          },
+          "docs": "Create Charge"
+        },
+        {
+          "info": {
+            "name": "Create One Step Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/one-step"
+          },
+          "docs": "Create One Step Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Charge"
+        },
+        {
+          "info": {
+            "name": "List Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charges"
+          },
+          "docs": "List Charges"
+        },
+        {
+          "info": {
+            "name": "Cancel Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Charge"
+        },
+        {
+          "info": {
+            "name": "Define Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/pay",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Define Payment Method"
+        },
+        {
+          "info": {
+            "name": "Update Billet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/billet",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Billet"
+        },
+        {
+          "info": {
+            "name": "Send Billet Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/billet/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Billet Email"
+        },
+        {
+          "info": {
+            "name": "Update Charge Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Charge Metadata"
+        },
+        {
+          "info": {
+            "name": "Create Charge History Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Charge History Note"
+        },
+        {
+          "info": {
+            "name": "Define Balance Sheet Billet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/balance-sheet",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Define Balance Sheet Billet"
+        },
+        {
+          "info": {
+            "name": "Settle Charge Manually",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/settle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Settle Charge Manually"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payment Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create One Step Charge Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/one-step/link"
+          },
+          "docs": "Create One Step Charge Link"
+        },
+        {
+          "info": {
+            "name": "Create Charge Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/link",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Charge Link"
+        },
+        {
+          "info": {
+            "name": "Update Charge Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/link",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Charge Link"
+        },
+        {
+          "info": {
+            "name": "Send Link Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/link/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Link Email"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Card Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retry Card Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/retry",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry Card Payment"
+        },
+        {
+          "info": {
+            "name": "Refund Card Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/card/:id/refund",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Card Charge"
+        },
+        {
+          "info": {
+            "name": "Get Installments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/installments"
+          },
+          "docs": "Get Installments"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Carnets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet"
+          },
+          "docs": "Create Carnet"
+        },
+        {
+          "info": {
+            "name": "Detail Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Carnet"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcels",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Parcels"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Cancel Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Settle Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/settle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Settle Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Send Carnet Parcel Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Carnet Parcel Email"
+        },
+        {
+          "info": {
+            "name": "Cancel Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Carnet"
+        },
+        {
+          "info": {
+            "name": "Settle Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/settle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Settle Carnet"
+        },
+        {
+          "info": {
+            "name": "Create Carnet History Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Carnet History Note"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Metadata"
+        },
+        {
+          "info": {
+            "name": "Send Carnet Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Carnet Email"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plans"
+          },
+          "docs": "List Plans"
+        },
+        {
+          "info": {
+            "name": "Create Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan"
+          },
+          "docs": "Create Plan"
+        },
+        {
+          "info": {
+            "name": "Update Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Plan"
+        },
+        {
+          "info": {
+            "name": "Delete Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Plan"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan/:id/subscription",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Subscription"
+        },
+        {
+          "info": {
+            "name": "Create One Step Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan/:id/subscription/one-step",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create One Step Subscription"
+        },
+        {
+          "info": {
+            "name": "Create One Step Subscription Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/plan/:id/subscription/one-step/link",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create One Step Subscription Link"
+        },
+        {
+          "info": {
+            "name": "Detail Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Subscription"
+        },
+        {
+          "info": {
+            "name": "Update Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Subscription"
+        },
+        {
+          "info": {
+            "name": "Define Subscription Payment Method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id/pay",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Define Subscription Payment Method"
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Subscription"
+        },
+        {
+          "info": {
+            "name": "Update Subscription Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Subscription Metadata"
+        },
+        {
+          "info": {
+            "name": "Create Subscription History Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/subscription/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Subscription History Note"
+        },
+        {
+          "info": {
+            "name": "Send Subscription Link Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/charge/:id/subscription/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Subscription Link Email"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/notification/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Notification"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Contas (Account Opening) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://abrircontas.api.efipay.com.br/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Contas Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://abrircontas.api.efipay.com.br/v1/oauth/token"
+          },
+          "docs": "Issue Contas Access Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Simplified Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://abrircontas.api.efipay.com.br/v1/conta-simplificada"
+          },
+          "docs": "Create Simplified Account"
+        },
+        {
+          "info": {
+            "name": "Generate Account Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://abrircontas.api.efipay.com.br/v1/conta-simplificada/:identificador/certificado",
+            "params": [
+              {
+                "name": "identificador",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate Account Certificate"
+        },
+        {
+          "info": {
+            "name": "Get Account Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://abrircontas.api.efipay.com.br/v1/conta-simplificada/:identificador/credenciais",
+            "params": [
+              {
+                "name": "identificador",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account Credentials"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Configure Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://abrircontas.api.efipay.com.br/v1/webhook"
+          },
+          "docs": "Configure Account Webhook"
+        },
+        {
+          "info": {
+            "name": "Detail Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://abrircontas.api.efipay.com.br/v1/webhook/:identificadorWebhook",
+            "params": [
+              {
+                "name": "identificadorWebhook",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Account Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://abrircontas.api.efipay.com.br/v1/webhook/:identificadorWebhook",
+            "params": [
+              {
+                "name": "identificadorWebhook",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Account Webhook"
+        },
+        {
+          "info": {
+            "name": "List Account Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://abrircontas.api.efipay.com.br/v1/webhooks"
+          },
+          "docs": "List Account Webhooks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

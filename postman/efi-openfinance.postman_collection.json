@@ -1,0 +1,2003 @@
+{
+  "info": {
+    "_postman_id": "ba548679-80fc-4f3e-a4f1-51dafbeb9b81",
+    "name": "Ef\u00ed Pay Open Finance API",
+    "description": "Open Finance Brasil payment-initiation API for Ef\u00ed Pay (formerly Gerencianet). Initiate Pix payments across participating banks and fintechs without redirecting users out of your app, including immediate, scheduled, recurring, biometric, and automatic Pix flows. Requires mTLS, OAuth2 client_credentials, and x-idempotency-key headers on every request.\n\nContact Support:\n Name: Ef\u00ed Pay Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:53.000Z",
+    "updatedAt": "2026-06-05T15:08:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ba548679-80fc-4f3e-a4f1-51dafbeb9b81"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Issue Open Finance Token",
+              "id": "c32bb40d-cf4b-41e1-b8d5-bec4ba093430",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7516d4b5-2d7d-444a-9f09-a1a423b783ce",
+                  "name": "Token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-7516d4b5-2d7d-444a-9f09-a1a423b783ce"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-c32bb40d-cf4b-41e1-b8d5-bec4ba093430"
+            }
+          ],
+          "id": "01c69d75-b87e-4e45-ae81-2447f9cf20ee",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-01c69d75-b87e-4e45-ae81-2447f9cf20ee"
+        }
+      ],
+      "id": "358c384e-16c2-4e69-aa8e-9a5d9a9558a4",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-358c384e-16c2-4e69-aa8e-9a5d9a9558a4"
+    },
+    {
+      "name": "participantes",
+      "item": [
+        {
+          "name": "List Open Finance Participants",
+          "id": "6324b041-4a3f-459c-9c38-63c68bd5a2e4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/participantes/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9aab2e2d-f4d8-4f41-b7db-511abe460705",
+              "name": "Participants",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/participantes/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "participantes",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-9aab2e2d-f4d8-4f41-b7db-511abe460705"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-6324b041-4a3f-459c-9c38-63c68bd5a2e4"
+        }
+      ],
+      "id": "be76535f-b659-41e9-b909-7c2ce1b6f756",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-be76535f-b659-41e9-b909-7c2ce1b6f756"
+    },
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "Get Open Finance Config",
+          "id": "219c2640-0ef0-4b59-b377-6b487e0a214d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "config"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "26765591-6bb7-4fb8-a3bc-0ed8995c449b",
+              "name": "Config",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-26765591-6bb7-4fb8-a3bc-0ed8995c449b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-219c2640-0ef0-4b59-b377-6b487e0a214d"
+        },
+        {
+          "name": "Update Open Finance Config",
+          "id": "f1e499ac-2066-40dd-934c-9f121d2d567d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "config"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c6547c5-bf94-48ed-97fd-72b3d64301ad",
+              "name": "Updated",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-7c6547c5-bf94-48ed-97fd-72b3d64301ad"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-f1e499ac-2066-40dd-934c-9f121d2d567d"
+        }
+      ],
+      "id": "c252a4e1-2aa3-432f-b12e-b696acf0f904",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-c252a4e1-2aa3-432f-b12e-b696acf0f904"
+    },
+    {
+      "name": "pagamentos",
+      "item": [
+        {
+          "name": "pix",
+          "item": [
+            {
+              "name": "{identificadorPagamento}",
+              "item": [
+                {
+                  "name": "devolver",
+                  "item": [
+                    {
+                      "name": "Refund Pix Payment",
+                      "id": "6e9c1ffb-9700-4bed-98be-fb84c9bbd489",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/pagamentos/pix/:identificadorPagamento/devolver",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "pagamentos",
+                            "pix",
+                            ":identificadorPagamento",
+                            "devolver"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4308f491-dceb-479e-915d-e562d03a0a9d",
+                              "key": "identificadorPagamento",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e0cee64b-b0e2-4ddd-9bac-04dc61f74f2c",
+                          "name": "Refunded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos/pix/:identificadorPagamento/devolver",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos",
+                                "pix",
+                                ":identificadorPagamento",
+                                "devolver"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identificadorPagamento"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-e0cee64b-b0e2-4ddd-9bac-04dc61f74f2c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-6e9c1ffb-9700-4bed-98be-fb84c9bbd489"
+                    }
+                  ],
+                  "id": "b1e72b35-9196-4168-8093-22598c87e2b0",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-b1e72b35-9196-4168-8093-22598c87e2b0"
+                }
+              ],
+              "id": "a1ad990e-23ec-4435-877c-05226edabde3",
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-a1ad990e-23ec-4435-877c-05226edabde3"
+            },
+            {
+              "name": "Start Pix Payment",
+              "id": "2280e342-5ec9-41d0-8242-7449d6438b6b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a28f6f63-51d8-4e45-8aad-77168786cc06",
+                  "name": "Started",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-a28f6f63-51d8-4e45-8aad-77168786cc06"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-2280e342-5ec9-41d0-8242-7449d6438b6b"
+            },
+            {
+              "name": "List Pix Payments",
+              "id": "a3b0e4cb-98d5-4b6f-97d8-225ed91e208c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "903db611-344c-4f6d-967b-67ca70a3beac",
+                  "name": "Payments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-903db611-344c-4f6d-967b-67ca70a3beac"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-a3b0e4cb-98d5-4b6f-97d8-225ed91e208c"
+            }
+          ],
+          "id": "e2212f46-6359-4d15-940f-efdf9720088c",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-e2212f46-6359-4d15-940f-efdf9720088c"
+        }
+      ],
+      "id": "245b4e80-2b59-4683-90a4-c61b6ce77bbb",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-245b4e80-2b59-4683-90a4-c61b6ce77bbb"
+    },
+    {
+      "name": "pagamentos-agendados",
+      "item": [
+        {
+          "name": "pix",
+          "item": [
+            {
+              "name": "{identificadorPagamento}",
+              "item": [
+                {
+                  "name": "cancelar",
+                  "item": [
+                    {
+                      "name": "Cancel Scheduled Pix",
+                      "id": "98e78cb7-7df3-461a-8e9a-26652e96f04e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/pagamentos-agendados/pix/:identificadorPagamento/cancelar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "pagamentos-agendados",
+                            "pix",
+                            ":identificadorPagamento",
+                            "cancelar"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d585b32e-4f1f-4fe2-8cbe-ed99a3ebe765",
+                              "key": "identificadorPagamento",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "2fcdaf51-500f-44dc-b225-0aa2d5e0f74c",
+                          "name": "Cancelled",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos-agendados/pix/:identificadorPagamento/cancelar",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos-agendados",
+                                "pix",
+                                ":identificadorPagamento",
+                                "cancelar"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identificadorPagamento"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-2fcdaf51-500f-44dc-b225-0aa2d5e0f74c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-98e78cb7-7df3-461a-8e9a-26652e96f04e"
+                    }
+                  ],
+                  "id": "e430e3a8-d2a7-46ca-98a3-e297600fdd10",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-e430e3a8-d2a7-46ca-98a3-e297600fdd10"
+                },
+                {
+                  "name": "devolver",
+                  "item": [
+                    {
+                      "name": "Refund Scheduled Pix",
+                      "id": "331cb389-aa8d-483c-b9f1-da9acb513ab1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/pagamentos-agendados/pix/:identificadorPagamento/devolver",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "pagamentos-agendados",
+                            "pix",
+                            ":identificadorPagamento",
+                            "devolver"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f0e0de09-e0e9-45a3-b7d0-d35bc9e6dae5",
+                              "key": "identificadorPagamento",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "05fbe8c0-7414-4599-8b62-1cbfc7f33a68",
+                          "name": "Refunded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos-agendados/pix/:identificadorPagamento/devolver",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos-agendados",
+                                "pix",
+                                ":identificadorPagamento",
+                                "devolver"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identificadorPagamento"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-05fbe8c0-7414-4599-8b62-1cbfc7f33a68"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-331cb389-aa8d-483c-b9f1-da9acb513ab1"
+                    }
+                  ],
+                  "id": "4b5aafc7-b4ff-4636-9123-b6e6be2d892b",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-4b5aafc7-b4ff-4636-9123-b6e6be2d892b"
+                }
+              ],
+              "id": "ee6f4b3e-d890-4454-a181-059cfc451f81",
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-ee6f4b3e-d890-4454-a181-059cfc451f81"
+            },
+            {
+              "name": "Start Scheduled Pix",
+              "id": "3b0c4824-8508-4bcd-979f-bb4e24ab256b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-agendados/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-agendados",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "22dde325-6921-474c-8687-acfa2a9ccd51",
+                  "name": "Scheduled",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-agendados/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-agendados",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-22dde325-6921-474c-8687-acfa2a9ccd51"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-3b0c4824-8508-4bcd-979f-bb4e24ab256b"
+            },
+            {
+              "name": "List Scheduled Pix",
+              "id": "e7355cc9-b1f5-48dd-a148-c6b98a1d0e61",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-agendados/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-agendados",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "656ed8da-1862-4e06-b1d7-842f707ec789",
+                  "name": "Scheduled list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-agendados/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-agendados",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-656ed8da-1862-4e06-b1d7-842f707ec789"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-e7355cc9-b1f5-48dd-a148-c6b98a1d0e61"
+            }
+          ],
+          "id": "c8a40914-92be-4055-a67b-3e27922e3041",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-c8a40914-92be-4055-a67b-3e27922e3041"
+        }
+      ],
+      "id": "f22ba7cb-0e2d-4329-8bd4-d13436b7e5ee",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-f22ba7cb-0e2d-4329-8bd4-d13436b7e5ee"
+    },
+    {
+      "name": "pagamentos-recorrentes",
+      "item": [
+        {
+          "name": "pix",
+          "item": [
+            {
+              "name": "{identificadorPagamento}",
+              "item": [
+                {
+                  "name": "cancelar",
+                  "item": [
+                    {
+                      "name": "Cancel Recurring Pix",
+                      "id": "cd5110ef-7ebc-457d-beb1-4e4328f6db47",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "pagamentos-recorrentes",
+                            "pix",
+                            ":identificadorPagamento",
+                            "cancelar"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fcdb3039-1a79-4efe-bd07-b0155aa59127",
+                              "key": "identificadorPagamento",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "daafeab8-fbf6-4125-9962-c35ea4e3d1ea",
+                          "name": "Cancelled",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos-recorrentes",
+                                "pix",
+                                ":identificadorPagamento",
+                                "cancelar"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identificadorPagamento"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-daafeab8-fbf6-4125-9962-c35ea4e3d1ea"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-cd5110ef-7ebc-457d-beb1-4e4328f6db47"
+                    }
+                  ],
+                  "id": "f869f067-59b6-4136-bd28-a3f68e36c4b1",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-f869f067-59b6-4136-bd28-a3f68e36c4b1"
+                },
+                {
+                  "name": "devolver",
+                  "item": [
+                    {
+                      "name": "Refund Recurring Pix",
+                      "id": "698cb5cd-ccb0-47d2-baab-2969e1a221b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/devolver",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "pagamentos-recorrentes",
+                            "pix",
+                            ":identificadorPagamento",
+                            "devolver"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6238154a-3e15-480c-a6c8-b050d0f17e28",
+                              "key": "identificadorPagamento",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bd24b5c3-554c-471a-be4c-f3a72f4d5337",
+                          "name": "Refunded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/devolver",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos-recorrentes",
+                                "pix",
+                                ":identificadorPagamento",
+                                "devolver"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "identificadorPagamento"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-bd24b5c3-554c-471a-be4c-f3a72f4d5337"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-698cb5cd-ccb0-47d2-baab-2969e1a221b4"
+                    }
+                  ],
+                  "id": "1ea0ad0c-f9c5-4901-bd0c-fb63d08b952c",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-1ea0ad0c-f9c5-4901-bd0c-fb63d08b952c"
+                },
+                {
+                  "name": "substituir",
+                  "item": [
+                    {
+                      "name": "{endToEndId}",
+                      "item": [
+                        {
+                          "name": "Replace Recurring Pix Parcel",
+                          "id": "44783d40-89fd-40c9-93b1-7e67bf47e947",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "pagamentos-recorrentes",
+                                "pix",
+                                ":identificadorPagamento",
+                                "substituir",
+                                ":endToEndId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "629a4783-acec-4ad3-a805-1e038cc1158b",
+                                  "key": "identificadorPagamento",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "e51d5372-0f37-48bd-a8cc-5e9f3c58b0e0",
+                                  "key": "endToEndId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "251e3885-a699-4f55-8f6b-6e22f5576036",
+                              "name": "Replaced",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "pagamentos-recorrentes",
+                                    "pix",
+                                    ":identificadorPagamento",
+                                    "substituir",
+                                    ":endToEndId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "identificadorPagamento"
+                                    },
+                                    {
+                                      "key": "endToEndId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:54.000Z",
+                              "updatedAt": "2026-06-05T15:08:54.000Z",
+                              "uid": "35240-251e3885-a699-4f55-8f6b-6e22f5576036"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:54.000Z",
+                          "updatedAt": "2026-06-05T15:08:54.000Z",
+                          "uid": "35240-44783d40-89fd-40c9-93b1-7e67bf47e947"
+                        }
+                      ],
+                      "id": "d13e2a5b-bde0-4847-99d0-cec9b9e190ca",
+                      "createdAt": "2026-06-05T15:08:54.000Z",
+                      "updatedAt": "2026-06-05T15:08:54.000Z",
+                      "uid": "35240-d13e2a5b-bde0-4847-99d0-cec9b9e190ca"
+                    }
+                  ],
+                  "id": "1475ba92-1698-4bca-8c28-c82d2542a465",
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-1475ba92-1698-4bca-8c28-c82d2542a465"
+                }
+              ],
+              "id": "47656fb3-77b9-418f-af3e-0eaddbaafa05",
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-47656fb3-77b9-418f-af3e-0eaddbaafa05"
+            },
+            {
+              "name": "Start Recurring Pix",
+              "id": "eaa159f8-7668-478d-b95e-62514336ca7f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-recorrentes/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-recorrentes",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "28629ee3-5b6a-4a1c-98af-309405305d90",
+                  "name": "Started",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-recorrentes/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-recorrentes",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-28629ee3-5b6a-4a1c-98af-309405305d90"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-eaa159f8-7668-478d-b95e-62514336ca7f"
+            },
+            {
+              "name": "List Recurring Pix",
+              "id": "a9dac517-149e-486c-95e5-86de8d7e60f0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-recorrentes/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-recorrentes",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a5316ae9-9a50-48d4-868e-075d2a6750d4",
+                  "name": "Recurring Pix",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-recorrentes/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-recorrentes",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-a5316ae9-9a50-48d4-868e-075d2a6750d4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-a9dac517-149e-486c-95e5-86de8d7e60f0"
+            }
+          ],
+          "id": "21b20f2a-5fc1-4add-bca8-a7c83737fe5e",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-21b20f2a-5fc1-4add-bca8-a7c83737fe5e"
+        }
+      ],
+      "id": "b9cfffc5-4242-4105-a015-d2bbd1af7e40",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-b9cfffc5-4242-4105-a015-d2bbd1af7e40"
+    },
+    {
+      "name": "pagamentos-biometria",
+      "item": [
+        {
+          "name": "vinculos",
+          "item": [
+            {
+              "name": "Create Biometric Enrollment",
+              "id": "ba95c076-af1b-4348-8ab0-695a07854d91",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-biometria",
+                    "vinculos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e58c930a-48a9-40d2-804d-16ac1c2e8582",
+                  "name": "Enrollment created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-biometria",
+                        "vinculos"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-e58c930a-48a9-40d2-804d-16ac1c2e8582"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-ba95c076-af1b-4348-8ab0-695a07854d91"
+            },
+            {
+              "name": "List Biometric Enrollments",
+              "id": "0db3cfcb-5221-4a53-bd20-edde5bc00349",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-biometria",
+                    "vinculos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "af20bae4-2c3c-455d-a832-ef578662fda3",
+                  "name": "Enrollments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-biometria",
+                        "vinculos"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-af20bae4-2c3c-455d-a832-ef578662fda3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-0db3cfcb-5221-4a53-bd20-edde5bc00349"
+            },
+            {
+              "name": "Revoke Biometric Enrollment",
+              "id": "2cd5fccc-f327-4201-bda6-31abbe6772e9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-biometria",
+                    "vinculos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "610a3bc8-25a8-4046-bbfd-78549d6696eb",
+                  "name": "Revoked",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-biometria/vinculos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-biometria",
+                        "vinculos"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-610a3bc8-25a8-4046-bbfd-78549d6696eb"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-2cd5fccc-f327-4201-bda6-31abbe6772e9"
+            }
+          ],
+          "id": "e5cbcb63-a401-4b29-9f93-b70583d24f20",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-e5cbcb63-a401-4b29-9f93-b70583d24f20"
+        },
+        {
+          "name": "pix",
+          "item": [
+            {
+              "name": "Create Biometric Pix Payment",
+              "id": "e3f74f78-6b54-4f43-9df4-783773a2326b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-biometria/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-biometria",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0461f175-e168-4e9c-b749-e00894e8a0c1",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-biometria/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-biometria",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-0461f175-e168-4e9c-b749-e00894e8a0c1"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-e3f74f78-6b54-4f43-9df4-783773a2326b"
+            },
+            {
+              "name": "List Biometric Pix Payments",
+              "id": "84fc67d8-96e9-405c-b790-4457bf2aa080",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-biometria/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-biometria",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9c8a174e-8d1e-42ed-b14b-c9a0be41dd39",
+                  "name": "Payments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-biometria/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-biometria",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-9c8a174e-8d1e-42ed-b14b-c9a0be41dd39"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-84fc67d8-96e9-405c-b790-4457bf2aa080"
+            }
+          ],
+          "id": "248cad1c-2e53-4fdb-9882-6cf570340953",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-248cad1c-2e53-4fdb-9882-6cf570340953"
+        }
+      ],
+      "id": "c107cd20-31fb-4b4d-9646-c61bad7a47a8",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-c107cd20-31fb-4b4d-9646-c61bad7a47a8"
+    },
+    {
+      "name": "pagamentos-automaticos",
+      "item": [
+        {
+          "name": "adesao",
+          "item": [
+            {
+              "name": "Create Automatic Pix Enrollment",
+              "id": "96e1f333-ac4f-4d1b-94ce-6ef96ed95ba5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "adesao"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8e9a4494-25a8-4709-ac38-3541fdb4ff6a",
+                  "name": "Enrolled",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "adesao"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-8e9a4494-25a8-4709-ac38-3541fdb4ff6a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-96e1f333-ac4f-4d1b-94ce-6ef96ed95ba5"
+            },
+            {
+              "name": "List Automatic Pix Enrollments",
+              "id": "f972a303-53bc-4238-acaa-700257863f39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "adesao"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b5b57ed9-eb7b-4df0-a1ff-1d7882bdc041",
+                  "name": "Enrollments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "adesao"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-b5b57ed9-eb7b-4df0-a1ff-1d7882bdc041"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-f972a303-53bc-4238-acaa-700257863f39"
+            },
+            {
+              "name": "Update Automatic Pix Enrollment",
+              "id": "04926727-3b85-458e-9bea-8da04c491d51",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "adesao"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ee7caf5a-cf9d-4ec1-a7d7-21b488a72b65",
+                  "name": "Updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/adesao",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "adesao"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-ee7caf5a-cf9d-4ec1-a7d7-21b488a72b65"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-04926727-3b85-458e-9bea-8da04c491d51"
+            }
+          ],
+          "id": "81a9ffc3-872a-48ff-9883-8d87d0744a0f",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-81a9ffc3-872a-48ff-9883-8d87d0744a0f"
+        },
+        {
+          "name": "pix",
+          "item": [
+            {
+              "name": "Create Automatic Pix Payment",
+              "id": "a5bc8925-51f3-4b7c-9e7c-de06e81451a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3299467e-be6b-4f44-adbf-012a83addc29",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-3299467e-be6b-4f44-adbf-012a83addc29"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-a5bc8925-51f3-4b7c-9e7c-de06e81451a4"
+            },
+            {
+              "name": "List Automatic Pix Payments",
+              "id": "ade5f65e-d5f4-4047-8e8e-6409050eb8c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "835b6dbb-befb-4de1-be6d-e9ccb46b9c48",
+                  "name": "Payments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-835b6dbb-befb-4de1-be6d-e9ccb46b9c48"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-ade5f65e-d5f4-4047-8e8e-6409050eb8c7"
+            },
+            {
+              "name": "Cancel Automatic Pix Payment",
+              "id": "73fde1ef-9428-4d2b-af01-2cf2f9e1e804",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pagamentos-automaticos",
+                    "pix"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "89e8537f-1582-49e8-808a-45b1ea53df07",
+                  "name": "Cancelled",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pagamentos-automaticos/pix",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pagamentos-automaticos",
+                        "pix"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:54.000Z",
+                  "updatedAt": "2026-06-05T15:08:54.000Z",
+                  "uid": "35240-89e8537f-1582-49e8-808a-45b1ea53df07"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:54.000Z",
+              "updatedAt": "2026-06-05T15:08:54.000Z",
+              "uid": "35240-73fde1ef-9428-4d2b-af01-2cf2f9e1e804"
+            }
+          ],
+          "id": "bee3b221-ccf4-448c-9885-cdd536d8bf8f",
+          "createdAt": "2026-06-05T15:08:54.000Z",
+          "updatedAt": "2026-06-05T15:08:54.000Z",
+          "uid": "35240-bee3b221-ccf4-448c-9885-cdd536d8bf8f"
+        }
+      ],
+      "id": "819f7975-9b7f-4f35-b531-1a598a390eb9",
+      "createdAt": "2026-06-05T15:08:54.000Z",
+      "updatedAt": "2026-06-05T15:08:54.000Z",
+      "uid": "35240-819f7975-9b7f-4f35-b531-1a598a390eb9"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "openfinance.payments.read openfinance.payments.write",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://openfinance.api.efipay.com.br/v1/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openfinance.api.efipay.com.br/v1"
+    }
+  ]
+}

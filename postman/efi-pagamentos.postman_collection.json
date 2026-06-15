@@ -1,0 +1,424 @@
+{
+  "info": {
+    "_postman_id": "6c78e73c-769d-4475-bc4b-b8d22152b845",
+    "name": "Ef\u00ed Pay Pagamentos (Bill Payment) API",
+    "description": "Brazilian bill-payment automation for Ef\u00ed Pay. Decode a boleto/concession\u00e1ria barcode (linha digit\u00e1vel), submit it for payment from the account balance, and reconcile the payment status. Supports same-day and scheduled debits.\n\nContact Support:\n Name: Ef\u00ed Pay Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:56.000Z",
+    "updatedAt": "2026-06-05T15:08:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c78e73c-769d-4475-bc4b-b8d22152b845"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Issue Pagamentos Access Token",
+              "id": "33ec4e4b-b0f9-4454-8b52-fbb1704d088b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0e450d19-1298-4a96-9a3e-e7352a3e3613",
+                  "name": "Token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:56.000Z",
+                  "updatedAt": "2026-06-05T15:08:56.000Z",
+                  "uid": "35240-0e450d19-1298-4a96-9a3e-e7352a3e3613"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:56.000Z",
+              "updatedAt": "2026-06-05T15:08:56.000Z",
+              "uid": "35240-33ec4e4b-b0f9-4454-8b52-fbb1704d088b"
+            }
+          ],
+          "id": "fbb75391-ddf0-43c6-b4dd-a76b17677ff4",
+          "createdAt": "2026-06-05T15:08:56.000Z",
+          "updatedAt": "2026-06-05T15:08:56.000Z",
+          "uid": "35240-fbb75391-ddf0-43c6-b4dd-a76b17677ff4"
+        }
+      ],
+      "id": "59695c4d-adab-49a1-be34-ba59363e6eca",
+      "createdAt": "2026-06-05T15:08:56.000Z",
+      "updatedAt": "2026-06-05T15:08:56.000Z",
+      "uid": "35240-59695c4d-adab-49a1-be34-ba59363e6eca"
+    },
+    {
+      "name": "codBarras",
+      "item": [
+        {
+          "name": "{codBarras}",
+          "item": [
+            {
+              "name": "Detail Bar Code",
+              "id": "470f0d9e-b906-4309-a098-a64d706dbbc6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/codBarras/:codBarras",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "codBarras",
+                    ":codBarras"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3effb0f5-4d69-4630-907e-56b07d477b9d",
+                      "key": "codBarras",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fa37fefa-f6a9-48f3-ad2e-56217207edde",
+                  "name": "Decoded bar code",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/codBarras/:codBarras",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "codBarras",
+                        ":codBarras"
+                      ],
+                      "variable": [
+                        {
+                          "key": "codBarras"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:56.000Z",
+                  "updatedAt": "2026-06-05T15:08:56.000Z",
+                  "uid": "35240-fa37fefa-f6a9-48f3-ad2e-56217207edde"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:56.000Z",
+              "updatedAt": "2026-06-05T15:08:56.000Z",
+              "uid": "35240-470f0d9e-b906-4309-a098-a64d706dbbc6"
+            },
+            {
+              "name": "Request Bar Code Payment",
+              "id": "2ee2f61f-a2b7-4700-925f-f7b9eebe813d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/codBarras/:codBarras",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "codBarras",
+                    ":codBarras"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7915fafd-0d80-480e-81f2-c5d8848bf0ee",
+                      "key": "codBarras",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "618a5b31-31b5-464d-afbc-6f5385b378b8",
+                  "name": "Payment scheduled",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/codBarras/:codBarras",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "codBarras",
+                        ":codBarras"
+                      ],
+                      "variable": [
+                        {
+                          "key": "codBarras"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:56.000Z",
+                  "updatedAt": "2026-06-05T15:08:56.000Z",
+                  "uid": "35240-618a5b31-31b5-464d-afbc-6f5385b378b8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:56.000Z",
+              "updatedAt": "2026-06-05T15:08:56.000Z",
+              "uid": "35240-2ee2f61f-a2b7-4700-925f-f7b9eebe813d"
+            }
+          ],
+          "id": "7282369e-6d5a-4ac3-b097-e0d498d3ceb5",
+          "createdAt": "2026-06-05T15:08:56.000Z",
+          "updatedAt": "2026-06-05T15:08:56.000Z",
+          "uid": "35240-7282369e-6d5a-4ac3-b097-e0d498d3ceb5"
+        }
+      ],
+      "id": "df0d1b25-63d8-42f4-abb3-fda3cf3a5f3a",
+      "createdAt": "2026-06-05T15:08:56.000Z",
+      "updatedAt": "2026-06-05T15:08:56.000Z",
+      "uid": "35240-df0d1b25-63d8-42f4-abb3-fda3cf3a5f3a"
+    },
+    {
+      "name": "{idPagamento}",
+      "item": [
+        {
+          "name": "Detail Bill Payment",
+          "id": "b4581d4a-1b98-4d72-b678-21762866201f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/:idPagamento",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":idPagamento"
+              ],
+              "variable": [
+                {
+                  "id": "eb8bcf2e-9507-4f2c-bf60-2eecf5553b24",
+                  "key": "idPagamento",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "90a7ce09-bd44-447f-9d06-335b290317b4",
+              "name": "Payment detail",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:idPagamento",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":idPagamento"
+                  ],
+                  "variable": [
+                    {
+                      "key": "idPagamento"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:56.000Z",
+              "updatedAt": "2026-06-05T15:08:56.000Z",
+              "uid": "35240-90a7ce09-bd44-447f-9d06-335b290317b4"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:56.000Z",
+          "updatedAt": "2026-06-05T15:08:56.000Z",
+          "uid": "35240-b4581d4a-1b98-4d72-b678-21762866201f"
+        }
+      ],
+      "id": "b24e102e-91ba-47c6-a8d6-1693e593dc9d",
+      "createdAt": "2026-06-05T15:08:56.000Z",
+      "updatedAt": "2026-06-05T15:08:56.000Z",
+      "uid": "35240-b24e102e-91ba-47c6-a8d6-1693e593dc9d"
+    },
+    {
+      "name": "resumo",
+      "item": [
+        {
+          "name": "List Bill Payments",
+          "id": "2ee0688e-46ce-4d15-bcc1-c415be4331d6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/resumo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "resumo"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8eb6695a-6630-4087-b688-6d884fa66999",
+              "name": "Payments",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/resumo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "resumo"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:56.000Z",
+              "updatedAt": "2026-06-05T15:08:56.000Z",
+              "uid": "35240-8eb6695a-6630-4087-b688-6d884fa66999"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:56.000Z",
+          "updatedAt": "2026-06-05T15:08:56.000Z",
+          "uid": "35240-2ee0688e-46ce-4d15-bcc1-c415be4331d6"
+        }
+      ],
+      "id": "b5050dfd-e109-419d-8fc0-d695c34486f4",
+      "createdAt": "2026-06-05T15:08:56.000Z",
+      "updatedAt": "2026-06-05T15:08:56.000Z",
+      "uid": "35240-b5050dfd-e109-419d-8fc0-d695c34486f4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://pagarcontas.api.efipay.com.br/v1/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://pagarcontas.api.efipay.com.br/v1"
+    }
+  ]
+}

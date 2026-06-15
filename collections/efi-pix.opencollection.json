@@ -1,0 +1,1377 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Pix API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://pix.api.efipay.com.br/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Pix Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/oauth/token"
+          },
+          "docs": "Issue Pix Access Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Immediate Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Immediate Pix Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cob"
+          },
+          "docs": "List Immediate Pix Charges"
+        },
+        {
+          "info": {
+            "name": "Create Immediate Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/cob"
+          },
+          "docs": "Create Immediate Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Immediate Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cob/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Immediate Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Create Immediate Pix Charge With Txid",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/cob/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Immediate Pix Charge With Txid"
+        },
+        {
+          "info": {
+            "name": "Update Immediate Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/cob/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Immediate Pix Charge"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Due Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pix Due Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cobv"
+          },
+          "docs": "List Pix Due Charges"
+        },
+        {
+          "info": {
+            "name": "Detail Pix Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cobv/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Pix Due Charge"
+        },
+        {
+          "info": {
+            "name": "Create Pix Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/cobv/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Pix Due Charge"
+        },
+        {
+          "info": {
+            "name": "Update Pix Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/cobv/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Pix Due Charge"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Due Charge Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Due Charge Batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/lotecobv"
+          },
+          "docs": "List Due Charge Batches"
+        },
+        {
+          "info": {
+            "name": "Detail Due Charge Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/lotecobv/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Due Charge Batch"
+        },
+        {
+          "info": {
+            "name": "Create Due Charge Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/lotecobv/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Due Charge Batch"
+        },
+        {
+          "info": {
+            "name": "Update Due Charge Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/lotecobv/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Due Charge Batch"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Automatic Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Automatic Pix Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cobr"
+          },
+          "docs": "List Automatic Pix Charges"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/cobr"
+          },
+          "docs": "Create Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Charge With Txid",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Automatic Pix Charge With Txid"
+        },
+        {
+          "info": {
+            "name": "Update Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Retry Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/cobr/:txid/retentativa/:data",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry Automatic Pix Charge"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recurring Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/rec"
+          },
+          "docs": "List Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/rec"
+          },
+          "docs": "Create Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/rec/:idRec",
+            "params": [
+              {
+                "name": "idRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Update Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/rec/:idRec",
+            "params": [
+              {
+                "name": "idRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/solicrec"
+          },
+          "docs": "Create Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/solicrec/:idSolicRec",
+            "params": [
+              {
+                "name": "idSolicRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "Update Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://pix.api.efipay.com.br/v2/solicrec/:idSolicRec",
+            "params": [
+              {
+                "name": "idSolicRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "List Recurring Pix Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/locrec"
+          },
+          "docs": "List Recurring Pix Locations"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/locrec"
+          },
+          "docs": "Create Recurring Pix Location"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/locrec/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix Location"
+        },
+        {
+          "info": {
+            "name": "Unlink Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/locrec/:id/idRec",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Recurring Pix Location"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pix Send",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Pix Cash Out",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v3/gn/pix/:idEnvio",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Pix Cash Out"
+        },
+        {
+          "info": {
+            "name": "Pay Pix QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/:idEnvio/qrcode",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pay Pix QR Code"
+        },
+        {
+          "info": {
+            "name": "Send Pix Same Ownership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/:idEnvio/mesma-titularidade",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Pix Same Ownership"
+        },
+        {
+          "info": {
+            "name": "List Sent Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/enviados"
+          },
+          "docs": "List Sent Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Sent Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/enviados/:e2eid",
+            "params": [
+              {
+                "name": "e2eid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Sent Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Sent Pix By Send Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/enviados/id-envio/:idEnvio",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Sent Pix By Send Id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Received Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Received Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/pix"
+          },
+          "docs": "List Received Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Received Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/pix/:e2eId",
+            "params": [
+              {
+                "name": "e2eId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Received Pix"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devolutions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detail Pix Devolution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/pix/:e2eId/devolucao/:id",
+            "params": [
+              {
+                "name": "e2eId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Pix Devolution"
+        },
+        {
+          "info": {
+            "name": "Create Pix Devolution",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/pix/:e2eId/devolucao/:id",
+            "params": [
+              {
+                "name": "e2eId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Pix Devolution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pix Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/loc"
+          },
+          "docs": "List Pix Locations"
+        },
+        {
+          "info": {
+            "name": "Create Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/loc"
+          },
+          "docs": "Create Pix Location"
+        },
+        {
+          "info": {
+            "name": "Detail Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/loc/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Pix Location"
+        },
+        {
+          "info": {
+            "name": "Unlink Txid From Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/loc/:id/txid",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Txid From Location"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "QR Codes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Pix QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/loc/:id/qrcode",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate Pix QR Code"
+        },
+        {
+          "info": {
+            "name": "Detail Pix QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/qrcodes/detalhar"
+          },
+          "docs": "Detail Pix QR Code"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pix Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Random Pix Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/evp"
+          },
+          "docs": "List Random Pix Keys"
+        },
+        {
+          "info": {
+            "name": "Create Random Pix Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/evp"
+          },
+          "docs": "Create Random Pix Key"
+        },
+        {
+          "info": {
+            "name": "Delete Random Pix Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/gn/evp/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Random Pix Key"
+        },
+        {
+          "info": {
+            "name": "List Pix Keys Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/chaves/balde"
+          },
+          "docs": "List Pix Keys Bucket"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/saldo"
+          },
+          "docs": "Get Account Balance"
+        },
+        {
+          "info": {
+            "name": "List Account Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/config"
+          },
+          "docs": "List Account Config"
+        },
+        {
+          "info": {
+            "name": "Update Account Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/config"
+          },
+          "docs": "Update Account Config"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Splits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detail Charge Split",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cob/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Charge Split"
+        },
+        {
+          "info": {
+            "name": "Link Split To Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link Split To Charge"
+        },
+        {
+          "info": {
+            "name": "Unlink Split From Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Split From Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Due Charge Split",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cobv/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Due Charge Split"
+        },
+        {
+          "info": {
+            "name": "Link Split To Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link Split To Due Charge"
+        },
+        {
+          "info": {
+            "name": "Unlink Split From Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Split From Due Charge"
+        },
+        {
+          "info": {
+            "name": "Create Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/config"
+          },
+          "docs": "Create Split Config"
+        },
+        {
+          "info": {
+            "name": "Detail Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Split Config"
+        },
+        {
+          "info": {
+            "name": "Update Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/gn/split/config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Split Config"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MED Infractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List MED Infractions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/infracoes"
+          },
+          "docs": "List MED Infractions"
+        },
+        {
+          "info": {
+            "name": "Submit MED Defense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/infracoes/:idInfracao/defesa",
+            "params": [
+              {
+                "name": "idInfracao",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submit MED Defense"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Reconciliation Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/relatorios/extrato-conciliacao"
+          },
+          "docs": "Create Reconciliation Report"
+        },
+        {
+          "info": {
+            "name": "Detail Reconciliation Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/relatorios/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Reconciliation Report"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Receipts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Pix Receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/gn/pix/comprovantes"
+          },
+          "docs": "Get Pix Receipt"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detail Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Configure Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Configure Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "List Pix Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/webhook"
+          },
+          "docs": "List Pix Webhooks"
+        },
+        {
+          "info": {
+            "name": "List Recurring Pix Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/webhookrec"
+          },
+          "docs": "List Recurring Pix Webhooks"
+        },
+        {
+          "info": {
+            "name": "Configure Recurring Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/webhookrec"
+          },
+          "docs": "Configure Recurring Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Recurring Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/webhookrec"
+          },
+          "docs": "Delete Recurring Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "List Automatic Charge Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://pix.api.efipay.com.br/v2/webhookcobr"
+          },
+          "docs": "List Automatic Charge Webhooks"
+        },
+        {
+          "info": {
+            "name": "Configure Automatic Charge Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://pix.api.efipay.com.br/v2/webhookcobr"
+          },
+          "docs": "Configure Automatic Charge Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Automatic Charge Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://pix.api.efipay.com.br/v2/webhookcobr"
+          },
+          "docs": "Delete Automatic Charge Webhook"
+        },
+        {
+          "info": {
+            "name": "Resend Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://pix.api.efipay.com.br/v2/gn/webhook/reenviar"
+          },
+          "docs": "Resend Pix Webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

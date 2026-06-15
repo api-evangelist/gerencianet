@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Extratos (Statements) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://extratos.api.efipay.com.br/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Extratos Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://extratos.api.efipay.com.br/v1/oauth/token"
+          },
+          "docs": "Issue Extratos Access Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statement Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Statement Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/arquivos"
+          },
+          "docs": "List Statement Files"
+        },
+        {
+          "info": {
+            "name": "Download Statement File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/download/:nome_arquivo",
+            "params": [
+              {
+                "name": "nome_arquivo",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download Statement File"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statement Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Statement Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/agendamentos"
+          },
+          "docs": "List Statement Schedules"
+        },
+        {
+          "info": {
+            "name": "Create Statement Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/agendar"
+          },
+          "docs": "Create Statement Schedule"
+        },
+        {
+          "info": {
+            "name": "Update Statement Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/agendar/:identificador",
+            "params": [
+              {
+                "name": "identificador",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Statement Schedule"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SFTP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate SFTP Key Pair",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://extratos.api.efipay.com.br/v1/extrato-cnab/gerar-chaves"
+          },
+          "docs": "Generate SFTP Key Pair"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

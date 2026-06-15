@@ -1,0 +1,429 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Open Finance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://openfinance.api.efipay.com.br/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Issue Open Finance Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/oauth/token"
+          },
+          "docs": "Issue Open Finance Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Participants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Open Finance Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/participantes/"
+          },
+          "docs": "List Open Finance Participants"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Open Finance Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/config"
+          },
+          "docs": "Get Open Finance Config"
+        },
+        {
+          "info": {
+            "name": "Update Open Finance Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://openfinance.api.efipay.com.br/v1/config"
+          },
+          "docs": "Update Open Finance Config"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Immediate Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos/pix"
+          },
+          "docs": "List Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Start Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos/pix"
+          },
+          "docs": "Start Pix Payment"
+        },
+        {
+          "info": {
+            "name": "Refund Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Pix Payment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduled Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-agendados/pix"
+          },
+          "docs": "List Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Start Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-agendados/pix"
+          },
+          "docs": "Start Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Cancel Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-agendados/pix/:identificadorPagamento/cancelar",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Refund Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-agendados/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Scheduled Pix"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recurring Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-recorrentes/pix"
+          },
+          "docs": "List Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Start Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-recorrentes/pix"
+          },
+          "docs": "Start Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Cancel Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Refund Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Replace Recurring Pix Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endToEndId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Replace Recurring Pix Parcel"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Biometric Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Biometric Enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "List Biometric Enrollments"
+        },
+        {
+          "info": {
+            "name": "Create Biometric Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "Create Biometric Enrollment"
+        },
+        {
+          "info": {
+            "name": "Revoke Biometric Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "Revoke Biometric Enrollment"
+        },
+        {
+          "info": {
+            "name": "List Biometric Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-biometria/pix"
+          },
+          "docs": "List Biometric Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Create Biometric Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-biometria/pix"
+          },
+          "docs": "Create Biometric Pix Payment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Automatic Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Automatic Pix Enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "List Automatic Pix Enrollments"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "Create Automatic Pix Enrollment"
+        },
+        {
+          "info": {
+            "name": "Update Automatic Pix Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "Update Automatic Pix Enrollment"
+        },
+        {
+          "info": {
+            "name": "List Automatic Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "List Automatic Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "Create Automatic Pix Payment"
+        },
+        {
+          "info": {
+            "name": "Cancel Automatic Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://openfinance.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "Cancel Automatic Pix Payment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

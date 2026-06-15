@@ -1,0 +1,646 @@
+{
+  "info": {
+    "_postman_id": "b407050e-20fb-4401-98c9-07d10d0bafce",
+    "name": "Ef\u00ed Pay Contas (Account Opening) API",
+    "description": "Account-opening API for Ef\u00ed Pay partners. Programmatically open Brazilian \"conta-simplificada\" accounts for end-customers, retrieve their generated P12 certificates and API credentials, and manage account-related webhooks. Used by marketplaces, ERPs, and BaaS-style integrators.\n\nContact Support:\n Name: Ef\u00ed Pay Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:55.000Z",
+    "updatedAt": "2026-06-05T15:08:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b407050e-20fb-4401-98c9-07d10d0bafce"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Issue Contas Access Token",
+              "id": "32bb4f83-ffcd-49ee-b335-f2c177b650b8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b42df67d-684c-4acf-a647-c75e0f633d03",
+                  "name": "Token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:55.000Z",
+                  "updatedAt": "2026-06-05T15:08:55.000Z",
+                  "uid": "35240-b42df67d-684c-4acf-a647-c75e0f633d03"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-32bb4f83-ffcd-49ee-b335-f2c177b650b8"
+            }
+          ],
+          "id": "36a9b892-1fc2-4306-820e-a79c0ebc5877",
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-36a9b892-1fc2-4306-820e-a79c0ebc5877"
+        }
+      ],
+      "id": "7d33e4b1-aa1f-401c-b865-9a67382de3bb",
+      "createdAt": "2026-06-05T15:08:55.000Z",
+      "updatedAt": "2026-06-05T15:08:55.000Z",
+      "uid": "35240-7d33e4b1-aa1f-401c-b865-9a67382de3bb"
+    },
+    {
+      "name": "conta-simplificada",
+      "item": [
+        {
+          "name": "{identificador}",
+          "item": [
+            {
+              "name": "certificado",
+              "item": [
+                {
+                  "name": "Generate Account Certificate",
+                  "id": "63bc48db-a81a-4ec9-8b0b-cb05770b7557",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/conta-simplificada/:identificador/certificado",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conta-simplificada",
+                        ":identificador",
+                        "certificado"
+                      ],
+                      "variable": [
+                        {
+                          "id": "34249960-472a-47cd-b39c-6360e269103f",
+                          "key": "identificador",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b478ce01-ef5b-477e-9823-9ec4a4556f7a",
+                      "name": "P12 certificate issued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conta-simplificada/:identificador/certificado",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conta-simplificada",
+                            ":identificador",
+                            "certificado"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identificador"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:55.000Z",
+                      "updatedAt": "2026-06-05T15:08:55.000Z",
+                      "uid": "35240-b478ce01-ef5b-477e-9823-9ec4a4556f7a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:55.000Z",
+                  "updatedAt": "2026-06-05T15:08:55.000Z",
+                  "uid": "35240-63bc48db-a81a-4ec9-8b0b-cb05770b7557"
+                }
+              ],
+              "id": "65a88733-d3bb-4718-baaa-8f037e15fd6e",
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-65a88733-d3bb-4718-baaa-8f037e15fd6e"
+            },
+            {
+              "name": "credenciais",
+              "item": [
+                {
+                  "name": "Get Account Credentials",
+                  "id": "4bec41d8-c968-42ea-8f1b-def285f9ab6c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/conta-simplificada/:identificador/credenciais",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conta-simplificada",
+                        ":identificador",
+                        "credenciais"
+                      ],
+                      "variable": [
+                        {
+                          "id": "aa88b8d1-481d-4b18-a65b-2f66b8a5d6b4",
+                          "key": "identificador",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0ffcf1d9-f6d0-4d78-96c9-b8b7658b04ed",
+                      "name": "client_id + client_secret pair",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conta-simplificada/:identificador/credenciais",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conta-simplificada",
+                            ":identificador",
+                            "credenciais"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identificador"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:55.000Z",
+                      "updatedAt": "2026-06-05T15:08:55.000Z",
+                      "uid": "35240-0ffcf1d9-f6d0-4d78-96c9-b8b7658b04ed"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:55.000Z",
+                  "updatedAt": "2026-06-05T15:08:55.000Z",
+                  "uid": "35240-4bec41d8-c968-42ea-8f1b-def285f9ab6c"
+                }
+              ],
+              "id": "4bf91baf-2386-4aaf-aea4-38fa7b93ca69",
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-4bf91baf-2386-4aaf-aea4-38fa7b93ca69"
+            }
+          ],
+          "id": "9fd9e6c5-c671-474b-9c07-1e8762b689e5",
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-9fd9e6c5-c671-474b-9c07-1e8762b689e5"
+        },
+        {
+          "name": "Create Simplified Account",
+          "id": "779caab7-00c1-4e81-a006-46023a9d5d77",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/conta-simplificada",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "conta-simplificada"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54ce1317-3c49-4b90-ab79-dd971c1dfd4c",
+              "name": "Account created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/conta-simplificada",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conta-simplificada"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-54ce1317-3c49-4b90-ab79-dd971c1dfd4c"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-779caab7-00c1-4e81-a006-46023a9d5d77"
+        }
+      ],
+      "id": "d29d14cb-ffd1-4832-b2cd-694d06b9cf67",
+      "createdAt": "2026-06-05T15:08:55.000Z",
+      "updatedAt": "2026-06-05T15:08:55.000Z",
+      "uid": "35240-d29d14cb-ffd1-4832-b2cd-694d06b9cf67"
+    },
+    {
+      "name": "webhook",
+      "item": [
+        {
+          "name": "{identificadorWebhook}",
+          "item": [
+            {
+              "name": "Detail Account Webhook",
+              "id": "e8dd4773-6de0-480e-9816-162127c50972",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook/:identificadorWebhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook",
+                    ":identificadorWebhook"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2c23444e-0af2-4a71-8772-dc27158a4f39",
+                      "key": "identificadorWebhook",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4e842356-89eb-4e36-aeac-a23742e73405",
+                  "name": "Webhook",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:identificadorWebhook",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":identificadorWebhook"
+                      ],
+                      "variable": [
+                        {
+                          "key": "identificadorWebhook"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:55.000Z",
+                  "updatedAt": "2026-06-05T15:08:55.000Z",
+                  "uid": "35240-4e842356-89eb-4e36-aeac-a23742e73405"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-e8dd4773-6de0-480e-9816-162127c50972"
+            },
+            {
+              "name": "Delete Account Webhook",
+              "id": "1d404fdb-6d22-495c-bb29-73eddf7ed5ed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook/:identificadorWebhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook",
+                    ":identificadorWebhook"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2e9fdf00-7533-4ba2-9393-9e7d5271b458",
+                      "key": "identificadorWebhook",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "07328be1-47f8-4959-aece-ef860cc86905",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:identificadorWebhook",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":identificadorWebhook"
+                      ],
+                      "variable": [
+                        {
+                          "key": "identificadorWebhook"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:55.000Z",
+                  "updatedAt": "2026-06-05T15:08:55.000Z",
+                  "uid": "35240-07328be1-47f8-4959-aece-ef860cc86905"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-1d404fdb-6d22-495c-bb29-73eddf7ed5ed"
+            }
+          ],
+          "id": "a1a890ad-a41c-4f72-a94d-542d13028e91",
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-a1a890ad-a41c-4f72-a94d-542d13028e91"
+        },
+        {
+          "name": "Configure Account Webhook",
+          "id": "a468ef3a-9924-4f7a-bcb1-8dc22aac7160",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e61388b-e02a-4cf8-8920-d5f08b292451",
+              "name": "Webhook configured",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-1e61388b-e02a-4cf8-8920-d5f08b292451"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-a468ef3a-9924-4f7a-bcb1-8dc22aac7160"
+        }
+      ],
+      "id": "17e12933-9c50-420c-945e-7961beab6652",
+      "createdAt": "2026-06-05T15:08:55.000Z",
+      "updatedAt": "2026-06-05T15:08:55.000Z",
+      "uid": "35240-17e12933-9c50-420c-945e-7961beab6652"
+    },
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "List Account Webhooks",
+          "id": "7ad18d53-2d53-4d5c-9603-ce38e81cee13",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c267671-53ee-4710-a3a2-5e3beab03fc1",
+              "name": "Webhooks",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:55.000Z",
+              "updatedAt": "2026-06-05T15:08:55.000Z",
+              "uid": "35240-7c267671-53ee-4710-a3a2-5e3beab03fc1"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:55.000Z",
+          "updatedAt": "2026-06-05T15:08:55.000Z",
+          "uid": "35240-7ad18d53-2d53-4d5c-9603-ce38e81cee13"
+        }
+      ],
+      "id": "d2c483e2-c2a4-49a7-8922-9877777e0398",
+      "createdAt": "2026-06-05T15:08:55.000Z",
+      "updatedAt": "2026-06-05T15:08:55.000Z",
+      "uid": "35240-d2c483e2-c2a4-49a7-8922-9877777e0398"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://abrircontas.api.efipay.com.br/v1/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://abrircontas.api.efipay.com.br/v1"
+    }
+  ]
+}

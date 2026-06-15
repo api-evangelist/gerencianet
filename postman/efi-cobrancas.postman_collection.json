@@ -1,0 +1,3943 @@
+{
+  "info": {
+    "_postman_id": "627b7632-710e-4788-8485-f9050f7476a9",
+    "name": "Ef\u00ed Pay Cobran\u00e7as API",
+    "description": "Billing API for Ef\u00ed Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carn\u00eas (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.\n\nContact Support:\n Name: Ef\u00ed Pay Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:50.000Z",
+    "updatedAt": "2026-06-05T15:08:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-627b7632-710e-4788-8485-f9050f7476a9"
+  },
+  "item": [
+    {
+      "name": "authorize",
+      "item": [
+        {
+          "name": "Issue Access Token",
+          "id": "39dbaf1b-d04c-4f82-8378-d05e5720363b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"grant_type\": \"client_credentials\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authorize",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authorize"
+              ]
+            },
+            "description": "Exchange client_id and client_secret (HTTP Basic) for an OAuth2 access token used to authenticate subsequent Cobran\u00e7as API calls."
+          },
+          "response": [
+            {
+              "id": "45c998f9-9d73-4ac2-9416-9f12089cd1b0",
+              "name": "Access token issued",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"grant_type\": \"client_credentials\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authorize",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authorize"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-45c998f9-9d73-4ac2-9416-9f12089cd1b0"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-39dbaf1b-d04c-4f82-8378-d05e5720363b"
+        }
+      ],
+      "id": "5d8d2d95-2235-436f-9ba8-6aeb38b80cd2",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-5d8d2d95-2235-436f-9ba8-6aeb38b80cd2"
+    },
+    {
+      "name": "charge",
+      "item": [
+        {
+          "name": "one-step",
+          "item": [
+            {
+              "name": "link",
+              "item": [
+                {
+                  "name": "Create One Step Charge Link",
+                  "id": "a5e358cf-7692-4a44-ab2e-4ec2995ef307",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/one-step/link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        "one-step",
+                        "link"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f5d5396e-86b2-4e60-86fe-d9207840772d",
+                      "name": "Link created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/one-step/link",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            "one-step",
+                            "link"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-f5d5396e-86b2-4e60-86fe-d9207840772d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-a5e358cf-7692-4a44-ab2e-4ec2995ef307"
+                }
+              ],
+              "id": "41485617-819d-46ea-876a-2e0c52ccdb14",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-41485617-819d-46ea-876a-2e0c52ccdb14"
+            },
+            {
+              "name": "Create One Step Charge",
+              "id": "6fa25530-cf3f-4be8-a8a5-140738018820",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/charge/one-step",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charge",
+                    "one-step"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "478e6652-8bba-4c99-b8fa-652730a846d6",
+                  "name": "Charge created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/one-step",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        "one-step"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-478e6652-8bba-4c99-b8fa-652730a846d6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-6fa25530-cf3f-4be8-a8a5-140738018820"
+            }
+          ],
+          "id": "8922ad80-387a-427f-a385-c9965a0b93f8",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-8922ad80-387a-427f-a385-c9965a0b93f8"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel Charge",
+                  "id": "96b63f81-5363-4cae-8d8b-90cc5527cd87",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "253fe66a-cb8d-454b-a29d-146d2897a506",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "cab605f2-85c8-4085-878b-9e1b8c68a0d2",
+                      "name": "Cancelled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-cab605f2-85c8-4085-878b-9e1b8c68a0d2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-96b63f81-5363-4cae-8d8b-90cc5527cd87"
+                }
+              ],
+              "id": "7fdec009-1f27-4991-85b2-0e4111eef15b",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-7fdec009-1f27-4991-85b2-0e4111eef15b"
+            },
+            {
+              "name": "pay",
+              "item": [
+                {
+                  "name": "Define Payment Method",
+                  "id": "60288f65-9727-42f4-8ca2-c6b5b7b3f350",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/pay",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "pay"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3105f3d9-927f-455c-b6f9-9193709a1db7",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "819e0f0f-0137-4581-b711-2f2f521fb2b3",
+                      "name": "Method applied",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/pay",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "pay"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-819e0f0f-0137-4581-b711-2f2f521fb2b3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-60288f65-9727-42f4-8ca2-c6b5b7b3f350"
+                }
+              ],
+              "id": "b53f8d65-c398-49fe-b328-bb5ddb1cad75",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-b53f8d65-c398-49fe-b328-bb5ddb1cad75"
+            },
+            {
+              "name": "billet",
+              "item": [
+                {
+                  "name": "resend",
+                  "item": [
+                    {
+                      "name": "Send Billet Email",
+                      "id": "e211ab34-7c98-4060-bb93-801927d5c14b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/billet/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "billet",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "id": "acc3221a-f9da-48a7-abac-4e216bbdbb14",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "d985ea65-d141-4a82-aa03-410c8e78e3a5",
+                          "name": "Email queued",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/charge/:id/billet/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "charge",
+                                ":id",
+                                "billet",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-d985ea65-d141-4a82-aa03-410c8e78e3a5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-e211ab34-7c98-4060-bb93-801927d5c14b"
+                    }
+                  ],
+                  "id": "5ae9c7e2-fee3-4e3c-92b2-548dcdc4044b",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-5ae9c7e2-fee3-4e3c-92b2-548dcdc4044b"
+                },
+                {
+                  "name": "Update Billet",
+                  "id": "73673b62-6cf1-4c6b-a765-33ee890d78f8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/billet",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "billet"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3d253826-a8b7-4bdd-8697-402bee9592f6",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "13fddbea-3570-4aad-8d26-ed942ed3df39",
+                      "name": "Updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/billet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "billet"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-13fddbea-3570-4aad-8d26-ed942ed3df39"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-73673b62-6cf1-4c6b-a765-33ee890d78f8"
+                }
+              ],
+              "id": "90cfcb78-4ebe-41a8-b476-67e2772a0fba",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-90cfcb78-4ebe-41a8-b476-67e2772a0fba"
+            },
+            {
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "Update Charge Metadata",
+                  "id": "d884dead-f604-4925-b7ad-ed98bac83196",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "66dd3124-9f9b-4a44-a3db-2ae5b9358511",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2d5b9618-c33b-425d-8fe9-936244d9dd8b",
+                      "name": "Metadata updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-2d5b9618-c33b-425d-8fe9-936244d9dd8b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-d884dead-f604-4925-b7ad-ed98bac83196"
+                }
+              ],
+              "id": "bcbc87a9-6929-48a7-948e-e182e5f39abd",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-bcbc87a9-6929-48a7-948e-e182e5f39abd"
+            },
+            {
+              "name": "history",
+              "item": [
+                {
+                  "name": "Create Charge History Note",
+                  "id": "bf85eef0-530e-48f6-a5bf-cf02af727869",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "history"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8986dc7c-3c90-4b0a-afb1-ed82fbe775d6",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7e4ce8f0-4e92-4a85-863c-d0a0d7bb3da5",
+                      "name": "Note added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-7e4ce8f0-4e92-4a85-863c-d0a0d7bb3da5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-bf85eef0-530e-48f6-a5bf-cf02af727869"
+                }
+              ],
+              "id": "8121aad0-cf40-4526-97df-20ad925750be",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-8121aad0-cf40-4526-97df-20ad925750be"
+            },
+            {
+              "name": "balance-sheet",
+              "item": [
+                {
+                  "name": "Define Balance Sheet Billet",
+                  "id": "4f251f2d-94d4-4a59-b089-39961be8e7c4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/balance-sheet",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "balance-sheet"
+                      ],
+                      "variable": [
+                        {
+                          "id": "088c2b88-a516-4881-a863-e3d78cff7002",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "19ef6db8-3789-4f17-92a3-117fe0d3c9ab",
+                      "name": "Balance sheet set",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/balance-sheet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "balance-sheet"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-19ef6db8-3789-4f17-92a3-117fe0d3c9ab"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-4f251f2d-94d4-4a59-b089-39961be8e7c4"
+                }
+              ],
+              "id": "6cc5b12e-a722-4beb-9bf7-49d14275e945",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-6cc5b12e-a722-4beb-9bf7-49d14275e945"
+            },
+            {
+              "name": "settle",
+              "item": [
+                {
+                  "name": "Settle Charge Manually",
+                  "id": "8e95c5b2-efa1-42a3-bb40-d92f4766abb0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/settle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "settle"
+                      ],
+                      "variable": [
+                        {
+                          "id": "23047ed9-548b-4a3d-a125-10ba0f0736f8",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "43175340-63d2-4546-b290-4c4d90137930",
+                      "name": "Settled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/settle",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "settle"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-43175340-63d2-4546-b290-4c4d90137930"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-8e95c5b2-efa1-42a3-bb40-d92f4766abb0"
+                }
+              ],
+              "id": "500fb160-5ccf-49a1-b832-0fa6156425f1",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-500fb160-5ccf-49a1-b832-0fa6156425f1"
+            },
+            {
+              "name": "retry",
+              "item": [
+                {
+                  "name": "Retry Card Payment",
+                  "id": "f1fc03ae-00ab-4f92-987c-69e2ce044431",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/retry",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "retry"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a8f64b1c-5fdd-4dc0-85c5-948d5f8fdfc5",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "3ced3329-ca60-478c-9b5e-77285ad2b4ea",
+                      "name": "Retried",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/retry",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "retry"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-3ced3329-ca60-478c-9b5e-77285ad2b4ea"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-f1fc03ae-00ab-4f92-987c-69e2ce044431"
+                }
+              ],
+              "id": "a809ccbd-e022-4953-a1e5-6e6fdeeafbfe",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-a809ccbd-e022-4953-a1e5-6e6fdeeafbfe"
+            },
+            {
+              "name": "link",
+              "item": [
+                {
+                  "name": "resend",
+                  "item": [
+                    {
+                      "name": "Send Link Email",
+                      "id": "43b2d0b9-8078-48b0-9fcd-111cd3c6f228",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/link/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "link",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "id": "68d42233-2a81-4bb0-94e1-a4362e384a97",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "0beb9fd2-6438-4d70-9ea3-957ecafb1cfd",
+                          "name": "Email queued",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/charge/:id/link/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "charge",
+                                ":id",
+                                "link",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-0beb9fd2-6438-4d70-9ea3-957ecafb1cfd"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-43b2d0b9-8078-48b0-9fcd-111cd3c6f228"
+                    }
+                  ],
+                  "id": "62cade6e-2157-405d-975c-676186f89e94",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-62cade6e-2157-405d-975c-676186f89e94"
+                },
+                {
+                  "name": "Create Charge Link",
+                  "id": "43772425-208c-4055-90c2-ffc424f02712",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "link"
+                      ],
+                      "variable": [
+                        {
+                          "id": "34897110-5eb9-4ac4-afd9-dcf0317186f0",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "4ef06e57-47f1-45b7-a4c5-6880c7374c40",
+                      "name": "Link created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/link",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "link"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-4ef06e57-47f1-45b7-a4c5-6880c7374c40"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-43772425-208c-4055-90c2-ffc424f02712"
+                },
+                {
+                  "name": "Update Charge Link",
+                  "id": "aef15c51-d694-4895-8057-ecf2eeb0d9c8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id/link",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id",
+                        "link"
+                      ],
+                      "variable": [
+                        {
+                          "id": "55c14cb0-b7a1-4444-990e-b53523fc3281",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1ea7e715-6f03-4053-8539-c08d3b723c3e",
+                      "name": "Link updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/link",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "link"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-1ea7e715-6f03-4053-8539-c08d3b723c3e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-aef15c51-d694-4895-8057-ecf2eeb0d9c8"
+                }
+              ],
+              "id": "9e40c332-0e9f-408c-8dc1-49c917287e8c",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-9e40c332-0e9f-408c-8dc1-49c917287e8c"
+            },
+            {
+              "name": "subscription",
+              "item": [
+                {
+                  "name": "resend",
+                  "item": [
+                    {
+                      "name": "Send Subscription Link Email",
+                      "id": "52262c23-5a02-4417-8524-32e192f48ba8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/:id/subscription/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            ":id",
+                            "subscription",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "id": "662f4b18-08be-4dee-b28b-4142df26b838",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1b033601-46dd-484f-9c9e-f3576a6f1dd7",
+                          "name": "Email queued",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/charge/:id/subscription/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "charge",
+                                ":id",
+                                "subscription",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-1b033601-46dd-484f-9c9e-f3576a6f1dd7"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-52262c23-5a02-4417-8524-32e192f48ba8"
+                    }
+                  ],
+                  "id": "39ff9e2a-7b01-4493-913f-e799dc291ff7",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-39ff9e2a-7b01-4493-913f-e799dc291ff7"
+                }
+              ],
+              "id": "82a99bda-6505-4b17-b920-603845111419",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-82a99bda-6505-4b17-b920-603845111419"
+            },
+            {
+              "name": "Detail Charge",
+              "id": "a1330fa1-ae3f-4705-81be-c19cdb97e4fe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/charge/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charge",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "44d9686a-5867-4e3e-b185-43a24ddd480f",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fbd75f0d-649c-4da7-b721-979bb76c4eca",
+                  "name": "Charge detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charge/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charge",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-fbd75f0d-649c-4da7-b721-979bb76c4eca"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-a1330fa1-ae3f-4705-81be-c19cdb97e4fe"
+            }
+          ],
+          "id": "0413ae12-5f82-47b7-b957-ca47490008dc",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-0413ae12-5f82-47b7-b957-ca47490008dc"
+        },
+        {
+          "name": "card",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "refund",
+                  "item": [
+                    {
+                      "name": "Refund Card Charge",
+                      "id": "ffab724e-fc15-4e26-b26e-e512cc076c72",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/charge/card/:id/refund",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charge",
+                            "card",
+                            ":id",
+                            "refund"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fd630119-c7be-4f71-b7c4-b0bd4e6c940e",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "2e928590-546e-415e-ad70-d39e08ac8057",
+                          "name": "Refund issued",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/charge/card/:id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "charge",
+                                "card",
+                                ":id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-2e928590-546e-415e-ad70-d39e08ac8057"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-ffab724e-fc15-4e26-b26e-e512cc076c72"
+                    }
+                  ],
+                  "id": "6ffce6c0-139c-460c-9c27-6ac8209e6bdf",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-6ffce6c0-139c-460c-9c27-6ac8209e6bdf"
+                }
+              ],
+              "id": "e95ca1c1-792d-44cb-b538-32620b7f67f2",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-e95ca1c1-792d-44cb-b538-32620b7f67f2"
+            }
+          ],
+          "id": "0b4134ff-cd9b-4388-b3ed-2dc2cbc5ba88",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-0b4134ff-cd9b-4388-b3ed-2dc2cbc5ba88"
+        },
+        {
+          "name": "Create Charge",
+          "id": "a7b9c9af-1b2e-4abf-ba98-43665fb2ee69",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/charge",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "charge"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa4bdeef-d675-43a6-a35e-dfc987e925f8",
+              "name": "Charge created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charge",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charge"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-fa4bdeef-d675-43a6-a35e-dfc987e925f8"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-a7b9c9af-1b2e-4abf-ba98-43665fb2ee69"
+        }
+      ],
+      "id": "67a4ea7d-cf78-4b73-878b-1241a4053685",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-67a4ea7d-cf78-4b73-878b-1241a4053685"
+    },
+    {
+      "name": "charges",
+      "item": [
+        {
+          "name": "List Charges",
+          "id": "e7c3778c-07b7-4dcc-88cb-35f6eedd2e10",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/charges",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "charges"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f861f693-d305-4a8f-a507-961bc0a9cf7c",
+              "name": "Charges list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-f861f693-d305-4a8f-a507-961bc0a9cf7c"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-e7c3778c-07b7-4dcc-88cb-35f6eedd2e10"
+        }
+      ],
+      "id": "5cb01d52-10d8-4944-90bf-123c23e3608b",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-5cb01d52-10d8-4944-90bf-123c23e3608b"
+    },
+    {
+      "name": "carnet",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "parcels",
+              "item": [
+                {
+                  "name": "Update Carnet Parcels",
+                  "id": "0d233a95-b4bb-453a-99a5-bf0e6ebda56a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/parcels",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "parcels"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6483f162-fecd-4ea6-993d-123a114d1e4f",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "52b5a471-2c75-4b37-aca5-ff53705b06f8",
+                      "name": "Parcels updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/parcels",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "parcels"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-52b5a471-2c75-4b37-aca5-ff53705b06f8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-0d233a95-b4bb-453a-99a5-bf0e6ebda56a"
+                }
+              ],
+              "id": "161f170a-2ddd-44d9-962d-ae9031c54d58",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-161f170a-2ddd-44d9-962d-ae9031c54d58"
+            },
+            {
+              "name": "parcel",
+              "item": [
+                {
+                  "name": "{parcel}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Cancel Carnet Parcel",
+                          "id": "9c9b09f3-f5b6-43ef-a489-08216bdb3e54",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "carnet",
+                                ":id",
+                                "parcel",
+                                ":parcel",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "af1a3b4b-fb91-4f91-bf7c-361c854179d1",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "23fd9d6d-2e10-4c32-b445-e5cb8da4f6e2",
+                                  "key": "parcel",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "08ce877d-9f97-42cf-8ce5-de6d0bb94663",
+                              "name": "Cancelled",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "carnet",
+                                    ":id",
+                                    "parcel",
+                                    ":parcel",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    },
+                                    {
+                                      "key": "parcel"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:51.000Z",
+                              "updatedAt": "2026-06-05T15:08:51.000Z",
+                              "uid": "35240-08ce877d-9f97-42cf-8ce5-de6d0bb94663"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-9c9b09f3-f5b6-43ef-a489-08216bdb3e54"
+                        }
+                      ],
+                      "id": "e8c99594-baa2-434b-b524-a9ed3b72800c",
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-e8c99594-baa2-434b-b524-a9ed3b72800c"
+                    },
+                    {
+                      "name": "settle",
+                      "item": [
+                        {
+                          "name": "Settle Carnet Parcel",
+                          "id": "c21cce95-38f0-487b-9dbc-63856bd2c3a2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/settle",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "carnet",
+                                ":id",
+                                "parcel",
+                                ":parcel",
+                                "settle"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7e7790dd-3201-48c9-94c3-4e3d65c3e02c",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "d72c41f8-0843-4aaf-8eb5-4d5ab490a732",
+                                  "key": "parcel",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7f0c6f93-4b60-46ca-a95e-f1de0ee49989",
+                              "name": "Settled",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/settle",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "carnet",
+                                    ":id",
+                                    "parcel",
+                                    ":parcel",
+                                    "settle"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    },
+                                    {
+                                      "key": "parcel"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:51.000Z",
+                              "updatedAt": "2026-06-05T15:08:51.000Z",
+                              "uid": "35240-7f0c6f93-4b60-46ca-a95e-f1de0ee49989"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-c21cce95-38f0-487b-9dbc-63856bd2c3a2"
+                        }
+                      ],
+                      "id": "ae6c66a7-64ad-476f-808d-5a0bd9035529",
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-ae6c66a7-64ad-476f-808d-5a0bd9035529"
+                    },
+                    {
+                      "name": "resend",
+                      "item": [
+                        {
+                          "name": "Send Carnet Parcel Email",
+                          "id": "5ef09078-3cd2-4319-86d0-0b4baeb40052",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/resend",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "carnet",
+                                ":id",
+                                "parcel",
+                                ":parcel",
+                                "resend"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1a25d94c-087b-4dd4-9ac4-f9efe8545113",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "5d718401-fb72-4dfc-95ac-eb6caf3ed898",
+                                  "key": "parcel",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "59d102c7-e4da-443f-a47b-a9e69263ee2e",
+                              "name": "Email queued",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel/resend",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "carnet",
+                                    ":id",
+                                    "parcel",
+                                    ":parcel",
+                                    "resend"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    },
+                                    {
+                                      "key": "parcel"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:51.000Z",
+                              "updatedAt": "2026-06-05T15:08:51.000Z",
+                              "uid": "35240-59d102c7-e4da-443f-a47b-a9e69263ee2e"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-5ef09078-3cd2-4319-86d0-0b4baeb40052"
+                        }
+                      ],
+                      "id": "779b2677-e11a-49f1-a33f-096d4fd23703",
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-779b2677-e11a-49f1-a33f-096d4fd23703"
+                    },
+                    {
+                      "name": "Update Carnet Parcel",
+                      "id": "c6323618-619c-4d93-8a2e-9117bde579b0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "parcel",
+                            ":parcel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ebdab797-bec9-45d8-87c1-36fadcad25a2",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "c6822a93-7e90-4d2f-bc5e-89aa9cd54d73",
+                              "key": "parcel",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "59600736-a89e-4148-876d-4e4b37b4768a",
+                          "name": "Parcel updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/carnet/:id/parcel/:parcel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "carnet",
+                                ":id",
+                                "parcel",
+                                ":parcel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "parcel"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-59600736-a89e-4148-876d-4e4b37b4768a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-c6323618-619c-4d93-8a2e-9117bde579b0"
+                    }
+                  ],
+                  "id": "a0189376-2961-4ea7-aabd-373a206afef6",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-a0189376-2961-4ea7-aabd-373a206afef6"
+                }
+              ],
+              "id": "dfb271bb-5bf2-42df-af35-f7444d28cda6",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-dfb271bb-5bf2-42df-af35-f7444d28cda6"
+            },
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel Carnet",
+                  "id": "b9305b9f-af31-49ff-bddd-151be8fa2763",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "492089b1-7ad5-46ae-86cc-1caaad41460f",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fc39658c-a456-4866-90f4-ec9131adbe4b",
+                      "name": "Cancelled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-fc39658c-a456-4866-90f4-ec9131adbe4b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-b9305b9f-af31-49ff-bddd-151be8fa2763"
+                }
+              ],
+              "id": "0f88a109-e029-4509-b9d7-103bc1c79791",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-0f88a109-e029-4509-b9d7-103bc1c79791"
+            },
+            {
+              "name": "settle",
+              "item": [
+                {
+                  "name": "Settle Carnet",
+                  "id": "cadc7b8d-4aed-4ab5-9891-517cd9dbc3b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/settle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "settle"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f899c6d-0066-4c70-824e-5c05629265ec",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a7032cfc-4289-4924-b0c5-2a9e076f528c",
+                      "name": "Settled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/settle",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "settle"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-a7032cfc-4289-4924-b0c5-2a9e076f528c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-cadc7b8d-4aed-4ab5-9891-517cd9dbc3b8"
+                }
+              ],
+              "id": "14d73ab3-bd62-4f2a-91da-e1a3aa06d799",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-14d73ab3-bd62-4f2a-91da-e1a3aa06d799"
+            },
+            {
+              "name": "history",
+              "item": [
+                {
+                  "name": "Create Carnet History Note",
+                  "id": "d6276796-0dd9-452e-bfbc-88dd58682737",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "history"
+                      ],
+                      "variable": [
+                        {
+                          "id": "19732d10-c608-4a64-ba0d-128b31f8cc9f",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "456d77e5-47f6-4af3-99bf-a9c6a151df78",
+                      "name": "Note added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-456d77e5-47f6-4af3-99bf-a9c6a151df78"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-d6276796-0dd9-452e-bfbc-88dd58682737"
+                }
+              ],
+              "id": "dbce2043-7940-41c3-99ee-0a9dba99cad4",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-dbce2043-7940-41c3-99ee-0a9dba99cad4"
+            },
+            {
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "Update Carnet Metadata",
+                  "id": "ab75d696-29c4-4539-8cc6-535a52df0a38",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2bda0214-3ec7-421f-aea9-bcad59c8ec98",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "febf360b-52c9-4b1a-9099-d19590cf857d",
+                      "name": "Metadata updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-febf360b-52c9-4b1a-9099-d19590cf857d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-ab75d696-29c4-4539-8cc6-535a52df0a38"
+                }
+              ],
+              "id": "316626ba-3106-43a8-8625-0cb617dcf56e",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-316626ba-3106-43a8-8625-0cb617dcf56e"
+            },
+            {
+              "name": "resend",
+              "item": [
+                {
+                  "name": "Send Carnet Email",
+                  "id": "08c586da-7f7a-4af5-bb60-e8f566336139",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id/resend",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id",
+                        "resend"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0848ea5a-0ba8-44cd-841d-d47e55cb623d",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5dc068c1-1488-4b63-8785-76b536f3bb9e",
+                      "name": "Email queued",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/carnet/:id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "carnet",
+                            ":id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-5dc068c1-1488-4b63-8785-76b536f3bb9e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-08c586da-7f7a-4af5-bb60-e8f566336139"
+                }
+              ],
+              "id": "12a96ab1-62a5-4828-abb6-c150dc52c29e",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-12a96ab1-62a5-4828-abb6-c150dc52c29e"
+            },
+            {
+              "name": "Detail Carnet",
+              "id": "05ea156b-8d8b-4d3d-b7ff-1e2155b260a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/carnet/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carnet",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2fbf4482-d61c-4c36-b116-160b443a5785",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9d9957f2-fbb7-4025-81e9-a19bb8881dcc",
+                  "name": "Carnet detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/carnet/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "carnet",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-9d9957f2-fbb7-4025-81e9-a19bb8881dcc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-05ea156b-8d8b-4d3d-b7ff-1e2155b260a4"
+            }
+          ],
+          "id": "684aae2f-5a1a-43dd-8837-50423fabdc64",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-684aae2f-5a1a-43dd-8837-50423fabdc64"
+        },
+        {
+          "name": "Create Carnet",
+          "id": "2bc7cf59-e61f-4404-b1d9-477a2548b038",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carnet",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carnet"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ecdf67e-8c53-410d-a0b0-f702fb60b2d6",
+              "name": "Carnet created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/carnet",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "carnet"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-0ecdf67e-8c53-410d-a0b0-f702fb60b2d6"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-2bc7cf59-e61f-4404-b1d9-477a2548b038"
+        }
+      ],
+      "id": "e681935d-24fb-4e57-8eff-7221ef53fbb3",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-e681935d-24fb-4e57-8eff-7221ef53fbb3"
+    },
+    {
+      "name": "plans",
+      "item": [
+        {
+          "name": "List Plans",
+          "id": "be5b73ee-ec2d-4564-94bc-cf0ae6be53da",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "plans"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "694865b7-5137-4a24-a66d-b69af1957839",
+              "name": "Plans",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plans",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plans"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-694865b7-5137-4a24-a66d-b69af1957839"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-be5b73ee-ec2d-4564-94bc-cf0ae6be53da"
+        }
+      ],
+      "id": "6a4217f1-695d-495f-b01d-e1406c13bed6",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-6a4217f1-695d-495f-b01d-e1406c13bed6"
+    },
+    {
+      "name": "plan",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "subscription",
+              "item": [
+                {
+                  "name": "one-step",
+                  "item": [
+                    {
+                      "name": "link",
+                      "item": [
+                        {
+                          "name": "Create One Step Subscription Link",
+                          "id": "2b6918b0-8dd7-498b-b593-eac59fd434c9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/plan/:id/subscription/one-step/link",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "plan",
+                                ":id",
+                                "subscription",
+                                "one-step",
+                                "link"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fd1555e2-92a6-428b-b24c-3ec70b8d5969",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "63aa0d37-de9c-4153-8315-8003d81f7ef0",
+                              "name": "Link created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/plan/:id/subscription/one-step/link",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "plan",
+                                    ":id",
+                                    "subscription",
+                                    "one-step",
+                                    "link"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:08:51.000Z",
+                              "updatedAt": "2026-06-05T15:08:51.000Z",
+                              "uid": "35240-63aa0d37-de9c-4153-8315-8003d81f7ef0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-2b6918b0-8dd7-498b-b593-eac59fd434c9"
+                        }
+                      ],
+                      "id": "546c736a-f4e7-4daa-b623-7e47fd98cbf1",
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-546c736a-f4e7-4daa-b623-7e47fd98cbf1"
+                    },
+                    {
+                      "name": "Create One Step Subscription",
+                      "id": "f60eb134-fc5f-481b-9d3b-927fbd988774",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/plan/:id/subscription/one-step",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plan",
+                            ":id",
+                            "subscription",
+                            "one-step"
+                          ],
+                          "variable": [
+                            {
+                              "id": "07800500-3a5f-4a6b-8378-b752ec9fd869",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8d0ea7d2-edff-42bd-be56-b1e89a9842d8",
+                          "name": "Subscription created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/plan/:id/subscription/one-step",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "plan",
+                                ":id",
+                                "subscription",
+                                "one-step"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:08:51.000Z",
+                          "updatedAt": "2026-06-05T15:08:51.000Z",
+                          "uid": "35240-8d0ea7d2-edff-42bd-be56-b1e89a9842d8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-f60eb134-fc5f-481b-9d3b-927fbd988774"
+                    }
+                  ],
+                  "id": "08bd1225-e5ba-48fd-b2d3-0847b46b0b73",
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-08bd1225-e5ba-48fd-b2d3-0847b46b0b73"
+                },
+                {
+                  "name": "Create Subscription",
+                  "id": "7757b639-f06d-43e1-bc73-94d4236f631f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan/:id/subscription",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan",
+                        ":id",
+                        "subscription"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f9e6ee9b-049b-434d-a3d6-3b0d355f99e3",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8e03aece-8dc5-44ce-9b1b-67d38d141033",
+                      "name": "Subscription created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/plan/:id/subscription",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "plan",
+                            ":id",
+                            "subscription"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-8e03aece-8dc5-44ce-9b1b-67d38d141033"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-7757b639-f06d-43e1-bc73-94d4236f631f"
+                }
+              ],
+              "id": "d19b2485-703b-4e62-819b-77f098757208",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-d19b2485-703b-4e62-819b-77f098757208"
+            },
+            {
+              "name": "Update Plan",
+              "id": "fd2e7266-4803-4ee4-80b9-a7eaf2fd7f00",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/plan/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b50b7318-f34d-47dd-9211-85be69ab1590",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8e06621d-4306-4b8a-b355-b479b461e237",
+                  "name": "Updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-8e06621d-4306-4b8a-b355-b479b461e237"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-fd2e7266-4803-4ee4-80b9-a7eaf2fd7f00"
+            },
+            {
+              "name": "Delete Plan",
+              "id": "09f93fd6-88c7-449e-a1cd-3ec67e1b3373",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/plan/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "45c95682-6600-4121-ad45-cba8f3ea41cb",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4c89222c-9f63-43ea-8330-3c1e2dccdc9b",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/plan/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "plan",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-4c89222c-9f63-43ea-8330-3c1e2dccdc9b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-09f93fd6-88c7-449e-a1cd-3ec67e1b3373"
+            }
+          ],
+          "id": "e7bd2a80-d4c2-4a6e-bac6-d9d9f398ae1e",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-e7bd2a80-d4c2-4a6e-bac6-d9d9f398ae1e"
+        },
+        {
+          "name": "Create Plan",
+          "id": "a3ddba55-320d-4eea-b46b-3a45a8b1766c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/plan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "plan"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd5b34e1-d401-4b48-8b1a-fdb9f6fe88d1",
+              "name": "Plan created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/plan",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "plan"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-bd5b34e1-d401-4b48-8b1a-fdb9f6fe88d1"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-a3ddba55-320d-4eea-b46b-3a45a8b1766c"
+        }
+      ],
+      "id": "189bb02f-5de6-4a82-a174-c5c862e49c7a",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-189bb02f-5de6-4a82-a174-c5c862e49c7a"
+    },
+    {
+      "name": "subscription",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "pay",
+              "item": [
+                {
+                  "name": "Define Subscription Payment Method",
+                  "id": "ce17016f-6c57-41f1-896a-6c765ded6ff2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id/pay",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id",
+                        "pay"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7b97a10-9c16-4aa6-a2f6-3b4e7ed02e64",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "9c931682-474d-4521-817f-386e800b4c1f",
+                      "name": "Applied",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:id/pay",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":id",
+                            "pay"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-9c931682-474d-4521-817f-386e800b4c1f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-ce17016f-6c57-41f1-896a-6c765ded6ff2"
+                }
+              ],
+              "id": "eaa0ab0d-c27e-43cb-a916-55022daf3e67",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-eaa0ab0d-c27e-43cb-a916-55022daf3e67"
+            },
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel Subscription",
+                  "id": "535d97e6-22bb-4b31-9e2d-7922a6edce66",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6749dab5-1e68-4fd6-8099-0019bf8f68a9",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a5cdc771-1e4b-415d-a6df-1509dd1d2bd2",
+                      "name": "Cancelled",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-a5cdc771-1e4b-415d-a6df-1509dd1d2bd2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-535d97e6-22bb-4b31-9e2d-7922a6edce66"
+                }
+              ],
+              "id": "ef5411cd-b5c6-46c6-b107-32341bec0eec",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-ef5411cd-b5c6-46c6-b107-32341bec0eec"
+            },
+            {
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "Update Subscription Metadata",
+                  "id": "bf9af631-f266-487c-b647-42f28044b3fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "70c0cc75-0a9d-466c-9f3d-e3d0e082d966",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f991e410-397d-4628-a6f9-c2ed2a8034b8",
+                      "name": "Updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-f991e410-397d-4628-a6f9-c2ed2a8034b8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-bf9af631-f266-487c-b647-42f28044b3fe"
+                }
+              ],
+              "id": "ddd4ed9f-f5aa-44a2-aaf6-dc7458511231",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-ddd4ed9f-f5aa-44a2-aaf6-dc7458511231"
+            },
+            {
+              "name": "history",
+              "item": [
+                {
+                  "name": "Create Subscription History Note",
+                  "id": "8d96dc8e-3ee3-430f-b340-59c1d51a4db5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id/history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id",
+                        "history"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2011cfc0-45c1-4568-90c0-651ff9c6591d",
+                          "key": "id",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fcbc28ef-6e3c-49b8-bea0-a91bdfcbc98f",
+                      "name": "Note added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/subscription/:id/history",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "subscription",
+                            ":id",
+                            "history"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:51.000Z",
+                      "updatedAt": "2026-06-05T15:08:51.000Z",
+                      "uid": "35240-fcbc28ef-6e3c-49b8-bea0-a91bdfcbc98f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-8d96dc8e-3ee3-430f-b340-59c1d51a4db5"
+                }
+              ],
+              "id": "295c03f7-2302-464e-b9c0-b4cc5c66743f",
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-295c03f7-2302-464e-b9c0-b4cc5c66743f"
+            },
+            {
+              "name": "Detail Subscription",
+              "id": "a6a87261-6544-4f37-b407-544554f5c22a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a2be24ac-9498-4034-af8c-a41b4ca91743",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bcd34e10-d0f7-422b-b6d6-3d1ebe0bd2ef",
+                  "name": "Subscription detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-bcd34e10-d0f7-422b-b6d6-3d1ebe0bd2ef"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-a6a87261-6544-4f37-b407-544554f5c22a"
+            },
+            {
+              "name": "Update Subscription",
+              "id": "7fc64180-a0b9-4278-bddb-83476a8ed15f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/subscription/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "subscription",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "517e9675-e21a-47c9-8a86-beee2367f7b5",
+                      "key": "id",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b381e95a-36e1-4e07-9874-1fb6b68a6a83",
+                  "name": "Updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/subscription/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "subscription",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-b381e95a-36e1-4e07-9874-1fb6b68a6a83"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-7fc64180-a0b9-4278-bddb-83476a8ed15f"
+            }
+          ],
+          "id": "7c3b16cf-570a-448e-b967-8d811fb7b250",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-7c3b16cf-570a-448e-b967-8d811fb7b250"
+        }
+      ],
+      "id": "88f79503-7b35-4d41-b829-7cc1e6fddfeb",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-88f79503-7b35-4d41-b829-7cc1e6fddfeb"
+    },
+    {
+      "name": "installments",
+      "item": [
+        {
+          "name": "Get Installments",
+          "id": "ad927547-3dc2-407a-bc4f-ed291bc1dbd4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/installments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "installments"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dde72bfc-b1de-433c-9eea-2fce8eedb307",
+              "name": "Installments",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/installments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "installments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-dde72bfc-b1de-433c-9eea-2fce8eedb307"
+            }
+          ],
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-ad927547-3dc2-407a-bc4f-ed291bc1dbd4"
+        }
+      ],
+      "id": "e549ac21-e996-4c0d-886d-2adbbf72da7a",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-e549ac21-e996-4c0d-886d-2adbbf72da7a"
+    },
+    {
+      "name": "notification",
+      "item": [
+        {
+          "name": "{token}",
+          "item": [
+            {
+              "name": "Get Notification",
+              "id": "d2ef7370-501d-4176-b581-33c2b1103996",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/notification/:token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification",
+                    ":token"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3037075c-3e78-491b-aca1-25f3f6e6be12",
+                      "key": "token",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f3b0ecde-0a39-4984-bcbd-a6c73f792108",
+                  "name": "Notification payload",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notification/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notification",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:51.000Z",
+                  "updatedAt": "2026-06-05T15:08:51.000Z",
+                  "uid": "35240-f3b0ecde-0a39-4984-bcbd-a6c73f792108"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:51.000Z",
+              "updatedAt": "2026-06-05T15:08:51.000Z",
+              "uid": "35240-d2ef7370-501d-4176-b581-33c2b1103996"
+            }
+          ],
+          "id": "b06197d7-b4c3-4354-b98e-2c6a3530d4d3",
+          "createdAt": "2026-06-05T15:08:51.000Z",
+          "updatedAt": "2026-06-05T15:08:51.000Z",
+          "uid": "35240-b06197d7-b4c3-4354-b98e-2c6a3530d4d3"
+        }
+      ],
+      "id": "9b070b97-422f-4f12-bfc4-c7f0deb9b154",
+      "createdAt": "2026-06-05T15:08:51.000Z",
+      "updatedAt": "2026-06-05T15:08:51.000Z",
+      "uid": "35240-9b070b97-422f-4f12-bfc4-c7f0deb9b154"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://cobrancas.api.efipay.com.br/v1/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cobrancas.api.efipay.com.br/v1"
+    }
+  ]
+}

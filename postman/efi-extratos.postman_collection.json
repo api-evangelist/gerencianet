@@ -1,0 +1,575 @@
+{
+  "info": {
+    "_postman_id": "b7159f61-9abd-4941-a713-37c7e1fd8070",
+    "name": "Ef\u00ed Pay Extratos (Statements) API",
+    "description": "Recurring CNAB (Brazilian banking text-file) statement extraction for Ef\u00ed Pay accounts. Schedule daily/weekly CNAB jobs, list generated files, and download them via the API or via SFTP using a generated key pair.\n\nContact Support:\n Name: Ef\u00ed Pay Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:08:57.000Z",
+    "updatedAt": "2026-06-05T15:08:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b7159f61-9abd-4941-a713-37c7e1fd8070"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Issue Extratos Access Token",
+              "id": "237863dd-5e16-4523-b374-f7cc93fbf736",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c3aa951a-639c-49d6-b06c-7803d1a65a35",
+                  "name": "Token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-c3aa951a-639c-49d6-b06c-7803d1a65a35"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-237863dd-5e16-4523-b374-f7cc93fbf736"
+            }
+          ],
+          "id": "2d73228a-1427-482f-bf3d-70425fe86b96",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-2d73228a-1427-482f-bf3d-70425fe86b96"
+        }
+      ],
+      "id": "4b0a7473-1693-4f3b-96f9-519e8eb17f7a",
+      "createdAt": "2026-06-05T15:08:57.000Z",
+      "updatedAt": "2026-06-05T15:08:57.000Z",
+      "uid": "35240-4b0a7473-1693-4f3b-96f9-519e8eb17f7a"
+    },
+    {
+      "name": "extrato-cnab",
+      "item": [
+        {
+          "name": "arquivos",
+          "item": [
+            {
+              "name": "List Statement Files",
+              "id": "308bfa05-357c-4ef0-92bf-a8143fb85270",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/extrato-cnab/arquivos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "extrato-cnab",
+                    "arquivos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ab82b9e7-e740-4f09-85be-c3aa0d49f317",
+                  "name": "Files",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/arquivos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "arquivos"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-ab82b9e7-e740-4f09-85be-c3aa0d49f317"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-308bfa05-357c-4ef0-92bf-a8143fb85270"
+            }
+          ],
+          "id": "f770411e-5664-41c1-b93d-58e1abd32602",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-f770411e-5664-41c1-b93d-58e1abd32602"
+        },
+        {
+          "name": "download",
+          "item": [
+            {
+              "name": "{nome_arquivo}",
+              "item": [
+                {
+                  "name": "Download Statement File",
+                  "id": "c82fd517-e7ce-41e8-901d-cff386a70184",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/download/:nome_arquivo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "download",
+                        ":nome_arquivo"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e221df0e-bc94-4d6b-9b9f-fb67f5448eca",
+                          "key": "nome_arquivo",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "57206ce4-85fe-4ffd-a937-1d6855d3107b",
+                      "name": "File contents",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/extrato-cnab/download/:nome_arquivo",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "extrato-cnab",
+                            "download",
+                            ":nome_arquivo"
+                          ],
+                          "variable": [
+                            {
+                              "key": "nome_arquivo"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:57.000Z",
+                      "updatedAt": "2026-06-05T15:08:57.000Z",
+                      "uid": "35240-57206ce4-85fe-4ffd-a937-1d6855d3107b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-c82fd517-e7ce-41e8-901d-cff386a70184"
+                }
+              ],
+              "id": "c4972ff0-3d1b-43e3-a35f-3fa1a42b7b4b",
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-c4972ff0-3d1b-43e3-a35f-3fa1a42b7b4b"
+            }
+          ],
+          "id": "ced8e2da-17c4-4678-8e3c-33e159b3af33",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-ced8e2da-17c4-4678-8e3c-33e159b3af33"
+        },
+        {
+          "name": "agendamentos",
+          "item": [
+            {
+              "name": "List Statement Schedules",
+              "id": "a5f7b96f-bf38-44fc-83b2-77d879a4fe53",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/extrato-cnab/agendamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "extrato-cnab",
+                    "agendamentos"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5a42054f-5c17-44bd-8e05-9f3963e389f5",
+                  "name": "Schedules",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/agendamentos",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "agendamentos"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-5a42054f-5c17-44bd-8e05-9f3963e389f5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-a5f7b96f-bf38-44fc-83b2-77d879a4fe53"
+            }
+          ],
+          "id": "eaac16d4-63b5-47ac-8b2e-1a7e9826d668",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-eaac16d4-63b5-47ac-8b2e-1a7e9826d668"
+        },
+        {
+          "name": "agendar",
+          "item": [
+            {
+              "name": "{identificador}",
+              "item": [
+                {
+                  "name": "Update Statement Schedule",
+                  "id": "1062dbd0-0177-4c12-b1b4-0fca96d41c3c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/agendar/:identificador",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "agendar",
+                        ":identificador"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1995962-0385-42cc-8557-913d3852d3fd",
+                          "key": "identificador",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d5da16a5-2612-4b30-a334-682a6a25534c",
+                      "name": "Updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/extrato-cnab/agendar/:identificador",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "extrato-cnab",
+                            "agendar",
+                            ":identificador"
+                          ],
+                          "variable": [
+                            {
+                              "key": "identificador"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:08:57.000Z",
+                      "updatedAt": "2026-06-05T15:08:57.000Z",
+                      "uid": "35240-d5da16a5-2612-4b30-a334-682a6a25534c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-1062dbd0-0177-4c12-b1b4-0fca96d41c3c"
+                }
+              ],
+              "id": "ca19436d-0d17-4f06-9df7-7ef33b209e2b",
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-ca19436d-0d17-4f06-9df7-7ef33b209e2b"
+            },
+            {
+              "name": "Create Statement Schedule",
+              "id": "90d12ccd-344b-4b00-8932-acb791eda6c3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/extrato-cnab/agendar",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "extrato-cnab",
+                    "agendar"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0b3148a4-294c-46d5-bb52-3122d2bd42ce",
+                  "name": "Schedule created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/agendar",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "agendar"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-0b3148a4-294c-46d5-bb52-3122d2bd42ce"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-90d12ccd-344b-4b00-8932-acb791eda6c3"
+            }
+          ],
+          "id": "f3a32924-a1bb-47f6-a4db-632e81d77227",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-f3a32924-a1bb-47f6-a4db-632e81d77227"
+        },
+        {
+          "name": "gerar-chaves",
+          "item": [
+            {
+              "name": "Generate SFTP Key Pair",
+              "id": "6925e8e5-74cd-4912-a374-040a3704a6a1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/extrato-cnab/gerar-chaves",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "extrato-cnab",
+                    "gerar-chaves"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1816a0ad-44bc-408f-854b-f067efd732a3",
+                  "name": "Keys generated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/extrato-cnab/gerar-chaves",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "extrato-cnab",
+                        "gerar-chaves"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:08:57.000Z",
+                  "updatedAt": "2026-06-05T15:08:57.000Z",
+                  "uid": "35240-1816a0ad-44bc-408f-854b-f067efd732a3"
+                }
+              ],
+              "createdAt": "2026-06-05T15:08:57.000Z",
+              "updatedAt": "2026-06-05T15:08:57.000Z",
+              "uid": "35240-6925e8e5-74cd-4912-a374-040a3704a6a1"
+            }
+          ],
+          "id": "2ccc6223-4350-4aa5-90f8-f7a509b158c0",
+          "createdAt": "2026-06-05T15:08:57.000Z",
+          "updatedAt": "2026-06-05T15:08:57.000Z",
+          "uid": "35240-2ccc6223-4350-4aa5-90f8-f7a509b158c0"
+        }
+      ],
+      "id": "fd4b0758-b793-4aa7-aa09-035a31c2b49c",
+      "createdAt": "2026-06-05T15:08:57.000Z",
+      "updatedAt": "2026-06-05T15:08:57.000Z",
+      "uid": "35240-fd4b0758-b793-4aa7-aa09-035a31c2b49c"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://extratos.api.efipay.com.br/v1/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://extratos.api.efipay.com.br/v1"
+    }
+  ]
+}
