@@ -1,0 +1,108 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/efi-cobrancas-openapi.yml, openapi/efi-contas-openapi.yml, openapi/efi-extratos-openapi.yml,
+  openapi/efi-openfinance-openapi.yml, openapi/efi-pagamentos-openapi.yml, openapi/efi-pix-openapi.yml
+schemes:
+- name: oauth2ClientCredentials
+  source: openapi/efi-cobrancas-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+- name: oauth2Contas
+  source: openapi/efi-contas-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://abrircontas.api.efipay.com.br/v1/oauth/token
+- name: oauth2Extratos
+  source: openapi/efi-extratos-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://extratos.api.efipay.com.br/v1/oauth/token
+- name: oauth2OpenFinance
+  source: openapi/efi-openfinance-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://openfinance.api.efipay.com.br/v1/oauth/token
+- name: oauth2Pagamentos
+  source: openapi/efi-pagamentos-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://pagarcontas.api.efipay.com.br/v1/oauth/token
+- name: oauth2Pix
+  source: openapi/efi-pix-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://pix.api.efipay.com.br/oauth/token
+scopes:
+- scope: cob.read
+  description: Read immediate charges
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: cob.write
+  description: Create/update immediate charges
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: cobv.read
+  description: Read due charges
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: cobv.write
+  description: Create/update due charges
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: gn.balance.read
+  description: Read account balance
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: openfinance.payments.read
+  description: Read payment status
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-openfinance-openapi.yml
+- scope: openfinance.payments.write
+  description: Initiate payments
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-openfinance-openapi.yml
+- scope: pix.read
+  description: Read received Pix
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: pix.send
+  description: Send Pix
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: pix.write
+  description: Manage devolutions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: webhook.read
+  description: Read webhook config
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
+- scope: webhook.write
+  description: Configure webhooks
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/efi-pix-openapi.yml
