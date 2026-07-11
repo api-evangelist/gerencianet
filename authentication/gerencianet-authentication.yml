@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/efi-cobrancas-openapi.yml, openapi/efi-contas-openapi.yml, openapi/efi-extratos-openapi.yml,
+  openapi/efi-openfinance-openapi.yml, openapi/efi-pagamentos-openapi.yml, openapi/efi-pix-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth2ClientCredentials
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+    scopes: 0
+  sources:
+  - openapi/efi-cobrancas-openapi.yml
+  - openapi/efi-contas-openapi.yml
+  - openapi/efi-extratos-openapi.yml
+  - openapi/efi-openfinance-openapi.yml
+  - openapi/efi-pagamentos-openapi.yml
+  - openapi/efi-pix-openapi.yml

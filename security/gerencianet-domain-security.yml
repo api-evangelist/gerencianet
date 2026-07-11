@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: sejaefi.com.br
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 14 11:15:13 2026 GMT
+  hsts: false
+- host: cobrancas.api.efipay.com.br
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  6 17:16:54 2026 GMT
+  hsts: null
+- host: cobrancas-h.api.efipay.com.br
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  6 17:16:54 2026 GMT
+  hsts: null
+domains:
+- domain: sejaefi.com.br
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: efipay.com.br
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
