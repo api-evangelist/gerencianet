@@ -180,6 +180,8 @@ apis:
       Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule jobs, list/download generated files,
       and provision SFTP keys for automated pickup.
 common:
+  - type: AgenticAccess
+    url: agentic-access/gerencianet-agentic-access.yml
   - type: DomainSecurity
     url: security/gerencianet-domain-security.yml
   - type: Authentication
