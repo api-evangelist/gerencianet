@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças Account Splits API
+  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: '1.0'
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+- url: https://cobrancas.api.efipay.com.br/v1
+  description: Production
+- url: https://cobrancas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+security:
+- oauth2ClientCredentials: []
+tags:
+- name: Splits
+paths:
+  /v2/gn/split/cob/{txid}:
+    get:
+      tags:
+      - Splits
+      summary: Detail Charge Split
+      operationId: pixSplitDetailCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Split
+  /v2/gn/split/cob/{txid}/vinculo/{splitConfigId}:
+    put:
+      tags:
+      - Splits
+      summary: Link Split To Charge
+      operationId: pixSplitLinkCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: splitConfigId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Linked
+    delete:
+      tags:
+      - Splits
+      summary: Unlink Split From Charge
+      operationId: pixSplitUnlinkCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: splitConfigId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Unlinked
+  /v2/gn/split/cobv/{txid}:
+    get:
+      tags:
+      - Splits
+      summary: Detail Due Charge Split
+      operationId: pixSplitDetailDueCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Split
+  /v2/gn/split/cobv/{txid}/vinculo/{splitConfigId}:
+    put:
+      tags:
+      - Splits
+      summary: Link Split To Due Charge
+      operationId: pixSplitLinkDueCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: splitConfigId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Linked
+    delete:
+      tags:
+      - Splits
+      summary: Unlink Split From Due Charge
+      operationId: pixSplitUnlinkDueCharge
+      parameters:
+      - name: txid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: splitConfigId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Unlinked
+  /v2/gn/split/config:
+    post:
+      tags:
+      - Splits
+      summary: Create Split Config
+      operationId: pixSplitConfig
+      responses:
+        '201':
+          description: Created
+  /v2/gn/split/config/{id}:
+    put:
+      tags:
+      - Splits
+      summary: Update Split Config
+      operationId: pixSplitConfigId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+    get:
+      tags:
+      - Splits
+      summary: Detail Split Config
+      operationId: pixSplitDetailConfig
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Config
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}

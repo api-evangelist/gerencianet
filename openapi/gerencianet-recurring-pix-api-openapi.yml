@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças Account Recurring Pix API
+  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: '1.0'
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+- url: https://cobrancas.api.efipay.com.br/v1
+  description: Production
+- url: https://cobrancas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+security:
+- oauth2ClientCredentials: []
+tags:
+- name: Recurring Pix
+paths:
+  /pagamentos-recorrentes/pix:
+    post:
+      tags:
+      - Recurring Pix
+      summary: Start Recurring Pix
+      operationId: ofStartRecurrencyPixPayment
+      responses:
+        '201':
+          description: Started
+    get:
+      tags:
+      - Recurring Pix
+      summary: List Recurring Pix
+      operationId: ofListRecurrencyPixPayment
+      responses:
+        '200':
+          description: Recurring Pix
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/cancelar:
+    patch:
+      tags:
+      - Recurring Pix
+      summary: Cancel Recurring Pix
+      operationId: ofCancelRecurrencyPix
+      parameters:
+      - name: identificadorPagamento
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cancelled
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/devolver:
+    post:
+      tags:
+      - Recurring Pix
+      summary: Refund Recurring Pix
+      operationId: ofDevolutionRecurrencyPix
+      parameters:
+      - name: identificadorPagamento
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Refunded
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/substituir/{endToEndId}:
+    patch:
+      tags:
+      - Recurring Pix
+      summary: Replace Recurring Pix Parcel
+      operationId: ofReplaceRecurrencyPixParcel
+      parameters:
+      - name: identificadorPagamento
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: endToEndId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Replaced
+  /v2/rec:
+    post:
+      tags:
+      - Recurring Pix
+      summary: Create Recurring Pix
+      operationId: pixCreateRecurrenceAutomatic
+      responses:
+        '201':
+          description: Created
+    get:
+      tags:
+      - Recurring Pix
+      summary: List Recurring Pix
+      operationId: pixListRecurrenceAutomatic
+      responses:
+        '200':
+          description: Recurrences
+  /v2/rec/{idRec}:
+    get:
+      tags:
+      - Recurring Pix
+      summary: Detail Recurring Pix
+      operationId: pixDetailRecurrenceAutomatic
+      parameters:
+      - name: idRec
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recurrence
+    patch:
+      tags:
+      - Recurring Pix
+      summary: Update Recurring Pix
+      operationId: pixUpdateRecurrenceAutomatic
+      parameters:
+      - name: idRec
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+  /v2/solicrec:
+    post:
+      tags:
+      - Recurring Pix
+      summary: Create Recurring Pix Request
+      operationId: pixCreateRequestRecurrenceAutomatic
+      responses:
+        '201':
+          description: Created
+  /v2/solicrec/{idSolicRec}:
+    get:
+      tags:
+      - Recurring Pix
+      summary: Detail Recurring Pix Request
+      operationId: pixDetailRequestRecurrenceAutomatic
+      parameters:
+      - name: idSolicRec
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Request
+    patch:
+      tags:
+      - Recurring Pix
+      summary: Update Recurring Pix Request
+      operationId: pixUpdateRequestRecurrenceAutomatic
+      parameters:
+      - name: idSolicRec
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+  /v2/locrec:
+    post:
+      tags:
+      - Recurring Pix
+      summary: Create Recurring Pix Location
+      operationId: pixCreateLocationRecurrenceAutomatic
+      responses:
+        '201':
+          description: Created
+    get:
+      tags:
+      - Recurring Pix
+      summary: List Recurring Pix Locations
+      operationId: pixListLocationRecurrenceAutomatic
+      responses:
+        '200':
+          description: Locations
+  /v2/locrec/{id}:
+    get:
+      tags:
+      - Recurring Pix
+      summary: Detail Recurring Pix Location
+      operationId: pixDetailLocationRecurrenceAutomatic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Location
+  /v2/locrec/{id}/idRec:
+    delete:
+      tags:
+      - Recurring Pix
+      summary: Unlink Recurring Pix Location
+      operationId: pixUnlinkLocationRecurrenceAutomatic
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Unlinked
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}

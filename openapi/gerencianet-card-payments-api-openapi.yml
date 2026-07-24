@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças Account Card Payments API
+  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: '1.0'
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+- url: https://cobrancas.api.efipay.com.br/v1
+  description: Production
+- url: https://cobrancas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+security:
+- oauth2ClientCredentials: []
+tags:
+- name: Card Payments
+paths:
+  /charge/{id}/retry:
+    post:
+      tags:
+      - Card Payments
+      summary: Retry Card Payment
+      operationId: cardPaymentRetry
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Retried
+  /charge/card/{id}/refund:
+    post:
+      tags:
+      - Card Payments
+      summary: Refund Card Charge
+      operationId: refundCard
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Refund issued
+  /installments:
+    get:
+      tags:
+      - Card Payments
+      summary: Get Installments
+      operationId: getInstallments
+      responses:
+        '200':
+          description: Installments
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}

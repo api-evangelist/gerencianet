@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças Account Statement Schedules API
+  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: '1.0'
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+- url: https://cobrancas.api.efipay.com.br/v1
+  description: Production
+- url: https://cobrancas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+security:
+- oauth2ClientCredentials: []
+tags:
+- name: Statement Schedules
+paths:
+  /extrato-cnab/agendamentos:
+    get:
+      tags:
+      - Statement Schedules
+      summary: List Statement Schedules
+      operationId: listStatementRecurrences
+      responses:
+        '200':
+          description: Schedules
+  /extrato-cnab/agendar:
+    post:
+      tags:
+      - Statement Schedules
+      summary: Create Statement Schedule
+      operationId: createStatementRecurrency
+      responses:
+        '201':
+          description: Schedule created
+  /extrato-cnab/agendar/{identificador}:
+    patch:
+      tags:
+      - Statement Schedules
+      summary: Update Statement Schedule
+      operationId: updateStatementRecurrency
+      parameters:
+      - name: identificador
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updated
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}

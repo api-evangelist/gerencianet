@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Cobranças Account Webhooks API
+  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  version: '1.0'
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br
+  license:
+    name: Proprietary
+servers:
+- url: https://cobrancas.api.efipay.com.br/v1
+  description: Production
+- url: https://cobrancas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+security:
+- oauth2ClientCredentials: []
+tags:
+- name: Webhooks
+paths:
+  /webhook:
+    post:
+      tags:
+      - Webhooks
+      summary: Configure Account Webhook
+      operationId: accountConfigWebhook
+      responses:
+        '201':
+          description: Webhook configured
+  /webhook/{identificadorWebhook}:
+    get:
+      tags:
+      - Webhooks
+      summary: Detail Account Webhook
+      operationId: accountDetailWebhook
+      parameters:
+      - name: identificadorWebhook
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Account Webhook
+      operationId: accountDeleteWebhook
+      parameters:
+      - name: identificadorWebhook
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: List Account Webhooks
+      operationId: accountListWebhook
+      responses:
+        '200':
+          description: Webhooks
+  /v2/webhook/{chave}:
+    put:
+      tags:
+      - Webhooks
+      summary: Configure Pix Webhook
+      operationId: pixConfigWebhook
+      parameters:
+      - name: chave
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Configured
+    get:
+      tags:
+      - Webhooks
+      summary: Detail Pix Webhook
+      operationId: pixDetailWebhook
+      parameters:
+      - name: chave
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Pix Webhook
+      operationId: pixDeleteWebhook
+      parameters:
+      - name: chave
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /v2/webhook:
+    get:
+      tags:
+      - Webhooks
+      summary: List Pix Webhooks
+      operationId: pixListWebhook
+      responses:
+        '200':
+          description: Webhooks
+  /v2/webhookrec:
+    put:
+      tags:
+      - Webhooks
+      summary: Configure Recurring Pix Webhook
+      operationId: pixConfigWebhookRecurrenceAutomatic
+      responses:
+        '200':
+          description: Configured
+    get:
+      tags:
+      - Webhooks
+      summary: List Recurring Pix Webhooks
+      operationId: pixListWebhookRecurrenceAutomatic
+      responses:
+        '200':
+          description: Webhooks
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Recurring Pix Webhook
+      operationId: pixDeleteWebhookRecurrenceAutomatic
+      responses:
+        '204':
+          description: Deleted
+  /v2/webhookcobr:
+    put:
+      tags:
+      - Webhooks
+      summary: Configure Automatic Charge Webhook
+      operationId: pixConfigWebhookAutomaticCharge
+      responses:
+        '200':
+          description: Configured
+    get:
+      tags:
+      - Webhooks
+      summary: List Automatic Charge Webhooks
+      operationId: pixListWebhookAutomaticCharge
+      responses:
+        '200':
+          description: Webhooks
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Automatic Charge Webhook
+      operationId: pixDeleteWebhookAutomaticCharge
+      responses:
+        '204':
+          description: Deleted
+  /v2/gn/webhook/reenviar:
+    post:
+      tags:
+      - Webhooks
+      summary: Resend Pix Webhook
+      operationId: pixResendWebhook
+      responses:
+        '200':
+          description: Resent
+components:
+  securitySchemes:
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          scopes: {}
