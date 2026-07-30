@@ -8,6 +8,19 @@ description: >-
   extraction. The company rebranded from Gerencianet to Efí Pay / Efí Bank in 2022 and is rated at the top tier by Banco
   Central for its Pix API. The technical surface is exposed as five distinct REST APIs (Cobranças, Pix, Open Finance,
   Pagamentos, Contas) with twelve official SDKs plus e-commerce plugins.
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://efipay.com.br/efi-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml
 created: '2026-05-24'
@@ -33,152 +46,2314 @@ maintainers:
     email: info@apievangelist.com
     url: https://apievangelist.com
 apis:
-  - aid: gerencianet:efi-cobrancas
-    name: Efí Pay Cobranças API
-    tags:
-      - Cobranças
-      - Boleto
-      - Bolix
-      - Carnê
-      - Credit Card
-      - Subscriptions
-      - Payment Links
-      - Marketplace Split
-    properties:
-      - url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
-        type: Documentation
-      - url: https://dev.efipay.com.br
-        type: APIReference
-      - url: https://cobrancas.api.efipay.com.br/v1
-        type: BaseURL
-      - url: https://cobrancas-h.api.efipay.com.br/v1
-        type: SandboxURL
-      - url: openapi/efi-cobrancas-openapi.yml
-        type: OpenAPI
-      - url: json-schema/efi-cobrancas-charge-schema.json
-        type: JSONSchema
-      - url: json-structure/efi-cobrancas-charge-structure.json
-        type: JSONStructure
-      - url: examples/efi-cobrancas-onestep-example.json
-        type: Examples
-    description: >-
-      Brazilian billing API for boletos, Bolix (next-business-day boletos), carnês (installment booklets), payment
-      links, credit cards, subscriptions, and marketplace splits. OAuth2 with HTTP Basic authentication;
-      cobrancas-h.api.efipay.com.br for sandbox.
-  - aid: gerencianet:efi-pix
-    name: Efí Pay Pix API
-    tags:
-      - Pix
-      - Cob
-      - CobV
-      - Cobr
-      - Recurring Pix
-      - Cash Out
-      - Marketplace Split
-      - MED
-      - Reconciliation
-    properties:
-      - url: https://dev.efipay.com.br/docs/api-pix/credenciais
-        type: Documentation
-      - url: https://dev.efipay.com.br/docs/api-pix
-        type: APIReference
-      - url: https://pix.api.efipay.com.br
-        type: BaseURL
-      - url: https://pix-h.api.efipay.com.br
-        type: SandboxURL
-      - url: openapi/efi-pix-openapi.yml
-        type: OpenAPI
-      - url: json-schema/efi-pix-cob-schema.json
-        type: JSONSchema
-      - url: json-schema/efi-pix-pix-received-schema.json
-        type: JSONSchema
-      - url: json-structure/efi-pix-cob-structure.json
-        type: JSONStructure
-      - url: examples/efi-pix-create-cob-example.json
-        type: Examples
-      - url: examples/efi-pix-send-example.json
-        type: Examples
-    description: >-
-      Banco Central Pix API plus Efí Pay extensions (Cash-Out, splits, MED, automatic and recurring Pix, statements,
-      signed PDF receipts, webhooks). OAuth2 client_credentials with mandatory mutual TLS (P12 or PEM certificate) and
-      granular scopes.
-  - aid: gerencianet:efi-openfinance
-    name: Efí Pay Open Finance API
-    tags:
-      - Open Finance
-      - Payment Initiation
-      - Pix
-      - Biometric Pix
-      - Automatic Pix
-    properties:
-      - url: https://dev.efipay.com.br/docs/open-finance
-        type: Documentation
-      - url: https://openfinance.api.efipay.com.br/v1
-        type: BaseURL
-      - url: https://openfinance-h.api.efipay.com.br/v1
-        type: SandboxURL
-      - url: openapi/efi-openfinance-openapi.yml
-        type: OpenAPI
-    description: >-
-      Open Finance Brasil payment-initiation flows — initiate, schedule, refund, and recur Pix payments from any
-      participating bank/fintech directly inside your app. Requires mTLS, OAuth2, and a 72-char x-idempotency-key per
-      request.
-  - aid: gerencianet:efi-contas
-    name: Efí Pay Contas (Account Opening) API
-    tags:
-      - Account Opening
-      - Banking as a Service
-      - KYC
-      - Conta-Simplificada
-    properties:
-      - url: https://dev.efipay.com.br/docs/abertura-de-contas
-        type: Documentation
-      - url: https://abrircontas.api.efipay.com.br/v1
-        type: BaseURL
-      - url: https://abrircontas-h.api.efipay.com.br/v1
-        type: SandboxURL
-      - url: openapi/efi-contas-openapi.yml
-        type: OpenAPI
-    description: >-
-      Open Brazilian conta-simplificada accounts programmatically for end-customers, generate per-account P12
-      certificates, retrieve generated API credentials, and listen for account lifecycle events.
-  - aid: gerencianet:efi-pagamentos
-    name: Efí Pay Pagamentos (Bill Payment) API
-    tags:
-      - Bill Payment
-      - Boleto
-      - Pagar Contas
-    properties:
-      - url: https://dev.efipay.com.br/docs/api-pagamentos
-        type: Documentation
-      - url: https://pagarcontas.api.efipay.com.br/v1
-        type: BaseURL
-      - url: https://pagarcontas-h.api.efipay.com.br/v1
-        type: SandboxURL
-      - url: openapi/efi-pagamentos-openapi.yml
-        type: OpenAPI
-    description: >-
-      Decode a Brazilian boleto or utility-bill barcode (linha digitável) and schedule its payment from the Efí account
-      balance, then track payment status through completion.
-  - aid: gerencianet:efi-extratos
-    name: Efí Pay Extratos (Statements) API
-    tags:
-      - Statements
-      - CNAB
-      - Reconciliation
-      - SFTP
-    properties:
-      - url: https://dev.efipay.com.br/docs/extrato-cnab
-        type: Documentation
-      - url: https://extratos.api.efipay.com.br/v1
-        type: BaseURL
-      - url: https://extratos-h.api.efipay.com.br/v1
-        type: SandboxURL
-      - url: openapi/efi-extratos-openapi.yml
-        type: OpenAPI
-    description: >-
-      Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule jobs, list/download generated files,
-      and provision SFTP keys for automated pickup.
+- aid: gerencianet:gerencianet-account-api
+  name: Efí Pay (Gerencianet) Account API
+  description: The Account API from Efí Pay (Gerencianet) — 2 operation(s) for account.
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-account-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-accounts-api
+  name: Efí Pay (Gerencianet) Accounts API
+  description: The Accounts API from Efí Pay (Gerencianet) — 3 operation(s) for accounts.
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-authorization-api
+  name: Efí Pay (Gerencianet) Authorization API
+  description: The Authorization API from Efí Pay (Gerencianet) — 2 operation(s) for authorization.
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-automatic-charges-api
+  name: Efí Pay (Gerencianet) Automatic Charges API
+  description: >-
+    The Automatic Charges API from Efí Pay (Gerencianet) — 3 operation(s) for automatic charges.
+  tags:
+  - Automatic Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-automatic-charges-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-automatic-pix-api
+  name: Efí Pay (Gerencianet) Automatic Pix API
+  description: The Automatic Pix API from Efí Pay (Gerencianet) — 2 operation(s) for automatic pix.
+  tags:
+  - Automatic Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-automatic-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-bill-payments-api
+  name: Efí Pay (Gerencianet) Bill Payments API
+  description: The Bill Payments API from Efí Pay (Gerencianet) — 3 operation(s) for bill payments.
+  tags:
+  - Bill Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-bill-payments-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-biometric-pix-api
+  name: Efí Pay (Gerencianet) Biometric Pix API
+  description: The Biometric Pix API from Efí Pay (Gerencianet) — 2 operation(s) for biometric pix.
+  tags:
+  - Biometric Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-biometric-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-card-payments-api
+  name: Efí Pay (Gerencianet) Card Payments API
+  description: The Card Payments API from Efí Pay (Gerencianet) — 3 operation(s) for card payments.
+  tags:
+  - Card Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-card-payments-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-carnets-api
+  name: Efí Pay (Gerencianet) Carnets API
+  description: The Carnets API from Efí Pay (Gerencianet) — 12 operation(s) for carnets.
+  tags:
+  - Carnets
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-carnets-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-charges-api
+  name: Efí Pay (Gerencianet) Charges API
+  description: The Charges API from Efí Pay (Gerencianet) — 12 operation(s) for charges.
+  tags:
+  - Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-charges-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-configuration-api
+  name: Efí Pay (Gerencianet) Configuration API
+  description: The Configuration API from Efí Pay (Gerencianet) — 1 operation(s) for configuration.
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-devolutions-api
+  name: Efí Pay (Gerencianet) Devolutions API
+  description: The Devolutions API from Efí Pay (Gerencianet) — 1 operation(s) for devolutions.
+  tags:
+  - Devolutions
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-devolutions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-due-charge-batches-api
+  name: Efí Pay (Gerencianet) Due Charge Batches API
+  description: >-
+    The Due Charge Batches API from Efí Pay (Gerencianet) — 2 operation(s) for due charge batches.
+  tags:
+  - Due Charge Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-due-charge-batches-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-due-charges-api
+  name: Efí Pay (Gerencianet) Due Charges API
+  description: The Due Charges API from Efí Pay (Gerencianet) — 2 operation(s) for due charges.
+  tags:
+  - Due Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-due-charges-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-immediate-charges-api
+  name: Efí Pay (Gerencianet) Immediate Charges API
+  description: >-
+    The Immediate Charges API from Efí Pay (Gerencianet) — 2 operation(s) for immediate charges.
+  tags:
+  - Immediate Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-immediate-charges-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-immediate-pix-api
+  name: Efí Pay (Gerencianet) Immediate Pix API
+  description: The Immediate Pix API from Efí Pay (Gerencianet) — 2 operation(s) for immediate pix.
+  tags:
+  - Immediate Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-immediate-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-locations-api
+  name: Efí Pay (Gerencianet) Locations API
+  description: The Locations API from Efí Pay (Gerencianet) — 3 operation(s) for locations.
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-locations-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-med-infractions-api
+  name: Efí Pay (Gerencianet) MED Infractions API
+  description: The MED Infractions API from Efí Pay (Gerencianet) — 2 operation(s) for med infractions.
+  tags:
+  - MED Infractions
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-med-infractions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-notifications-api
+  name: Efí Pay (Gerencianet) Notifications API
+  description: The Notifications API from Efí Pay (Gerencianet) — 1 operation(s) for notifications.
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-participants-api
+  name: Efí Pay (Gerencianet) Participants API
+  description: The Participants API from Efí Pay (Gerencianet) — 1 operation(s) for participants.
+  tags:
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-participants-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-payment-links-api
+  name: Efí Pay (Gerencianet) Payment Links API
+  description: The Payment Links API from Efí Pay (Gerencianet) — 3 operation(s) for payment links.
+  tags:
+  - Payment Links
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-payment-links-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-pix-keys-api
+  name: Efí Pay (Gerencianet) Pix Keys API
+  description: The Pix Keys API from Efí Pay (Gerencianet) — 3 operation(s) for pix keys.
+  tags:
+  - Pix Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-pix-keys-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-pix-send-api
+  name: Efí Pay (Gerencianet) Pix Send API
+  description: The Pix Send API from Efí Pay (Gerencianet) — 6 operation(s) for pix send.
+  tags:
+  - Pix Send
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-pix-send-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-plans-api
+  name: Efí Pay (Gerencianet) Plans API
+  description: The Plans API from Efí Pay (Gerencianet) — 3 operation(s) for plans.
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-plans-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-qr-codes-api
+  name: Efí Pay (Gerencianet) QR Codes API
+  description: The QR Codes API from Efí Pay (Gerencianet) — 2 operation(s) for qr codes.
+  tags:
+  - QR Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-qr-codes-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-receipts-api
+  name: Efí Pay (Gerencianet) Receipts API
+  description: The Receipts API from Efí Pay (Gerencianet) — 1 operation(s) for receipts.
+  tags:
+  - Receipts
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-receipts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-received-pix-api
+  name: Efí Pay (Gerencianet) Received Pix API
+  description: The Received Pix API from Efí Pay (Gerencianet) — 2 operation(s) for received pix.
+  tags:
+  - Received Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-received-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-recurring-pix-api
+  name: Efí Pay (Gerencianet) Recurring Pix API
+  description: The Recurring Pix API from Efí Pay (Gerencianet) — 11 operation(s) for recurring pix.
+  tags:
+  - Recurring Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-recurring-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-reports-api
+  name: Efí Pay (Gerencianet) Reports API
+  description: The Reports API from Efí Pay (Gerencianet) — 2 operation(s) for reports.
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-reports-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-scheduled-pix-api
+  name: Efí Pay (Gerencianet) Scheduled Pix API
+  description: The Scheduled Pix API from Efí Pay (Gerencianet) — 3 operation(s) for scheduled pix.
+  tags:
+  - Scheduled Pix
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-scheduled-pix-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-sftp-api
+  name: Efí Pay (Gerencianet) SFTP API
+  description: The SFTP API from Efí Pay (Gerencianet) — 1 operation(s) for sftp.
+  tags:
+  - SFTP
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-sftp-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-splits-api
+  name: Efí Pay (Gerencianet) Splits API
+  description: The Splits API from Efí Pay (Gerencianet) — 6 operation(s) for splits.
+  tags:
+  - Splits
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-splits-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-statement-files-api
+  name: Efí Pay (Gerencianet) Statement Files API
+  description: The Statement Files API from Efí Pay (Gerencianet) — 2 operation(s) for statement files.
+  tags:
+  - Statement Files
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-statement-files-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-statement-schedules-api
+  name: Efí Pay (Gerencianet) Statement Schedules API
+  description: >-
+    The Statement Schedules API from Efí Pay (Gerencianet) — 3 operation(s) for statement schedules.
+  tags:
+  - Statement Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-statement-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-subscriptions-api
+  name: Efí Pay (Gerencianet) Subscriptions API
+  description: The Subscriptions API from Efí Pay (Gerencianet) — 9 operation(s) for subscriptions.
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
+- aid: gerencianet:gerencianet-webhooks-api
+  name: Efí Pay (Gerencianet) Webhooks API
+  description: The Webhooks API from Efí Pay (Gerencianet) — 8 operation(s) for webhooks.
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/gerencianet-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-cobrancas/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br
+  - type: BaseURL
+    url: https://cobrancas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://cobrancas-h.api.efipay.com.br/v1
+  - type: JSONSchema
+    url: json-schema/efi-cobrancas-charge-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-cobrancas-charge-structure.json
+  - type: Examples
+    url: examples/efi-cobrancas-onestep-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pix/credenciais
+  - type: APIReference
+    url: https://dev.efipay.com.br/docs/api-pix
+  - type: BaseURL
+    url: https://pix.api.efipay.com.br
+  - type: SandboxURL
+    url: https://pix-h.api.efipay.com.br
+  - type: JSONSchema
+    url: json-schema/efi-pix-cob-schema.json
+  - type: JSONSchema
+    url: json-schema/efi-pix-pix-received-schema.json
+  - type: JSONStructure
+    url: json-structure/efi-pix-cob-structure.json
+  - type: Examples
+    url: examples/efi-pix-create-cob-example.json
+  - type: Examples
+    url: examples/efi-pix-send-example.json
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/open-finance
+  - type: BaseURL
+    url: https://openfinance.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://openfinance-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  - type: BaseURL
+    url: https://abrircontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://abrircontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/api-pagamentos
+  - type: BaseURL
+    url: https://pagarcontas.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://pagarcontas-h.api.efipay.com.br/v1
+  - type: Documentation
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  - type: BaseURL
+    url: https://extratos.api.efipay.com.br/v1
+  - type: SandboxURL
+    url: https://extratos-h.api.efipay.com.br/v1
 common:
   - type: AgenticAccess
     url: agentic-access/gerencianet-agentic-access.yml
