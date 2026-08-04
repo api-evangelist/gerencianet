@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Open Finance API
+  description: >-
+    Open Finance Brasil payment-initiation API for Efí Pay (formerly Gerencianet).
+    Initiate Pix payments across participating banks and fintechs without
+    redirecting users out of your app, including immediate, scheduled,
+    recurring, biometric, and automatic Pix flows. Requires mTLS, OAuth2
+    client_credentials, and x-idempotency-key headers on every request.
+  version: "1.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br/docs/open-finance
+  license:
+    name: Proprietary
+servers:
+  - url: https://openfinance.api.efipay.com.br/v1
+    description: Production
+  - url: https://openfinance-h.api.efipay.com.br/v1
+    description: Homologation (Sandbox)
+security:
+  - oauth2OpenFinance: []
+tags:
+  - name: Authorization
+  - name: Participants
+  - name: Configuration
+  - name: Immediate Pix
+  - name: Scheduled Pix
+  - name: Recurring Pix
+  - name: Biometric Pix
+  - name: Automatic Pix
+paths:
+  /oauth/token:
+    post:
+      tags: [Authorization]
+      summary: Issue Open Finance Token
+      operationId: ofAuthorize
+      responses: { "200": { description: Token } }
+  /participantes/:
+    get:
+      tags: [Participants]
+      summary: List Open Finance Participants
+      operationId: ofListParticipants
+      responses: { "200": { description: Participants } }
+  /config:
+    get:
+      tags: [Configuration]
+      summary: Get Open Finance Config
+      operationId: ofConfigDetail
+      responses: { "200": { description: Config } }
+    put:
+      tags: [Configuration]
+      summary: Update Open Finance Config
+      operationId: ofConfigUpdate
+      responses: { "200": { description: Updated } }
+  /pagamentos/pix:
+    post:
+      tags: [Immediate Pix]
+      summary: Start Pix Payment
+      operationId: ofStartPixPayment
+      responses: { "201": { description: Started } }
+    get:
+      tags: [Immediate Pix]
+      summary: List Pix Payments
+      operationId: ofListPixPayment
+      responses: { "200": { description: Payments } }
+  /pagamentos/pix/{identificadorPagamento}/devolver:
+    post:
+      tags: [Immediate Pix]
+      summary: Refund Pix Payment
+      operationId: ofDevolutionPix
+      parameters: [{ name: identificadorPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Refunded } }
+  /pagamentos-agendados/pix:
+    post:
+      tags: [Scheduled Pix]
+      summary: Start Scheduled Pix
+      operationId: ofStartSchedulePixPayment
+      responses: { "201": { description: Scheduled } }
+    get:
+      tags: [Scheduled Pix]
+      summary: List Scheduled Pix
+      operationId: ofListSchedulePixPayment
+      responses: { "200": { description: Scheduled list } }
+  /pagamentos-agendados/pix/{identificadorPagamento}/cancelar:
+    patch:
+      tags: [Scheduled Pix]
+      summary: Cancel Scheduled Pix
+      operationId: ofCancelSchedulePix
+      parameters: [{ name: identificadorPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Cancelled } }
+  /pagamentos-agendados/pix/{identificadorPagamento}/devolver:
+    post:
+      tags: [Scheduled Pix]
+      summary: Refund Scheduled Pix
+      operationId: ofDevolutionSchedulePix
+      parameters: [{ name: identificadorPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Refunded } }
+  /pagamentos-recorrentes/pix:
+    post:
+      tags: [Recurring Pix]
+      summary: Start Recurring Pix
+      operationId: ofStartRecurrencyPixPayment
+      responses: { "201": { description: Started } }
+    get:
+      tags: [Recurring Pix]
+      summary: List Recurring Pix
+      operationId: ofListRecurrencyPixPayment
+      responses: { "200": { description: Recurring Pix } }
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/cancelar:
+    patch:
+      tags: [Recurring Pix]
+      summary: Cancel Recurring Pix
+      operationId: ofCancelRecurrencyPix
+      parameters: [{ name: identificadorPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Cancelled } }
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/devolver:
+    post:
+      tags: [Recurring Pix]
+      summary: Refund Recurring Pix
+      operationId: ofDevolutionRecurrencyPix
+      parameters: [{ name: identificadorPagamento, in: path, required: true, schema: { type: string } }]
+      responses: { "201": { description: Refunded } }
+  /pagamentos-recorrentes/pix/{identificadorPagamento}/substituir/{endToEndId}:
+    patch:
+      tags: [Recurring Pix]
+      summary: Replace Recurring Pix Parcel
+      operationId: ofReplaceRecurrencyPixParcel
+      parameters:
+        - { name: identificadorPagamento, in: path, required: true, schema: { type: string } }
+        - { name: endToEndId, in: path, required: true, schema: { type: string } }
+      responses: { "200": { description: Replaced } }
+  /pagamentos-biometria/vinculos:
+    post:
+      tags: [Biometric Pix]
+      summary: Create Biometric Enrollment
+      operationId: ofCreateBiometricEnrollment
+      responses: { "201": { description: Enrollment created } }
+    get:
+      tags: [Biometric Pix]
+      summary: List Biometric Enrollments
+      operationId: ofListBiometricEnrollment
+      responses: { "200": { description: Enrollments } }
+    patch:
+      tags: [Biometric Pix]
+      summary: Revoke Biometric Enrollment
+      operationId: ofRevokeBiometricEnrollment
+      responses: { "200": { description: Revoked } }
+  /pagamentos-biometria/pix:
+    post:
+      tags: [Biometric Pix]
+      summary: Create Biometric Pix Payment
+      operationId: ofCreateBiometricPixPayment
+      responses: { "201": { description: Created } }
+    get:
+      tags: [Biometric Pix]
+      summary: List Biometric Pix Payments
+      operationId: ofListBiometricPixPayment
+      responses: { "200": { description: Payments } }
+  /pagamentos-automaticos/adesao:
+    post:
+      tags: [Automatic Pix]
+      summary: Create Automatic Pix Enrollment
+      operationId: ofCreateAutomaticEnrollment
+      responses: { "201": { description: Enrolled } }
+    get:
+      tags: [Automatic Pix]
+      summary: List Automatic Pix Enrollments
+      operationId: ofListAutomaticEnrollment
+      responses: { "200": { description: Enrollments } }
+    patch:
+      tags: [Automatic Pix]
+      summary: Update Automatic Pix Enrollment
+      operationId: ofUpdateAutomaticEnrollment
+      responses: { "200": { description: Updated } }
+  /pagamentos-automaticos/pix:
+    post:
+      tags: [Automatic Pix]
+      summary: Create Automatic Pix Payment
+      operationId: ofCreateAutomaticPixPayment
+      responses: { "201": { description: Created } }
+    get:
+      tags: [Automatic Pix]
+      summary: List Automatic Pix Payments
+      operationId: ofListAutomaticPixPayment
+      responses: { "200": { description: Payments } }
+    patch:
+      tags: [Automatic Pix]
+      summary: Cancel Automatic Pix Payment
+      operationId: ofCancelAutomaticPixPayment
+      responses: { "200": { description: Cancelled } }
+components:
+  securitySchemes:
+    oauth2OpenFinance:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://openfinance.api.efipay.com.br/v1/oauth/token
+          scopes:
+            openfinance.payments.read: Read payment status
+            openfinance.payments.write: Initiate payments
+  schemas:
+    Payment:
+      type: object
+      properties:
+        identificadorPagamento: { type: string }
+        endToEndId: { type: string }
+        valor: { type: string }
+        status: { type: string }
+        idempotencyKey: { type: string }

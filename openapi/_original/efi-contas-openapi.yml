@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Contas (Account Opening) API
+  description: >-
+    Account-opening API for Efí Pay partners. Programmatically open Brazilian
+    "conta-simplificada" accounts for end-customers, retrieve their generated
+    P12 certificates and API credentials, and manage account-related webhooks.
+    Used by marketplaces, ERPs, and BaaS-style integrators.
+  version: "1.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br/docs/abertura-de-contas
+  license:
+    name: Proprietary
+servers:
+  - url: https://abrircontas.api.efipay.com.br/v1
+    description: Production
+  - url: https://abrircontas-h.api.efipay.com.br/v1
+    description: Homologation (Sandbox)
+security:
+  - oauth2Contas: []
+tags:
+  - name: Authorization
+  - name: Accounts
+  - name: Webhooks
+paths:
+  /oauth/token:
+    post:
+      tags: [Authorization]
+      summary: Issue Contas Access Token
+      operationId: contasAuthorize
+      responses: { "200": { description: Token } }
+  /conta-simplificada:
+    post:
+      tags: [Accounts]
+      summary: Create Simplified Account
+      operationId: createAccount
+      responses: { "201": { description: Account created } }
+  /conta-simplificada/{identificador}/certificado:
+    post:
+      tags: [Accounts]
+      summary: Generate Account Certificate
+      operationId: getAccountCertificate
+      parameters: [{ name: identificador, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: P12 certificate issued } }
+  /conta-simplificada/{identificador}/credenciais:
+    get:
+      tags: [Accounts]
+      summary: Get Account Credentials
+      operationId: getAccountCredentials
+      parameters: [{ name: identificador, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: client_id + client_secret pair } }
+  /webhook:
+    post:
+      tags: [Webhooks]
+      summary: Configure Account Webhook
+      operationId: accountConfigWebhook
+      responses: { "201": { description: Webhook configured } }
+  /webhook/{identificadorWebhook}:
+    get:
+      tags: [Webhooks]
+      summary: Detail Account Webhook
+      operationId: accountDetailWebhook
+      parameters: [{ name: identificadorWebhook, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Webhook } }
+    delete:
+      tags: [Webhooks]
+      summary: Delete Account Webhook
+      operationId: accountDeleteWebhook
+      parameters: [{ name: identificadorWebhook, in: path, required: true, schema: { type: string } }]
+      responses: { "204": { description: Deleted } }
+  /webhooks:
+    get:
+      tags: [Webhooks]
+      summary: List Account Webhooks
+      operationId: accountListWebhook
+      responses: { "200": { description: Webhooks } }
+components:
+  securitySchemes:
+    oauth2Contas:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://abrircontas.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+  schemas:
+    Account:
+      type: object
+      properties:
+        identificador: { type: string }
+        cpf_cnpj: { type: string }
+        razao_social: { type: string, nullable: true }
+        status: { type: string }

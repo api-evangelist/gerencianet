@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Efí Pay Extratos (Statements) API
+  description: >-
+    Recurring CNAB (Brazilian banking text-file) statement extraction for Efí
+    Pay accounts. Schedule daily/weekly CNAB jobs, list generated files, and
+    download them via the API or via SFTP using a generated key pair.
+  version: "1.0"
+  contact:
+    name: Efí Pay Developer Support
+    url: https://dev.efipay.com.br/docs/extrato-cnab
+  license:
+    name: Proprietary
+servers:
+  - url: https://extratos.api.efipay.com.br/v1
+    description: Production
+  - url: https://extratos-h.api.efipay.com.br/v1
+    description: Homologation (Sandbox)
+security:
+  - oauth2Extratos: []
+tags:
+  - name: Authorization
+  - name: Statement Files
+  - name: Statement Schedules
+  - name: SFTP
+paths:
+  /oauth/token:
+    post:
+      tags: [Authorization]
+      summary: Issue Extratos Access Token
+      operationId: extratosAuthorize
+      responses: { "200": { description: Token } }
+  /extrato-cnab/arquivos:
+    get:
+      tags: [Statement Files]
+      summary: List Statement Files
+      operationId: listStatementFiles
+      responses: { "200": { description: Files } }
+  /extrato-cnab/download/{nome_arquivo}:
+    get:
+      tags: [Statement Files]
+      summary: Download Statement File
+      operationId: getStatementFile
+      parameters: [{ name: nome_arquivo, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: File contents } }
+  /extrato-cnab/agendamentos:
+    get:
+      tags: [Statement Schedules]
+      summary: List Statement Schedules
+      operationId: listStatementRecurrences
+      responses: { "200": { description: Schedules } }
+  /extrato-cnab/agendar:
+    post:
+      tags: [Statement Schedules]
+      summary: Create Statement Schedule
+      operationId: createStatementRecurrency
+      responses: { "201": { description: Schedule created } }
+  /extrato-cnab/agendar/{identificador}:
+    patch:
+      tags: [Statement Schedules]
+      summary: Update Statement Schedule
+      operationId: updateStatementRecurrency
+      parameters: [{ name: identificador, in: path, required: true, schema: { type: string } }]
+      responses: { "200": { description: Updated } }
+  /extrato-cnab/gerar-chaves:
+    post:
+      tags: [SFTP]
+      summary: Generate SFTP Key Pair
+      operationId: createSftpKey
+      responses: { "201": { description: Keys generated } }
+components:
+  securitySchemes:
+    oauth2Extratos:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://extratos.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+  schemas:
+    StatementFile:
+      type: object
+      properties:
+        nome_arquivo: { type: string }
+        criado_em: { type: string, format: date-time }
+        tamanho: { type: integer }
