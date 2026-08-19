@@ -25,7 +25,7 @@ image: https://efipay.com.br/efi-logo.png
 url: https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml
 created: '2026-05-24'
 modified: '2026-05-24'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 tags:
   - Payments
   - Pix
