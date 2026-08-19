@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Immediate Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Immediate Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos/pix"
+          },
+          "docs": "List Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Start Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos/pix"
+          },
+          "docs": "Start Pix Payment"
+        },
+        {
+          "info": {
+            "name": "Refund Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Pix Payment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

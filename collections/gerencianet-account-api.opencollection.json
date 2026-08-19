@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/saldo"
+          },
+          "docs": "Get Account Balance"
+        },
+        {
+          "info": {
+            "name": "List Account Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/config"
+          },
+          "docs": "List Account Config"
+        },
+        {
+          "info": {
+            "name": "Update Account Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/config"
+          },
+          "docs": "Update Account Config"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Received Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Received Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Received Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/pix"
+          },
+          "docs": "List Received Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Received Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/pix/:e2eId",
+            "params": [
+              {
+                "name": "e2eId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Received Pix"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

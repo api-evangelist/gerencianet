@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Configure Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/webhook"
+          },
+          "docs": "Configure Account Webhook"
+        },
+        {
+          "info": {
+            "name": "Detail Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/webhook/:identificadorWebhook",
+            "params": [
+              {
+                "name": "identificadorWebhook",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Account Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Account Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/webhook/:identificadorWebhook",
+            "params": [
+              {
+                "name": "identificadorWebhook",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Account Webhook"
+        },
+        {
+          "info": {
+            "name": "List Account Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/webhooks"
+          },
+          "docs": "List Account Webhooks"
+        },
+        {
+          "info": {
+            "name": "Detail Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Configure Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Configure Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhook/:chave",
+            "params": [
+              {
+                "name": "chave",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "List Pix Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhook"
+          },
+          "docs": "List Pix Webhooks"
+        },
+        {
+          "info": {
+            "name": "List Recurring Pix Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookrec"
+          },
+          "docs": "List Recurring Pix Webhooks"
+        },
+        {
+          "info": {
+            "name": "Configure Recurring Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookrec"
+          },
+          "docs": "Configure Recurring Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Recurring Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookrec"
+          },
+          "docs": "Delete Recurring Pix Webhook"
+        },
+        {
+          "info": {
+            "name": "List Automatic Charge Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookcobr"
+          },
+          "docs": "List Automatic Charge Webhooks"
+        },
+        {
+          "info": {
+            "name": "Configure Automatic Charge Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookcobr"
+          },
+          "docs": "Configure Automatic Charge Webhook"
+        },
+        {
+          "info": {
+            "name": "Delete Automatic Charge Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/webhookcobr"
+          },
+          "docs": "Delete Automatic Charge Webhook"
+        },
+        {
+          "info": {
+            "name": "Resend Pix Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/webhook/reenviar"
+          },
+          "docs": "Resend Pix Webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

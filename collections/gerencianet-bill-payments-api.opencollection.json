@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Bill Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bill Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detail Bar Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/codBarras/:codBarras",
+            "params": [
+              {
+                "name": "codBarras",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Bar Code"
+        },
+        {
+          "info": {
+            "name": "Request Bar Code Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/codBarras/:codBarras",
+            "params": [
+              {
+                "name": "codBarras",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Request Bar Code Payment"
+        },
+        {
+          "info": {
+            "name": "Detail Bill Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/:idPagamento",
+            "params": [
+              {
+                "name": "idPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Bill Payment"
+        },
+        {
+          "info": {
+            "name": "List Bill Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/resumo"
+          },
+          "docs": "List Bill Payments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

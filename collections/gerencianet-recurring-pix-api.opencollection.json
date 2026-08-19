@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Recurring Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recurring Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-recorrentes/pix"
+          },
+          "docs": "List Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Start Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-recorrentes/pix"
+          },
+          "docs": "Start Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Cancel Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Refund Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Replace Recurring Pix Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endToEndId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Replace Recurring Pix Parcel"
+        },
+        {
+          "info": {
+            "name": "List Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/rec"
+          },
+          "docs": "List Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/rec"
+          },
+          "docs": "Create Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/rec/:idRec",
+            "params": [
+              {
+                "name": "idRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Update Recurring Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/rec/:idRec",
+            "params": [
+              {
+                "name": "idRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Recurring Pix"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/solicrec"
+          },
+          "docs": "Create Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/solicrec/:idSolicRec",
+            "params": [
+              {
+                "name": "idSolicRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "Update Recurring Pix Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/solicrec/:idSolicRec",
+            "params": [
+              {
+                "name": "idSolicRec",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Recurring Pix Request"
+        },
+        {
+          "info": {
+            "name": "List Recurring Pix Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/locrec"
+          },
+          "docs": "List Recurring Pix Locations"
+        },
+        {
+          "info": {
+            "name": "Create Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/locrec"
+          },
+          "docs": "Create Recurring Pix Location"
+        },
+        {
+          "info": {
+            "name": "Detail Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/locrec/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Recurring Pix Location"
+        },
+        {
+          "info": {
+            "name": "Unlink Recurring Pix Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/locrec/:id/idRec",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Recurring Pix Location"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

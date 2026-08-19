@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Splits API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Splits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Detail Charge Split",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cob/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Charge Split"
+        },
+        {
+          "info": {
+            "name": "Link Split To Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link Split To Charge"
+        },
+        {
+          "info": {
+            "name": "Unlink Split From Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Split From Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Due Charge Split",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cobv/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Due Charge Split"
+        },
+        {
+          "info": {
+            "name": "Link Split To Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Link Split To Due Charge"
+        },
+        {
+          "info": {
+            "name": "Unlink Split From Due Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "splitConfigId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlink Split From Due Charge"
+        },
+        {
+          "info": {
+            "name": "Create Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/config"
+          },
+          "docs": "Create Split Config"
+        },
+        {
+          "info": {
+            "name": "Detail Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Split Config"
+        },
+        {
+          "info": {
+            "name": "Update Split Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/split/config/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Split Config"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

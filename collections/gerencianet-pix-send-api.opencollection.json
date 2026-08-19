@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Pix Send API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pix Send",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send Pix Cash Out",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v3/gn/pix/:idEnvio",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Pix Cash Out"
+        },
+        {
+          "info": {
+            "name": "Pay Pix QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/pix/:idEnvio/qrcode",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Pay Pix QR Code"
+        },
+        {
+          "info": {
+            "name": "Send Pix Same Ownership",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/pix/:idEnvio/mesma-titularidade",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Pix Same Ownership"
+        },
+        {
+          "info": {
+            "name": "List Sent Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/pix/enviados"
+          },
+          "docs": "List Sent Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Sent Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/pix/enviados/:e2eid",
+            "params": [
+              {
+                "name": "e2eid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Sent Pix"
+        },
+        {
+          "info": {
+            "name": "Detail Sent Pix By Send Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/pix/enviados/id-envio/:idEnvio",
+            "params": [
+              {
+                "name": "idEnvio",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Sent Pix By Send Id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

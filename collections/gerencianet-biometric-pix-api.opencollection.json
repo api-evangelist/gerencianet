@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Biometric Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Biometric Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Biometric Enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "List Biometric Enrollments"
+        },
+        {
+          "info": {
+            "name": "Create Biometric Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "Create Biometric Enrollment"
+        },
+        {
+          "info": {
+            "name": "Revoke Biometric Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-biometria/vinculos"
+          },
+          "docs": "Revoke Biometric Enrollment"
+        },
+        {
+          "info": {
+            "name": "List Biometric Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-biometria/pix"
+          },
+          "docs": "List Biometric Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Create Biometric Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-biometria/pix"
+          },
+          "docs": "Create Biometric Pix Payment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

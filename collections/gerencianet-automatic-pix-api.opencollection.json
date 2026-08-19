@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Automatic Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automatic Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Automatic Pix Enrollments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "List Automatic Pix Enrollments"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "Create Automatic Pix Enrollment"
+        },
+        {
+          "info": {
+            "name": "Update Automatic Pix Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/adesao"
+          },
+          "docs": "Update Automatic Pix Enrollment"
+        },
+        {
+          "info": {
+            "name": "List Automatic Pix Payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "List Automatic Pix Payments"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "Create Automatic Pix Payment"
+        },
+        {
+          "info": {
+            "name": "Cancel Automatic Pix Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-automaticos/pix"
+          },
+          "docs": "Cancel Automatic Pix Payment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

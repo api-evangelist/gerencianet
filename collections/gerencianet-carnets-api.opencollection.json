@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Carnets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carnets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet"
+          },
+          "docs": "Create Carnet"
+        },
+        {
+          "info": {
+            "name": "Detail Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Carnet"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Parcels",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcels",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Parcels"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Cancel Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Settle Carnet Parcel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/settle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Settle Carnet Parcel"
+        },
+        {
+          "info": {
+            "name": "Send Carnet Parcel Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/parcel/:parcel/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "parcel",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Carnet Parcel Email"
+        },
+        {
+          "info": {
+            "name": "Cancel Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Carnet"
+        },
+        {
+          "info": {
+            "name": "Settle Carnet",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/settle",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Settle Carnet"
+        },
+        {
+          "info": {
+            "name": "Create Carnet History Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Carnet History Note"
+        },
+        {
+          "info": {
+            "name": "Update Carnet Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Carnet Metadata"
+        },
+        {
+          "info": {
+            "name": "Send Carnet Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/carnet/:id/resend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send Carnet Email"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

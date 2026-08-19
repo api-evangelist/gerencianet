@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account MED Infractions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MED Infractions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List MED Infractions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/infracoes"
+          },
+          "docs": "List MED Infractions"
+        },
+        {
+          "info": {
+            "name": "Submit MED Defense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/gn/infracoes/:idInfracao/defesa",
+            "params": [
+              {
+                "name": "idInfracao",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submit MED Defense"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Automatic Charges API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automatic Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Automatic Pix Charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr"
+          },
+          "docs": "List Automatic Pix Charges"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr"
+          },
+          "docs": "Create Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Detail Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Detail Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Create Automatic Pix Charge With Txid",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create Automatic Pix Charge With Txid"
+        },
+        {
+          "info": {
+            "name": "Update Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr/:txid",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update Automatic Pix Charge"
+        },
+        {
+          "info": {
+            "name": "Retry Automatic Pix Charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/v2/cobr/:txid/retentativa/:data",
+            "params": [
+              {
+                "name": "txid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retry Automatic Pix Charge"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

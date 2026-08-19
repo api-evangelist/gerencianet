@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Efí Pay Cobranças Account Scheduled Pix API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://cobrancas.api.efipay.com.br/v1/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scheduled Pix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-agendados/pix"
+          },
+          "docs": "List Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Start Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-agendados/pix"
+          },
+          "docs": "Start Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Cancel Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-agendados/pix/:identificadorPagamento/cancelar",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel Scheduled Pix"
+        },
+        {
+          "info": {
+            "name": "Refund Scheduled Pix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cobrancas.api.efipay.com.br/v1/pagamentos-agendados/pix/:identificadorPagamento/devolver",
+            "params": [
+              {
+                "name": "identificadorPagamento",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Refund Scheduled Pix"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
