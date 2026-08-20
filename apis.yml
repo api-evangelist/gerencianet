@@ -30,6 +30,21 @@ tags:
   - Payments
   - Pix
   - Boleto
+  - Subscription
+  - Recurring Billing
+  - Marketplace
+  - Split Payments
+  - Open Finance
+  - Banking as a Service
+  - Account Opening
+  - Bill Payments
+  - CNAB
+  - Brazil
+  - Fintech
+tags_raw:
+  - Payments
+  - Pix
+  - Boleto
   - Subscriptions
   - Recurring Billing
   - Marketplace
@@ -114,6 +129,8 @@ apis:
   name: Efí Pay (Gerencianet) Accounts API
   description: The Accounts API from Efí Pay (Gerencianet) — 3 operation(s) for accounts.
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -1205,6 +1222,8 @@ apis:
   name: Efí Pay (Gerencianet) Notifications API
   description: The Notifications API from Efí Pay (Gerencianet) — 1 operation(s) for notifications.
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -1397,6 +1416,8 @@ apis:
   name: Efí Pay (Gerencianet) Pix Keys API
   description: The Pix Keys API from Efí Pay (Gerencianet) — 3 operation(s) for pix keys.
   tags:
+  - PIX Keys
+  tags_raw:
   - Pix Keys
   properties:
   - type: OpenAPI
@@ -2037,6 +2058,8 @@ apis:
   name: Efí Pay (Gerencianet) Splits API
   description: The Splits API from Efí Pay (Gerencianet) — 6 operation(s) for splits.
   tags:
+  - Split
+  tags_raw:
   - Splits
   properties:
   - type: OpenAPI
@@ -2230,6 +2253,8 @@ apis:
   name: Efí Pay (Gerencianet) Subscriptions API
   description: The Subscriptions API from Efí Pay (Gerencianet) — 9 operation(s) for subscriptions.
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -2294,6 +2319,8 @@ apis:
   name: Efí Pay (Gerencianet) Webhooks API
   description: The Webhooks API from Efí Pay (Gerencianet) — 8 operation(s) for webhooks.
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
