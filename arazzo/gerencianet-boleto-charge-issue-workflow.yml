@@ -12,8 +12,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: efiCobrancasApi
-  url: ../openapi/efi-cobrancas-openapi.yml
+- name: authorizationApi
+  url: ../openapi/gerencianet-authorization-api-openapi.yml
+  type: openapi
+- name: chargesApi
+  url: ../openapi/gerencianet-charges-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: boleto-charge-issue
