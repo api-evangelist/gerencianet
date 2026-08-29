@@ -1,20 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Efí Pay Cobranças Account Recurring Pix API
-  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
-  version: '1.0'
-  contact:
-    name: Efí Pay Developer Support
-    url: https://dev.efipay.com.br
+  title: Gerencianet Recurring Pix API
   license:
     name: Proprietary
+  version: '1.0'
+  description: 'Operations tagged Recurring Pix across 2 of this provider''s published API definitions: efi-openfinance-openapi.yml, efi-pix-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://cobrancas.api.efipay.com.br/v1
+- url: https://openfinance.api.efipay.com.br/v1
   description: Production
-- url: https://cobrancas-h.api.efipay.com.br/v1
+- url: https://openfinance-h.api.efipay.com.br/v1
   description: Homologation (Sandbox)
-security:
-- oauth2ClientCredentials: []
+- url: https://pix.api.efipay.com.br
+  description: Production
+- url: https://pix-h.api.efipay.com.br
+  description: Homologation (Sandbox)
 tags:
 - name: Recurring Pix
 paths:
@@ -27,6 +26,8 @@ paths:
       responses:
         '201':
           description: Started
+      security:
+      - oauth2OpenFinance: []
     get:
       tags:
       - Recurring Pix
@@ -35,6 +36,13 @@ paths:
       responses:
         '200':
           description: Recurring Pix
+      security:
+      - oauth2OpenFinance: []
+    servers:
+    - url: https://openfinance.api.efipay.com.br/v1
+      description: Production
+    - url: https://openfinance-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /pagamentos-recorrentes/pix/{identificadorPagamento}/cancelar:
     patch:
       tags:
@@ -50,6 +58,13 @@ paths:
       responses:
         '200':
           description: Cancelled
+      security:
+      - oauth2OpenFinance: []
+    servers:
+    - url: https://openfinance.api.efipay.com.br/v1
+      description: Production
+    - url: https://openfinance-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /pagamentos-recorrentes/pix/{identificadorPagamento}/devolver:
     post:
       tags:
@@ -65,6 +80,13 @@ paths:
       responses:
         '201':
           description: Refunded
+      security:
+      - oauth2OpenFinance: []
+    servers:
+    - url: https://openfinance.api.efipay.com.br/v1
+      description: Production
+    - url: https://openfinance-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /pagamentos-recorrentes/pix/{identificadorPagamento}/substituir/{endToEndId}:
     patch:
       tags:
@@ -85,6 +107,13 @@ paths:
       responses:
         '200':
           description: Replaced
+      security:
+      - oauth2OpenFinance: []
+    servers:
+    - url: https://openfinance.api.efipay.com.br/v1
+      description: Production
+    - url: https://openfinance-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /v2/rec:
     post:
       tags:
@@ -94,6 +123,8 @@ paths:
       responses:
         '201':
           description: Created
+      security:
+      - oauth2Pix: []
     get:
       tags:
       - Recurring Pix
@@ -102,6 +133,13 @@ paths:
       responses:
         '200':
           description: Recurrences
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/rec/{idRec}:
     get:
       tags:
@@ -117,6 +155,8 @@ paths:
       responses:
         '200':
           description: Recurrence
+      security:
+      - oauth2Pix: []
     patch:
       tags:
       - Recurring Pix
@@ -131,6 +171,13 @@ paths:
       responses:
         '200':
           description: Updated
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/solicrec:
     post:
       tags:
@@ -140,6 +187,13 @@ paths:
       responses:
         '201':
           description: Created
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/solicrec/{idSolicRec}:
     get:
       tags:
@@ -155,6 +209,8 @@ paths:
       responses:
         '200':
           description: Request
+      security:
+      - oauth2Pix: []
     patch:
       tags:
       - Recurring Pix
@@ -169,6 +225,13 @@ paths:
       responses:
         '200':
           description: Updated
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/locrec:
     post:
       tags:
@@ -178,6 +241,8 @@ paths:
       responses:
         '201':
           description: Created
+      security:
+      - oauth2Pix: []
     get:
       tags:
       - Recurring Pix
@@ -186,6 +251,13 @@ paths:
       responses:
         '200':
           description: Locations
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/locrec/{id}:
     get:
       tags:
@@ -201,6 +273,13 @@ paths:
       responses:
         '200':
           description: Location
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/locrec/{id}/idRec:
     delete:
       tags:
@@ -216,11 +295,39 @@ paths:
       responses:
         '204':
           description: Unlinked
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
 components:
   securitySchemes:
-    oauth2ClientCredentials:
+    oauth2OpenFinance:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
-          scopes: {}
+          tokenUrl: https://openfinance.api.efipay.com.br/v1/oauth/token
+          scopes:
+            openfinance.payments.read: Read payment status
+            openfinance.payments.write: Initiate payments
+    oauth2Pix:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pix.api.efipay.com.br/oauth/token
+          scopes:
+            cob.read: Read immediate charges
+            cob.write: Create/update immediate charges
+            cobv.read: Read due charges
+            cobv.write: Create/update due charges
+            pix.read: Read received Pix
+            pix.write: Manage devolutions
+            pix.send: Send Pix
+            webhook.read: Read webhook config
+            webhook.write: Configure webhooks
+            gn.balance.read: Read account balance
+x-refined-from:
+- efi-openfinance-openapi.yml
+- efi-pix-openapi.yml

@@ -1,20 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Efí Pay Cobranças Account Participants API
-  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  title: Efí Pay Open Finance Participants API
+  description: Open Finance Brasil payment-initiation API for Efí Pay (formerly Gerencianet). Initiate Pix payments across participating banks and fintechs without redirecting users out of your app, including immediate, scheduled, recurring, biometric, and automatic Pix flows. Requires mTLS, OAuth2 client_credentials, and x-idempotency-key headers on every request.
   version: '1.0'
   contact:
     name: Efí Pay Developer Support
-    url: https://dev.efipay.com.br
+    url: https://dev.efipay.com.br/docs/open-finance
   license:
     name: Proprietary
 servers:
-- url: https://cobrancas.api.efipay.com.br/v1
+- url: https://openfinance.api.efipay.com.br/v1
   description: Production
-- url: https://cobrancas-h.api.efipay.com.br/v1
+- url: https://openfinance-h.api.efipay.com.br/v1
   description: Homologation (Sandbox)
 security:
-- oauth2ClientCredentials: []
+- oauth2OpenFinance: []
 tags:
 - name: Participants
 paths:
@@ -29,9 +29,11 @@ paths:
           description: Participants
 components:
   securitySchemes:
-    oauth2ClientCredentials:
+    oauth2OpenFinance:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
-          scopes: {}
+          tokenUrl: https://openfinance.api.efipay.com.br/v1/oauth/token
+          scopes:
+            openfinance.payments.read: Read payment status
+            openfinance.payments.write: Initiate payments

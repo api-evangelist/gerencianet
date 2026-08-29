@@ -1,20 +1,35 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Efí Pay Cobranças Account Authorization API
-  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
-  version: '1.0'
-  contact:
-    name: Efí Pay Developer Support
-    url: https://dev.efipay.com.br
+  title: Gerencianet Authorization API
   license:
     name: Proprietary
+  version: '1.0'
+  description: 'Operations tagged Authorization across 6 of this provider''s published API definitions: efi-cobrancas-openapi.yml, efi-contas-openapi.yml, efi-extratos-openapi.yml, efi-openfinance-openapi.yml, efi-pagamentos-openapi.yml, efi-pix-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://cobrancas.api.efipay.com.br/v1
   description: Production
 - url: https://cobrancas-h.api.efipay.com.br/v1
   description: Homologation (Sandbox)
-security:
-- oauth2ClientCredentials: []
+- url: https://abrircontas.api.efipay.com.br/v1
+  description: Production
+- url: https://abrircontas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+- url: https://extratos.api.efipay.com.br/v1
+  description: Production
+- url: https://extratos-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+- url: https://openfinance.api.efipay.com.br/v1
+  description: Production
+- url: https://openfinance-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+- url: https://pagarcontas.api.efipay.com.br/v1
+  description: Production
+- url: https://pagarcontas-h.api.efipay.com.br/v1
+  description: Homologation (Sandbox)
+- url: https://pix.api.efipay.com.br
+  description: Production
+- url: https://pix-h.api.efipay.com.br
+  description: Homologation (Sandbox)
 tags:
 - name: Authorization
 paths:
@@ -39,6 +54,13 @@ paths:
       responses:
         '200':
           description: Access token issued
+      security:
+      - oauth2ClientCredentials: []
+    servers:
+    - url: https://cobrancas.api.efipay.com.br/v1
+      description: Production
+    - url: https://cobrancas-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /oauth/token:
     post:
       tags:
@@ -48,6 +70,13 @@ paths:
       responses:
         '200':
           description: Token
+      security:
+      - oauth2Contas: []
+    servers:
+    - url: https://abrircontas.api.efipay.com.br/v1
+      description: Production
+    - url: https://abrircontas-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
 components:
   securitySchemes:
     oauth2ClientCredentials:
@@ -56,3 +85,52 @@ components:
         clientCredentials:
           tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
           scopes: {}
+    oauth2Contas:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://abrircontas.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+    oauth2Extratos:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://extratos.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+    oauth2OpenFinance:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://openfinance.api.efipay.com.br/v1/oauth/token
+          scopes:
+            openfinance.payments.read: Read payment status
+            openfinance.payments.write: Initiate payments
+    oauth2Pagamentos:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pagarcontas.api.efipay.com.br/v1/oauth/token
+          scopes: {}
+    oauth2Pix:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pix.api.efipay.com.br/oauth/token
+          scopes:
+            cob.read: Read immediate charges
+            cob.write: Create/update immediate charges
+            cobv.read: Read due charges
+            cobv.write: Create/update due charges
+            pix.read: Read received Pix
+            pix.write: Manage devolutions
+            pix.send: Send Pix
+            webhook.read: Read webhook config
+            webhook.write: Configure webhooks
+            gn.balance.read: Read account balance
+x-refined-from:
+- efi-cobrancas-openapi.yml
+- efi-contas-openapi.yml
+- efi-extratos-openapi.yml
+- efi-openfinance-openapi.yml
+- efi-pagamentos-openapi.yml
+- efi-pix-openapi.yml

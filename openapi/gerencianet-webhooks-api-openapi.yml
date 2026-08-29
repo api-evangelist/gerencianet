@@ -1,20 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Efí Pay Cobranças Account Webhooks API
-  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
-  version: '1.0'
-  contact:
-    name: Efí Pay Developer Support
-    url: https://dev.efipay.com.br
+  title: Gerencianet Webhooks API
   license:
     name: Proprietary
+  version: '1.0'
+  description: 'Operations tagged Webhooks across 2 of this provider''s published API definitions: efi-contas-openapi.yml, efi-pix-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://cobrancas.api.efipay.com.br/v1
+- url: https://abrircontas.api.efipay.com.br/v1
   description: Production
-- url: https://cobrancas-h.api.efipay.com.br/v1
+- url: https://abrircontas-h.api.efipay.com.br/v1
   description: Homologation (Sandbox)
-security:
-- oauth2ClientCredentials: []
+- url: https://pix.api.efipay.com.br
+  description: Production
+- url: https://pix-h.api.efipay.com.br
+  description: Homologation (Sandbox)
 tags:
 - name: Webhooks
 paths:
@@ -27,6 +26,13 @@ paths:
       responses:
         '201':
           description: Webhook configured
+      security:
+      - oauth2Contas: []
+    servers:
+    - url: https://abrircontas.api.efipay.com.br/v1
+      description: Production
+    - url: https://abrircontas-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /webhook/{identificadorWebhook}:
     get:
       tags:
@@ -42,6 +48,8 @@ paths:
       responses:
         '200':
           description: Webhook
+      security:
+      - oauth2Contas: []
     delete:
       tags:
       - Webhooks
@@ -56,6 +64,13 @@ paths:
       responses:
         '204':
           description: Deleted
+      security:
+      - oauth2Contas: []
+    servers:
+    - url: https://abrircontas.api.efipay.com.br/v1
+      description: Production
+    - url: https://abrircontas-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /webhooks:
     get:
       tags:
@@ -65,6 +80,13 @@ paths:
       responses:
         '200':
           description: Webhooks
+      security:
+      - oauth2Contas: []
+    servers:
+    - url: https://abrircontas.api.efipay.com.br/v1
+      description: Production
+    - url: https://abrircontas-h.api.efipay.com.br/v1
+      description: Homologation (Sandbox)
   /v2/webhook/{chave}:
     put:
       tags:
@@ -80,6 +102,8 @@ paths:
       responses:
         '200':
           description: Configured
+      security:
+      - oauth2Pix: []
     get:
       tags:
       - Webhooks
@@ -94,6 +118,8 @@ paths:
       responses:
         '200':
           description: Webhook
+      security:
+      - oauth2Pix: []
     delete:
       tags:
       - Webhooks
@@ -108,6 +134,13 @@ paths:
       responses:
         '204':
           description: Deleted
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/webhook:
     get:
       tags:
@@ -117,6 +150,13 @@ paths:
       responses:
         '200':
           description: Webhooks
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/webhookrec:
     put:
       tags:
@@ -126,6 +166,8 @@ paths:
       responses:
         '200':
           description: Configured
+      security:
+      - oauth2Pix: []
     get:
       tags:
       - Webhooks
@@ -134,6 +176,8 @@ paths:
       responses:
         '200':
           description: Webhooks
+      security:
+      - oauth2Pix: []
     delete:
       tags:
       - Webhooks
@@ -142,6 +186,13 @@ paths:
       responses:
         '204':
           description: Deleted
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/webhookcobr:
     put:
       tags:
@@ -151,6 +202,8 @@ paths:
       responses:
         '200':
           description: Configured
+      security:
+      - oauth2Pix: []
     get:
       tags:
       - Webhooks
@@ -159,6 +212,8 @@ paths:
       responses:
         '200':
           description: Webhooks
+      security:
+      - oauth2Pix: []
     delete:
       tags:
       - Webhooks
@@ -167,6 +222,13 @@ paths:
       responses:
         '204':
           description: Deleted
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
   /v2/gn/webhook/reenviar:
     post:
       tags:
@@ -176,11 +238,37 @@ paths:
       responses:
         '200':
           description: Resent
+      security:
+      - oauth2Pix: []
+    servers:
+    - url: https://pix.api.efipay.com.br
+      description: Production
+    - url: https://pix-h.api.efipay.com.br
+      description: Homologation (Sandbox)
 components:
   securitySchemes:
-    oauth2ClientCredentials:
+    oauth2Contas:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          tokenUrl: https://abrircontas.api.efipay.com.br/v1/oauth/token
           scopes: {}
+    oauth2Pix:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://pix.api.efipay.com.br/oauth/token
+          scopes:
+            cob.read: Read immediate charges
+            cob.write: Create/update immediate charges
+            cobv.read: Read due charges
+            cobv.write: Create/update due charges
+            pix.read: Read received Pix
+            pix.write: Manage devolutions
+            pix.send: Send Pix
+            webhook.read: Read webhook config
+            webhook.write: Configure webhooks
+            gn.balance.read: Read account balance
+x-refined-from:
+- efi-contas-openapi.yml
+- efi-pix-openapi.yml

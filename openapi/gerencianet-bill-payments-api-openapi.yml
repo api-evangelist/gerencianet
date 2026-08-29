@@ -1,20 +1,20 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Efí Pay Cobranças Account Bill Payments API
-  description: Billing API for Efí Pay (formerly Gerencianet). Issue boletos (Brazilian bank slips), Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit card charges, subscriptions/recurring billing, and marketplace payment splits. OAuth2 with HTTP Basic for client_credentials.
+  title: Efí Pay Pagamentos (Bill Payment) Bill Payments API
+  description: Brazilian bill-payment automation for Efí Pay. Decode a boleto/concessionária barcode (linha digitável), submit it for payment from the account balance, and reconcile the payment status. Supports same-day and scheduled debits.
   version: '1.0'
   contact:
     name: Efí Pay Developer Support
-    url: https://dev.efipay.com.br
+    url: https://dev.efipay.com.br/docs/api-pagamentos
   license:
     name: Proprietary
 servers:
-- url: https://cobrancas.api.efipay.com.br/v1
+- url: https://pagarcontas.api.efipay.com.br/v1
   description: Production
-- url: https://cobrancas-h.api.efipay.com.br/v1
+- url: https://pagarcontas-h.api.efipay.com.br/v1
   description: Homologation (Sandbox)
 security:
-- oauth2ClientCredentials: []
+- oauth2Pagamentos: []
 tags:
 - name: Bill Payments
 paths:
@@ -73,9 +73,9 @@ paths:
           description: Payments
 components:
   securitySchemes:
-    oauth2ClientCredentials:
+    oauth2Pagamentos:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://cobrancas.api.efipay.com.br/v1/authorize
+          tokenUrl: https://pagarcontas.api.efipay.com.br/v1/oauth/token
           scopes: {}
