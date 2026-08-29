@@ -8,6 +8,18 @@ description: >-
   extraction. The company rebranded from Gerencianet to Efí Pay / Efí Bank in 2022 and is rated at the top tier by Banco
   Central for its Pix API. The technical surface is exposed as five distinct REST APIs (Cobranças, Pix, Open Finance,
   Pagamentos, Contas) with twelve official SDKs plus e-commerce plugins.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
