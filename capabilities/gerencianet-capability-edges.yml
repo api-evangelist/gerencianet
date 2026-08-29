@@ -1,0 +1,59 @@
+slug: gerencianet
+provider: Efí Pay (Gerencianet)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Webhooks
+  spec_file: gerencianet-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: POST /webhook  accountConfigWebhook  Configure Account Webhook; PUT /v2/webhook/{chave}  pixConfigWebhook  Configure
+    Pix Webhook
+  reason: The tag is entirely CRUD over outbound webhook registrations for account, Pix, recurring Pix
+    and automatic charge events — exactly the lifecycle of outbound event subscriptions exposed to integrating
+    developers. Maps cleanly to Webhook & Event Subscription Management; the payments domain of the events
+    does not change what the operations do.
+- tag: Subscriptions
+  spec_file: gerencianet-subscriptions-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.8
+  evidence: POST /plan/{id}/subscription  createSubscription  Create Subscription ... PUT /subscription/{id}/cancel  cancelSubscription  Cancel
+    Subscription
+  reason: Subscriptions are created against a plan, updated, assigned a payment method, and cancelled
+    — the full recurring-commercial lifecycle of a subscriber. That is Subscription Lifecycle Management.
+    Left at L1 because the operations span provisioning (create, one-step link), modification (update,
+    metadata) and cancellation rather than naming one sub-capability.
+- tag: Charges
+  spec_file: gerencianet-charges-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.7
+  evidence: POST /charge createCharge Create Charge; POST /charge/{id}/billet/resend sendBilletEmail Send
+    Billet Email; PUT /charge/{id}/settle settleCharge Settle Charge Manually
+  reason: Core surface issues boletos/charges to customers, delivers them by email, cancels and settles
+    them — customer invoicing, collection and cash application, which is Accounts Receivable Management.
+- tag: Due Charges
+  spec_file: gerencianet-due-charges-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.7
+  evidence: PUT /v2/cobv/{txid} pixCreateDueCharge "Create Pix Due Charge"; GET /v2/cobv "List Pix Due
+    Charges"
+  reason: Creating, updating and listing Pix charges with a due date is issuance and tracking of amounts
+    owed by a payer — customer invoicing and collections, i.e. Accounts Receivable Management.

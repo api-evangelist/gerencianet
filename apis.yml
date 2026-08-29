@@ -2394,6 +2394,9 @@ apis:
   - type: SandboxURL
     url: https://extratos-h.api.efipay.com.br/v1
 common:
+  - type: CapabilityMap
+    url: capabilities/gerencianet-capability-edges.yml
+    name: Efí Pay (Gerencianet) Business Capability Map
   - type: AgenticAccess
     url: agentic-access/gerencianet-agentic-access.yml
   - type: DomainSecurity
