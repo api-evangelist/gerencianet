@@ -3,7 +3,7 @@ provider: Efí Pay (Gerencianet)
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Banking & Capital Markets
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,49 +11,162 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 4
+edge_count: 15
 edges:
-- tag: Webhooks
-  spec_file: gerencianet-webhooks-api-openapi.yml
-  capability_id: BC-4270.80
-  capability_id_l1: BC-4270
-  capability_name: Webhook & Event Subscription Management
+- tag: Accounts
+  spec_file: gerencianet-accounts-api-openapi.yml
+  capability_id: BC-1300.10
+  capability_id_l1: BC-1300
+  capability_name: Customer Onboarding Management
   confidence: 0.85
-  evidence: POST /webhook  accountConfigWebhook  Configure Account Webhook; PUT /v2/webhook/{chave}  pixConfigWebhook  Configure
-    Pix Webhook
-  reason: The tag is entirely CRUD over outbound webhook registrations for account, Pix, recurring Pix
-    and automatic charge events — exactly the lifecycle of outbound event subscriptions exposed to integrating
-    developers. Maps cleanly to Webhook & Event Subscription Management; the payments domain of the events
-    does not change what the operations do.
-- tag: Subscriptions
-  spec_file: gerencianet-subscriptions-api-openapi.yml
-  capability_id: BC-4240
-  capability_id_l1: BC-4240
-  capability_name: Subscription Lifecycle Management
+  evidence: 'POST /conta-simplificada  createAccount  "Create Simplified Account"; description: "Programmatically
+    open Brazilian "conta-simplificada" accounts for end-customers"'
+  reason: Programmatic account opening for end-customers (BaaS), i.e. banking customer onboarding / account
+    opening. Certificate and credential retrieval are supporting technical steps of the same onboarding
+    flow.
+- tag: Pix Send
+  spec_file: gerencianet-pix-send-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.85
+  evidence: PUT /v3/gn/pix/{idEnvio} 'Send Pix Cash Out'; PUT /v2/gn/pix/{idEnvio}/qrcode 'Pay Pix QR
+    Code'; GET /v2/gn/pix/enviados 'List Sent Pix'
+  reason: Operations execute and track outbound Pix transfers on Brazil's instant payment rail — squarely
+    real-time payment management.
+- tag: Scheduled Pix
+  spec_file: gerencianet-scheduled-pix-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
   confidence: 0.8
-  evidence: POST /plan/{id}/subscription  createSubscription  Create Subscription ... PUT /subscription/{id}/cancel  cancelSubscription  Cancel
-    Subscription
-  reason: Subscriptions are created against a plan, updated, assigned a payment method, and cancelled
-    — the full recurring-commercial lifecycle of a subscriber. That is Subscription Lifecycle Management.
-    Left at L1 because the operations span provisioning (create, one-step link), modification (update,
-    metadata) and cancellation rather than naming one sub-capability.
-- tag: Charges
-  spec_file: gerencianet-charges-api-openapi.yml
-  capability_id: BC-200.30
-  capability_id_l1: BC-200
-  capability_name: Accounts Receivable Management
-  confidence: 0.7
-  evidence: POST /charge createCharge Create Charge; POST /charge/{id}/billet/resend sendBilletEmail Send
-    Billet Email; PUT /charge/{id}/settle settleCharge Settle Charge Manually
-  reason: Core surface issues boletos/charges to customers, delivers them by email, cancels and settles
-    them — customer invoicing, collection and cash application, which is Accounts Receivable Management.
+  evidence: POST /pagamentos-agendados/pix 'Start Scheduled Pix'; PATCH .../cancelar 'Cancel Scheduled
+    Pix'; POST .../devolver 'Refund Scheduled Pix'
+  reason: Open Finance payment-initiation operations that capture, schedule, cancel and refund Pix payment
+    instructions — payment initiation management.
+- tag: Automatic Pix
+  spec_file: gerencianet-automatic-pix-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: 'POST /pagamentos-automaticos/pix  ofCreateAutomaticPixPayment  "Create Automatic Pix Payment";
+    description: "Open Finance Brasil payment-initiation API ... Initiate Pix payments across participating
+    banks"'
+  reason: 'Open Finance payment initiation: enrolment (adesão) plus creation, listing and cancellation
+    of automatic Pix payments. The vendor description explicitly calls it a payment-initiation API, so
+    Payment Initiation Management within Payments & Card Management.'
+- tag: Bill Payments
+  spec_file: gerencianet-bill-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: 'POST /codBarras/{codBarras}  payRequestBarCode  "Request Bar Code Payment"; description:
+    "Decode a boleto/concessionária barcode (linha digitável), submit it for payment from the account
+    balance"'
+  reason: Capture, validation and submission of bill payments (boleto/utility barcode) from the account
+    balance, with status reconciliation and scheduled debits — payment instruction capture and authorisation.
+- tag: Immediate Charges
+  spec_file: gerencianet-immediate-charges-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.75
+  evidence: POST /v2/cob  pixCreateImmediateCharge  Create Immediate Pix Charge
+  reason: Full CRUD over immediate Pix charges (cob) implementing the Banco Central do Brasil Pix specification
+    — the instant/real-time payment rail.
+- tag: Received Pix
+  spec_file: gerencianet-received-pix-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.75
+  evidence: GET /v2/pix 'List Received Pix'; GET /v2/pix/{e2eId} 'Detail Received Pix'
+  reason: Exposes inbound Pix instant-payment transactions with end-to-end ids, i.e. processing/monitoring
+    of receipts on the real-time rail.
+- tag: Recurring Pix
+  spec_file: gerencianet-recurring-pix-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: POST /pagamentos-recorrentes/pix 'Start Recurring Pix'; PATCH .../cancelar 'Cancel Recurring
+    Pix'; POST /v2/rec 'Create Recurring Pix'
+  reason: Initiates, amends, cancels and refunds recurring/automatic Pix payment instructions — payment
+    instruction capture and authorisation lifecycle.
+- tag: Splits
+  spec_file: gerencianet-splits-api-openapi.yml
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
+  confidence: 0.75
+  evidence: POST /v2/gn/split/config pixSplitConfig Create Split Config; PUT /v2/gn/split/cob/{txid}/vinculo/{splitConfigId}
+    Link Split To Charge
+  reason: Operations configure and link marketplace split rules onto Pix charges, i.e. how a received
+    instant payment's funds are divided and routed — payment processing within the Payments & Card Management
+    domain. Which sub-capability (processing vs settlement distribution) is not pinned down by the evidence,
+    so only the L1 is asserted.
+- tag: Card Payments
+  spec_file: gerencianet-card-payments-api-openapi.yml
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
+  confidence: 0.72
+  evidence: POST /charge/{id}/retry  cardPaymentRetry  Retry Card Payment; POST /charge/card/{id}/refund  refundCard  Refund
+    Card Charge
+  reason: Operations retry a card payment authorisation and refund a card charge, plus installment options
+    retrieval — card transaction processing (authorisation, refunds/chargeback-adjacent handling) rather
+    than card issuance. Some ambiguity between card transaction processing and generic payment processing,
+    hence moderate confidence.
+- tag: Devolutions
+  spec_file: gerencianet-devolutions-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.72
+  evidence: PUT /v2/pix/{e2eId}/devolucao/{id}  pixDevolution  Create Pix Devolution
+  reason: Creates and details Pix devoluções (refunds of settled instant payments) against an end-to-end
+    id on the Banco Central Pix rail, i.e. operations on the real-time payment rail. Sub-capability choice
+    between real-time payment and generic payment processing carries some uncertainty.
 - tag: Due Charges
   spec_file: gerencianet-due-charges-api-openapi.yml
-  capability_id: BC-200.30
-  capability_id_l1: BC-200
-  capability_name: Accounts Receivable Management
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.72
+  evidence: PUT /v2/cobv/{txid}  pixCreateDueCharge  Create Pix Due Charge
+  reason: Create/update/list Pix due charges (cobv) under the Banco Central Pix specification — collection
+    requests on the Pix instant payment rail.
+- tag: Immediate Pix
+  spec_file: gerencianet-immediate-pix-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.72
+  evidence: POST /pagamentos/pix  ofStartPixPayment  Start Pix Payment; Open Finance Brasil payment-initiation
+    API
+  reason: 'Open Finance payment-initiation surface: starts Pix payments across participating banks, lists
+    them, and refunds them. Payment instruction capture and authorisation is the plain reading; real-time
+    rail is an alternative sub-capability, hence 0.72.'
+- tag: Biometric Pix
+  spec_file: gerencianet-biometric-pix-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
   confidence: 0.7
-  evidence: PUT /v2/cobv/{txid} pixCreateDueCharge "Create Pix Due Charge"; GET /v2/cobv "List Pix Due
-    Charges"
-  reason: Creating, updating and listing Pix charges with a due date is issuance and tracking of amounts
-    owed by a payer — customer invoicing and collections, i.e. Accounts Receivable Management.
+  evidence: POST /pagamentos-biometria/pix  ofCreateBiometricPixPayment  "Create Biometric Pix Payment";
+    POST /pagamentos-biometria/vinculos  "Create Biometric Enrollment"
+  reason: Open Finance biometric enrolment used to authorise and then initiate Pix payments. The enrolment
+    operations exist to authorise payment instructions, so the capability realised is Payment Initiation
+    Management rather than identity management.
+- tag: QR Codes
+  spec_file: gerencianet-qr-codes-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.7
+  evidence: GET /v2/loc/{id}/qrcode 'Generate Pix QR Code'; POST /v2/gn/qrcodes/detalhar 'Detail Pix QR
+    Code'
+  reason: Generates and decodes Pix QR codes used to present and settle instant payments on the Pix rail;
+    payments capability is unambiguous, real-time sub-capability is the natural reading.
