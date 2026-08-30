@@ -49,7 +49,7 @@ tags:
   - Open Finance
   - Banking as a Service
   - Account Opening
-  - Bill Payments
+  - Bill Payment
   - CNAB
   - Brazil
   - Fintech
@@ -1428,7 +1428,7 @@ apis:
   name: Efí Pay (Gerencianet) Pix Keys API
   description: The Pix Keys API from Efí Pay (Gerencianet) — 3 operation(s) for pix keys.
   tags:
-  - PIX Keys
+  - Pix Keys
   tags_raw:
   - Pix Keys
   properties:

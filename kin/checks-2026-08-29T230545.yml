@@ -1,16 +1,16 @@
 ---
 kin_checks:
   slug: gerencianet
-  schema_version: 0.15.1
-  scored_at: '2026-08-28'
-  run_ts: 2026-08-28T221322
+  schema_version: 0.16.0
+  scored_at: '2026-08-29'
+  run_ts: 2026-08-29T230545
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.15.1.yml; counts below let you verify that.
+    in rubric/scoring-0.16.0.yml; counts below let you verify that.
   counts:
     total: 130
-    earned: 60
-    partial: 6
-    missed: 45
+    earned: 59
+    partial: 8
+    missed: 44
     na: 19
   checks:
   - id: human_url_per_api
@@ -36,9 +36,6 @@ kin_checks:
     status: missed
     detail: 0 of 36 openapi documents pass
   - id: components_reuse
-    status: missed
-    detail: 0 of 36 openapi documents pass
-  - id: oauth_scopes_enumerated
     status: missed
     detail: 0 of 36 openapi documents pass
   - id: webhooks_or_callbacks
@@ -111,9 +108,17 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: info_complete
+    status: partial
+    earned: 3.67
+    detail: 33 of 36 openapi documents pass
   - id: examples_present
     status: partial
     earned: 1.0
+  - id: oauth_scopes_enumerated
+    status: partial
+    earned: 2.44
+    detail: 22 of 36 openapi documents pass
   - id: agentic_access
     status: partial
     earned: 2.5
