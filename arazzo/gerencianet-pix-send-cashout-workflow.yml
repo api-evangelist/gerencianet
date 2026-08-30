@@ -12,8 +12,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: efiPixApi
-  url: ../openapi/efi-pix-openapi.yml
+- name: authorizationApi
+  url: ../openapi/gerencianet-authorization-api-openapi.yml
+  type: openapi
+- name: pixSendApi
+  url: ../openapi/gerencianet-pix-send-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: pix-send-cashout
@@ -54,7 +57,7 @@ workflows:
     description: >-
       Exchange the client_id and client_secret for an OAuth2 access token using
       the client_credentials grant required by the Pix API.
-    operationId: pixAuthorize
+    operationId: contasAuthorize
     requestBody:
       contentType: application/json
       payload:

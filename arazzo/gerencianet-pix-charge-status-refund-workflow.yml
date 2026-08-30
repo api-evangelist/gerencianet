@@ -12,8 +12,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: efiPixApi
-  url: ../openapi/efi-pix-openapi.yml
+- name: authorizationApi
+  url: ../openapi/gerencianet-authorization-api-openapi.yml
+  type: openapi
+- name: devolutionsApi
+  url: ../openapi/gerencianet-devolutions-api-openapi.yml
+  type: openapi
+- name: immediateChargesApi
+  url: ../openapi/gerencianet-immediate-charges-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: pix-charge-status-refund
@@ -51,7 +57,7 @@ workflows:
     description: >-
       Exchange the client_id and client_secret for an OAuth2 access token using
       the client_credentials grant required by the Pix API.
-    operationId: pixAuthorize
+    operationId: contasAuthorize
     requestBody:
       contentType: application/json
       payload:
