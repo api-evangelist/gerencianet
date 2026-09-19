@@ -1106,6 +1106,8 @@ apis:
   name: Efí Pay (Gerencianet) Locations API
   description: The Locations API from Efí Pay (Gerencianet) — 3 operation(s) for locations.
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
