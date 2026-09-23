@@ -13,7 +13,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: efiPagamentosApi
-  url: ../openapi/efi-pagamentos-openapi.yml
+  url: ../openapi/_original/efi-pagamentos-openapi.yml
   type: openapi
 workflows:
 - workflowId: bill-payment

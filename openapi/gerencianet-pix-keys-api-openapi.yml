@@ -16,12 +16,12 @@ servers:
 security:
 - oauth2Pix: []
 tags:
-- name: Pix Keys
+- name: PIX Keys
 paths:
   /v2/gn/evp:
     post:
       tags:
-      - Pix Keys
+      - PIX Keys
       summary: Create Random Pix Key
       operationId: pixCreateEvp
       responses:
@@ -29,7 +29,7 @@ paths:
           description: Key created
     get:
       tags:
-      - Pix Keys
+      - PIX Keys
       summary: List Random Pix Keys
       operationId: pixListEvp
       responses:
@@ -38,7 +38,7 @@ paths:
   /v2/gn/evp/{chave}:
     delete:
       tags:
-      - Pix Keys
+      - PIX Keys
       summary: Delete Random Pix Key
       operationId: pixDeleteEvp
       parameters:
@@ -53,7 +53,7 @@ paths:
   /v2/gn/chaves/balde:
     get:
       tags:
-      - Pix Keys
+      - PIX Keys
       summary: List Pix Keys Bucket
       operationId: pixKeysBucket
       responses:

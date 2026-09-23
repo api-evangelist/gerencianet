@@ -59,7 +59,8 @@
     "efi-pix-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "tag 'Authorization' spans 6 source specs (efi-cobrancas-openapi.yml, efi-contas-openapi.yml, efi-extratos-openapi.yml, efi-openfinance-openapi.yml, efi-pagamentos-openapi.yml, efi-pix-openapi.yml): per-path servers applied",
     "tag 'Webhooks' spans 2 source specs (efi-contas-openapi.yml, efi-pix-openapi.yml): per-path servers applied",
-    "tag 'Recurring Pix' spans 2 source specs (efi-openfinance-openapi.yml, efi-pix-openapi.yml): per-path servers applied"
+    "tag 'Recurring Pix' spans 2 source specs (efi-openfinance-openapi.yml, efi-pix-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "gerencianet-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",

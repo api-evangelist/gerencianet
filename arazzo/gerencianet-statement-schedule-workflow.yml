@@ -13,7 +13,7 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: efiExtratosApi
-  url: ../openapi/efi-extratos-openapi.yml
+  url: ../openapi/_original/efi-extratos-openapi.yml
   type: openapi
 workflows:
 - workflowId: statement-schedule
