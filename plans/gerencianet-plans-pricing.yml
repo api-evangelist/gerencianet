@@ -199,3 +199,55 @@ plans:
 notes:
   - Tariffs vary by contract date and commercial negotiation.
   - Sandbox (homologation) usage is free across all APIs.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units:
+  - message
+  - transaction
+  plans:
+  - name: Boleto / Bolix / Carnê
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - message
+    - other
+    periods:
+    - per-use
+  - name: Credit Card
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    - transaction
+    periods:
+    - per-use
+  - name: Pix
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - transaction
+    periods:
+    - month
+    - per-use
+  - name: Account Transfers
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - transaction
+    periods:
+    - per-use
+  - name: Issued Cards
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - other
+    periods:
+    - per-use
