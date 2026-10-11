@@ -11,8 +11,8 @@
   type: claimed
   evidence: https://github.com/efipay/n8n-nodes-efibank
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: gerencianet-n8n-pix-webhook-workflow.yml
+  status: arazzo
 - slug: gerencianet-wordpress-woocommerce
   label: WordPress / WooCommerce
   partner: wordpress
@@ -21,8 +21,8 @@
   type: claimed
   evidence: https://github.com/efipay/Plugin-Wordpress-Efi
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: gerencianet-wordpress-woocommerce-order-to-pix.yml
+  status: arazzo
 - slug: gerencianet-magento-2
   label: Magento 2
   partner_name: Magento 2
@@ -50,8 +50,8 @@
   type: claimed
   evidence: https://github.com/efipay/opencart-efi-module
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: gerencianet-opencart-order-to-pix.yml
+  status: arazzo
 - slug: gerencianet-whmcs
   label: WHMCS
   partner: whmcs
@@ -60,5 +60,5 @@
   type: claimed
   evidence: https://github.com/efipay/whmcs-efi-module
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: gerencianet-whmcs-invoice-to-pix.yml
+  status: arazzo

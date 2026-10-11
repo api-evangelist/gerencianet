@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Efí (Gerencianet) WooCommerce Order to Pix Charge
+  summary: Charge a WooCommerce order by Pix through Efí and mark the order on hold.
+  description: >-
+    Recreates the Efí WordPress/WooCommerce plugin as a workflow. Reads a WooCommerce order, creates
+    an Efí immediate Pix charge for its total, and writes the Pix txid back to the order.
+  version: 1.0.0
+sourceDescriptions:
+  - name: wooOrders
+    url: https://raw.githubusercontent.com/api-evangelist/woocommerce/refs/heads/main/openapi/woocommerce-orders-api-openapi.yml
+    type: openapi
+  - name: efiImmediateCharges
+    url: https://raw.githubusercontent.com/api-evangelist/gerencianet/refs/heads/main/openapi/gerencianet-immediate-charges-api-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: woocommerce-order-to-efi-pix
+    summary: Turn a WooCommerce order into an Efí Pix charge.
+    description: >-
+      Reads the order, creates the Pix charge, then updates the order status and metadata with the txid.
+    inputs:
+      type: object
+      required: [orderId, pixKey, debtorCpf]
+      properties:
+        orderId: {type: integer}
+        pixKey: {type: string}
+        debtorCpf: {type: string}
+        expirationSeconds: {type: integer, default: 3600}
+    steps:
+      - stepId: get-order
+        description: Retrieve the WooCommerce order.
+        operationId: $sourceDescriptions.wooOrders.getOrder
+        parameters:
+          - {name: id, in: path, value: $inputs.orderId}
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          total: $response.body#/total
+          firstName: $response.body#/billing/first_name
+      - stepId: create-pix-charge
+        description: Create the Efí immediate Pix charge for the order total.
+        operationId: $sourceDescriptions.efiImmediateCharges.pixCreateImmediateCharge
+        requestBody:
+          contentType: application/json
+          payload:
+            calendario:
+              expiracao: $inputs.expirationSeconds
+            devedor:
+              cpf: $inputs.debtorCpf
+              nome: $steps.get-order.outputs.firstName
+            valor:
+              original: $steps.get-order.outputs.total
+            chave: $inputs.pixKey
+        successCriteria:
+          - condition: $statusCode == 201
+        outputs:
+          txid: $response.body#/txid
+          pixCopiaECola: $response.body#/pixCopiaECola
+      - stepId: update-order
+        description: Put the order on hold awaiting Pix payment and store the txid.
+        operationId: $sourceDescriptions.wooOrders.updateOrder
+        parameters:
+          - {name: id, in: path, value: $inputs.orderId}
+        requestBody:
+          contentType: application/json
+          payload:
+            status: on-hold
+            transaction_id: $steps.create-pix-charge.outputs.txid
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          status: $response.body#/status
+    outputs:
+      txid: $steps.create-pix-charge.outputs.txid
+      pixCopiaECola: $steps.create-pix-charge.outputs.pixCopiaECola
+      orderStatus: $steps.update-order.outputs.status
+x-integration:
+  partner: wordpress
+  template: null
+  edge_evidence: https://github.com/efipay/Plugin-Wordpress-Efi
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)

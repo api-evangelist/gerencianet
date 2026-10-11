@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Efí (Gerencianet) Pix Webhook into n8n
+  summary: Stand up an n8n webhook workflow and point Efí Pix notifications at it.
+  description: >-
+    Recreates the Efí n8n community node pattern as a workflow. Creates and activates an n8n workflow
+    with a webhook trigger, then configures the Efí Pix webhook for a key to deliver to that URL.
+  version: 1.0.0
+sourceDescriptions:
+  - name: n8nWorkflow
+    url: https://raw.githubusercontent.com/api-evangelist/n8n/refs/heads/main/openapi/n8n-workflow-api-openapi.yml
+    type: openapi
+  - name: efiWebhooks
+    url: https://raw.githubusercontent.com/api-evangelist/gerencianet/refs/heads/main/openapi/gerencianet-webhooks-api-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: efi-pix-webhook-to-n8n
+    summary: Route Efí Pix payment notifications into n8n.
+    description: >-
+      Creates the n8n workflow, activates it, and registers its production webhook URL with Efí.
+    inputs:
+      type: object
+      required: [workflowName, webhookPath, n8nBaseUrl, pixKey]
+      properties:
+        workflowName: {type: string}
+        webhookPath: {type: string}
+        n8nBaseUrl: {type: string, description: e.g. https://my.n8n.cloud/webhook}
+        webhookUrl: {type: string, description: n8nBaseUrl + "/" + webhookPath}
+        pixKey: {type: string}
+    steps:
+      - stepId: create-workflow
+        description: Create an n8n workflow with a Webhook trigger node.
+        operationId: $sourceDescriptions.n8nWorkflow.createWorkflow
+        requestBody:
+          contentType: application/json
+          payload:
+            name: $inputs.workflowName
+            nodes:
+              - name: Efi Pix Webhook
+                type: n8n-nodes-base.webhook
+                typeVersion: 2
+                position: [0, 0]
+                parameters:
+                  httpMethod: POST
+                  path: $inputs.webhookPath
+            connections: {}
+            settings: {}
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          workflowId: $response.body#/id
+      - stepId: activate-workflow
+        description: Activate the workflow so the webhook URL goes live.
+        operationId: $sourceDescriptions.n8nWorkflow.activateWorkflow
+        parameters:
+          - {name: id, in: path, value: $steps.create-workflow.outputs.workflowId}
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          active: $response.body#/active
+      - stepId: configure-pix-webhook
+        description: Point Efí Pix notifications for the key at the n8n webhook.
+        operationId: $sourceDescriptions.efiWebhooks.pixConfigWebhook
+        parameters:
+          - {name: chave, in: path, value: $inputs.pixKey}
+        requestBody:
+          contentType: application/json
+          payload:
+            webhookUrl: $inputs.webhookUrl
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          webhookUrl: $inputs.webhookUrl
+    outputs:
+      workflowId: $steps.create-workflow.outputs.workflowId
+      active: $steps.activate-workflow.outputs.active
+x-integration:
+  partner: n8n
+  template: null
+  edge_evidence: https://github.com/efipay/n8n-nodes-efibank
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)

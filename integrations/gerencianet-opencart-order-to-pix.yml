@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: Efí (Gerencianet) OpenCart Order to Pix Charge
+  summary: Issue an Efí Pix charge for an OpenCart order and record it in the order history.
+  description: >-
+    Recreates the Efí OpenCart module as a workflow. Creates an Efí immediate Pix charge for the
+    order total, then adds an order history entry in OpenCart carrying the Pix txid.
+  version: 1.0.0
+sourceDescriptions:
+  - name: opencartOrders
+    url: https://raw.githubusercontent.com/api-evangelist/opencart/refs/heads/main/openapi/opencart-orders-api-openapi.yml
+    type: openapi
+  - name: efiImmediateCharges
+    url: https://raw.githubusercontent.com/api-evangelist/gerencianet/refs/heads/main/openapi/gerencianet-immediate-charges-api-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: opencart-order-to-efi-pix
+    summary: Charge an OpenCart order by Pix.
+    description: >-
+      Creates the Pix charge and posts an order history update (call=history_add) to OpenCart.
+    inputs:
+      type: object
+      required: [apiToken, orderId, orderTotal, pixKey, debtorCpf, debtorName, pendingStatusId]
+      properties:
+        apiToken: {type: string}
+        orderId: {type: integer}
+        orderTotal: {type: string}
+        pixKey: {type: string}
+        debtorCpf: {type: string}
+        debtorName: {type: string}
+        pendingStatusId: {type: integer}
+    steps:
+      - stepId: create-pix-charge
+        description: Create the Efí immediate Pix charge.
+        operationId: $sourceDescriptions.efiImmediateCharges.pixCreateImmediateCharge
+        requestBody:
+          contentType: application/json
+          payload:
+            calendario:
+              expiracao: 3600
+            devedor:
+              cpf: $inputs.debtorCpf
+              nome: $inputs.debtorName
+            valor:
+              original: $inputs.orderTotal
+            chave: $inputs.pixKey
+        successCriteria:
+          - condition: $statusCode == 201
+        outputs:
+          txid: $response.body#/txid
+          pixCopiaECola: $response.body#/pixCopiaECola
+      - stepId: add-order-history
+        description: Record the pending Pix payment in the OpenCart order history.
+        operationId: $sourceDescriptions.opencartOrders.manageOrder
+        parameters:
+          - {name: call, in: query, value: history_add}
+        requestBody:
+          contentType: application/x-www-form-urlencoded
+          payload:
+            api_token: $inputs.apiToken
+            order_id: $inputs.orderId
+            order_status_id: $inputs.pendingStatusId
+            comment: $steps.create-pix-charge.outputs.txid
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          result: $response.body
+    outputs:
+      txid: $steps.create-pix-charge.outputs.txid
+      pixCopiaECola: $steps.create-pix-charge.outputs.pixCopiaECola
+x-integration:
+  partner: opencart
+  template: null
+  edge_evidence: https://github.com/efipay/opencart-efi-module
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)

@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Efí (Gerencianet) WHMCS Invoice to Pix Charge
+  summary: Read a WHMCS invoice and issue a matching Efí immediate Pix charge.
+  description: >-
+    Recreates the Efí WHMCS payment module as a workflow. Fetches an unpaid WHMCS invoice and its
+    client, then creates an immediate Pix charge (cob) in Efí for the invoice total so the client can pay by Pix.
+  version: 1.0.0
+sourceDescriptions:
+  - name: whmcsBilling
+    url: https://raw.githubusercontent.com/api-evangelist/whmcs/refs/heads/main/openapi/whmcs-billing-api-openapi.yml
+    type: openapi
+  - name: whmcsClients
+    url: https://raw.githubusercontent.com/api-evangelist/whmcs/refs/heads/main/openapi/whmcs-clients-api-openapi.yml
+    type: openapi
+  - name: efiImmediateCharges
+    url: https://raw.githubusercontent.com/api-evangelist/gerencianet/refs/heads/main/openapi/gerencianet-immediate-charges-api-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: whmcs-invoice-to-efi-pix
+    summary: Turn a WHMCS invoice into an Efí Pix charge.
+    description: >-
+      Reads the invoice, reads the client's details for the debtor block, and creates the Pix charge.
+    inputs:
+      type: object
+      required: [identifier, secret, invoiceId, pixKey, debtorCpf]
+      properties:
+        identifier: {type: string}
+        secret: {type: string}
+        invoiceId: {type: integer}
+        pixKey: {type: string, description: Efí Pix key receiving the payment}
+        debtorCpf: {type: string}
+        expirationSeconds: {type: integer, default: 3600}
+    steps:
+      - stepId: get-invoice
+        description: Retrieve the WHMCS invoice.
+        operationId: $sourceDescriptions.whmcsBilling.getInvoice
+        requestBody:
+          contentType: application/x-www-form-urlencoded
+          payload:
+            identifier: $inputs.identifier
+            secret: $inputs.secret
+            responsetype: json
+            invoiceid: $inputs.invoiceId
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          userId: $response.body#/userid
+          total: $response.body#/total
+      - stepId: get-client
+        description: Retrieve the invoiced client's details.
+        operationId: $sourceDescriptions.whmcsClients.getClientsDetails
+        requestBody:
+          contentType: application/x-www-form-urlencoded
+          payload:
+            identifier: $inputs.identifier
+            secret: $inputs.secret
+            responsetype: json
+            clientid: $steps.get-invoice.outputs.userId
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          fullName: $response.body#/client/fullname
+      - stepId: create-pix-charge
+        description: Create the Efí immediate Pix charge for the invoice total.
+        operationId: $sourceDescriptions.efiImmediateCharges.pixCreateImmediateCharge
+        requestBody:
+          contentType: application/json
+          payload:
+            calendario:
+              expiracao: $inputs.expirationSeconds
+            devedor:
+              cpf: $inputs.debtorCpf
+              nome: $steps.get-client.outputs.fullName
+            valor:
+              original: $steps.get-invoice.outputs.total
+            chave: $inputs.pixKey
+            solicitacaoPagador: WHMCS invoice
+        successCriteria:
+          - condition: $statusCode == 201
+        outputs:
+          txid: $response.body#/txid
+          pixCopiaECola: $response.body#/pixCopiaECola
+    outputs:
+      invoiceTotal: $steps.get-invoice.outputs.total
+      txid: $steps.create-pix-charge.outputs.txid
+      pixCopiaECola: $steps.create-pix-charge.outputs.pixCopiaECola
+x-integration:
+  partner: whmcs
+  template: null
+  edge_evidence: https://github.com/efipay/whmcs-efi-module
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)
