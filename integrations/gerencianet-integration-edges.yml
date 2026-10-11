@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/gerencianet/integrations
+- https://zapier.com/apps/ef-pay-gerencianet/integrations
+- https://n8n.io/integrations/gerencianet/
+- https://composio.dev/toolkits/gerencianet
+- https://monid.ai/tools/gerencianet
+checked:
+- https://composio.dev/toolkits/gerencianet
+- https://monid.ai/tools/gerencianet
+- https://n8n.io/integrations/gerencianet/
+- https://zapier.com/apps/ef-pay-gerencianet/integrations
+- https://zapier.com/apps/gerencianet/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
