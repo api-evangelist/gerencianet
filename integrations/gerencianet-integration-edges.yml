@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/gerencianet/integrations
 - https://zapier.com/apps/ef-pay-gerencianet/integrations
@@ -7,12 +7,68 @@ source:
 - https://composio.dev/toolkits/gerencianet
 - https://monid.ai/tools/gerencianet
 checked:
+- https://api.github.com/orgs/efipay/repos
 - https://composio.dev/toolkits/gerencianet
+- https://dev.efipay.com.br/docs/modulos/introducao-modulos
 - https://monid.ai/tools/gerencianet
 - https://n8n.io/integrations/gerencianet/
 - https://zapier.com/apps/ef-pay-gerencianet/integrations
 - https://zapier.com/apps/gerencianet/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: n8n
+  partner: n8n
+  type: claimed
+  evidence: https://github.com/efipay/n8n-nodes-efibank
+  marketplace: null
+  direction: provider-built
+  category: Workflow automation
+  operations: []
+  use_case: null
+- partner_name: WordPress / WooCommerce
+  partner: wordpress
+  type: claimed
+  evidence: https://github.com/efipay/Plugin-Wordpress-Efi
+  marketplace: null
+  direction: provider-built
+  category: E-commerce
+  operations: []
+  use_case: null
+- partner_name: Magento 2
+  partner: null
+  type: claimed
+  evidence: https://github.com/efipay/Plugin-Magento2-Efi
+  marketplace: null
+  direction: provider-built
+  category: E-commerce
+  operations: []
+  use_case: null
+- partner_name: PrestaShop
+  partner: prestashop
+  type: claimed
+  evidence: https://github.com/efipay/prestashop-efi-module
+  marketplace: null
+  direction: provider-built
+  category: E-commerce
+  operations: []
+  use_case: null
+- partner_name: OpenCart
+  partner: opencart
+  type: claimed
+  evidence: https://github.com/efipay/opencart-efi-module
+  marketplace: null
+  direction: provider-built
+  category: E-commerce
+  operations: []
+  use_case: null
+- partner_name: WHMCS
+  partner: whmcs
+  type: claimed
+  evidence: https://github.com/efipay/whmcs-efi-module
+  marketplace: null
+  direction: provider-built
+  category: Billing
+  operations: []
+  use_case: null
 templates: []

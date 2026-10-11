@@ -1,0 +1,74 @@
+name: Efí Pay (Gerencianet) API Conventions
+generated: '2026-10-12'
+method: searched
+source: https://dev.efipay.com.br/docs/api-pix/credenciais; https://github.com/efipay/mcp-server-efi; openapi/
+auth:
+  style: OAuth 2.0 client_credentials (client_id + client_secret) per application; Pix and Open Finance additionally require a Efí-issued certificate
+    for mTLS
+  see: authentication/gerencianet-authentication.yml
+  scopes: scopes/gerencianet-scopes.yml
+idempotency:
+  coverage: partial
+  mechanism: idempotency key on Open Finance payment mutations (x-idempotency-key per the Open Finance contract description; the official MCP
+    server README states "mutações Open Finance compatíveis também aceitam idempotency_key")
+  scope:
+  - ofStartPixPayment
+  - ofDevolutionPix
+  - ofStartSchedulePixPayment
+  - ofCancelSchedulePix
+  - ofDevolutionSchedulePix
+  - ofStartRecurrencyPixPayment
+  - ofCancelRecurrencyPix
+  - ofDevolutionRecurrencyPix
+  - ofReplaceRecurrencyPixParcel
+  - ofCreateBiometricEnrollment
+  - ofRevokeBiometricEnrollment
+  - ofCreateBiometricPixPayment
+  - ofCreateAutomaticEnrollment
+  - ofUpdateAutomaticEnrollment
+  - ofCreateAutomaticPixPayment
+  - ofCancelAutomaticPixPayment
+  note: Pix charges use a client-supplied txid on PUT /v2/cob/:txid and Pix sends use PUT /v2/gn/pix/:idEnvio, which make those writes naturally
+    keyed; Cobranças writes have no documented replay protection.
+versioning:
+  style: URI path
+  versions:
+    Cobranças: v1
+    Pix: v2
+webhooks:
+  docs: https://dev.efipay.com.br/docs/api-pix/webhooks
+  security: mTLS by Banco Central rule (Efí public key installed on the receiving server); optional HMAC in the registered URL; source IP 34.193.116.226
+    per docs
+  resend: Pix webhook resend available for up to 30 days; one attempt per webhook, no rescheduling
+rate_limit_signaling:
+  see: rate-limits/gerencianet-rate-limits.yml
+  note: Headers not documented; Cobranças sends email at 80% and on block.
+errors:
+  docs: https://dev.efipay.com.br/docs/erros/consulta
+  note: Error lookup tool by API and code/message; per-application request history in the account.
+reversibility:
+  status: documented
+  surfaces:
+  - surface: Card payment
+    operation: refundCard
+    window: null
+    docs: https://dev.efipay.com.br/docs/api-cobrancas/cartao
+    note: Total or partial refund; charge must be paid; one partial refund per day per charge. No time window stated.
+  - surface: Pix received
+    operation: pixDevolution
+    window: null
+    docs: https://dev.efipay.com.br/docs/api-pix/gestao-de-pix
+  - surface: Boleto/charge
+    operation: cancelCharge
+    window: null
+  - surface: Carnê
+    operation: cancelCarnet
+  - surface: Carnê parcel
+    operation: cancelCarnetParcel
+  - surface: Subscription
+    operation: cancelSubscription
+  - surface: Open Finance scheduled Pix
+    operation: ofCancelSchedulePix
+  - surface: Open Finance Pix
+    operation: ofDevolutionPix
+  note: Reversal operations exist; no reversal window was found stated in the docs read, so none is asserted.

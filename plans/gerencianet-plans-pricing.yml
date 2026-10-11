@@ -1,253 +1,97 @@
-# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-24 by the file itself), not
-# harvested from the provider. `method: generated` so the economics campaign may replace it with a
-# dated, verbatim transcription; every figure below is unverified until it does.
-method: generated
-generated: '2026-05-24'
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+name: Efí Pay (Gerencianet) Tarifas
+generated: '2026-10-12'
+method: searched
+source: https://sejaefi.com.br/tarifas
 provider: Efí Pay (Gerencianet)
 providerId: gerencianet
-created: '2026-05-24'
-modified: '2026-05-24'
-reconciled: true
-tags:
-  - Payments
-  - Pix
-  - Boleto
-  - Billing
-  - Brazil
-description: >-
-  Efí Pay is product-priced rather than tiered. Account creation is free; fees
-  accrue only on successful settlements. Rates below are the publicly listed
-  Brazilian (BRL) prices and are subject to commercial negotiation for
-  enterprise volume.
-sources:
-  - https://sejaefi.com.br/tarifas
-  - https://sejaefi.com.br
+audience: business-product
+pricing_basis: ad-valorem
+published: true
+delivery:
+  delivery: managed
+note: Verbatim from the public tarifas page; the page states "As tarifas podem variar de acordo com a data de contratação e/ou negociações comerciais."
+  Selection of API-relevant rows; account opening and maintenance are free.
+plan_count: 12
 plans:
-  - id: efi-cobrancas-boleto
-    name: Boleto / Bolix / Carnê
-    type: usage-based
-    description: Brazilian bank slip issuance. Charged per paid receipt; issuance and unpaid slips are free.
-    entries:
-      - label: Paid boleto, Bolix, or carnê parcel
-        name: paid_boleto
-        type: metered
-        metric: receipt
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: R$3.45
-        userMultiplied: false
-      - label: Receivables advance
-        name: antecipacao
-        type: metered
-        metric: event
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 4% (cap R$30/batch)
-        userMultiplied: false
-  - id: efi-cobrancas-card
-    name: Credit Card
-    type: usage-based
-    description: Per-transaction take rate for Brazilian credit-card payments.
-    entries:
-      - label: À vista
-        name: card_avista
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 3.49%
-        userMultiplied: false
-      - label: Parcelado 2–6x
-        name: card_parc_2_6
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 3.99%
-        userMultiplied: false
-      - label: Parcelado 7–12x
-        name: card_parc_7_12
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 4.39%
-        userMultiplied: false
-      - label: Antecipação de parcelas
-        name: card_antec
-        type: metered
-        metric: installment
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 1.29% per installment + 3.49%
-        userMultiplied: false
-  - id: efi-pix
-    name: Pix
-    type: usage-based
-    description: Per-transaction Pix fees. The Efí mobile app includes 30 free incoming Pix per month.
-    entries:
-      - label: Pix via app (after 30 free)
-        name: pix_app
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: month
-        geo: BR
-        unit: 1
-        price: 1.19%
-        userMultiplied: false
-      - label: Pix via API (Cob / Cobv / QR dinâmico)
-        name: pix_api
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: 1.19%
-        userMultiplied: false
-      - label: Pix Automático
-        name: pix_automatico
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: R$3.50
-        userMultiplied: false
-    elements:
-      - name: Pix Cash-In and Cash-Out
-      - name: Pix Open Finance initiation
-      - name: Pix Automático (recurring Pix)
-      - name: MED infraction defense
-  - id: efi-transfers
-    name: Account Transfers
-    type: usage-based
-    description: Outbound transfers from the Efí account.
-    entries:
-      - label: Pix transfer
-        name: pix_transfer
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: Free
-        userMultiplied: false
-      - label: TED (same holder, > R$300)
-        name: ted_same_holder
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: Free
-        userMultiplied: false
-      - label: TED (other conditions)
-        name: ted_other
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: R$5.00
-        userMultiplied: false
-  - id: efi-cards
-    name: Issued Cards
-    type: usage-based
-    description: Cards issued by Efí Bank to account holders.
-    entries:
-      - label: Visa Platinum credit card
-        name: visa_platinum
-        type: metered
-        metric: card
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: Free (credit-analysis dependent)
-        userMultiplied: false
-      - label: Prepaid card
-        name: prepaid
-        type: metered
-        metric: card
-        limit: -1
-        timeFrame: usage
-        geo: BR
-        unit: 1
-        price: R$19.00 issuance
-        userMultiplied: false
-notes:
-  - Tariffs vary by contract date and commercial negotiation.
-  - Sandbox (homologation) usage is free across all APIs.
-x-canonical:
-  generated: '2026-10-08'
-  vocabulary: all/0-working/economics/plans-canonical.yml
-  models:
-  - metered
-  units:
-  - message
-  - transaction
-  plans:
-  - name: Boleto / Bolix / Carnê
-    access: other
-    model: metered
-    model_how: stated
-    units:
-    - message
-    - other
-    periods:
-    - per-use
-  - name: Credit Card
-    access: other
-    model: metered
-    model_how: stated
-    units:
-    - other
-    - transaction
-    periods:
-    - per-use
-  - name: Pix
-    access: other
-    model: metered
-    model_how: stated
-    units:
-    - transaction
-    periods:
-    - month
-    - per-use
-  - name: Account Transfers
-    access: other
-    model: metered
-    model_how: stated
-    units:
-    - transaction
-    periods:
-    - per-use
-  - name: Issued Cards
-    access: other
-    model: metered
-    model_how: stated
-    units:
-    - other
-    periods:
-    - per-use
+- name: Boleto, Bolix e folha de carnê pago
+  description: Fee per paid boleto, Bolix or carnê installment (Gestão de Cobranças).
+  price_text: R$3,45
+  currency: BRL
+  price: 3.45
+  features:
+  - 'Emissão, baixa, cancelamento e boletos não pagos: GRÁTIS'
+  - 'Boletos registrados automaticamente: GRÁTIS'
+  limits:
+  - 'Compensação e disponibilização de saldo: 1 dia útil'
+- name: Antecipação de recebíveis — tarifa de borderô
+  description: Per event, on the gross value of each operation.
+  price_text: 4%*
+  currency: BRL
+  features: []
+  limits:
+  - limitado ao máximo de R$ 30,00 por borderô
+- name: Consulta Serasa
+  description: Credit bureau report.
+  price_text: R$ 14,99 por relatório
+  currency: BRL
+  price: 14.99
+  features: []
+  limits: []
+- name: Crédito à vista
+  description: Credit card, single payment (online sales).
+  price_text: 3,49%
+  currency: BRL
+  features: []
+  limits:
+  - 'Prazo para recebimento em conta: até 31 dias'
+- name: Crédito parcelado em até 12x (receba o valor total)
+  description: Installments with anticipation; 1,29% per anticipated installment.
+  price_text: 3,49% + 1,29%*
+  currency: BRL
+  features: []
+  limits: []
+- name: Crédito parcelado 2x a 6x
+  description: Installments received per installment.
+  price_text: 3,99%
+  currency: BRL
+  features: []
+  limits: []
+- name: Crédito parcelado 7x a 12x
+  description: Installments received per installment.
+  price_text: 4,39%
+  currency: BRL
+  features: []
+  limits: []
+- name: Pix pela API — Receber por QR Code dinâmico
+  description: Pix received via dynamic QR code through the API.
+  price_text: 1,19%
+  currency: BRL
+  features: []
+  limits: []
+- name: Pix Cobrança (Pix Cob e Pix CobV via API)
+  description: Pix charge received via dynamic QR or Pix Copia e Cola.
+  price_text: 1,19%
+  currency: BRL
+  features: []
+  limits: []
+- name: Pix Automático
+  description: Standard fee per settled Pix Automático.
+  price_text: R$3,50
+  currency: BRL
+  price: 3.5
+  features: []
+  limits: []
+- name: Integração por API
+  description: API integration itself carries no fee.
+  price_text: GRÁTIS
+  currency: BRL
+  price: 0
+  features: []
+  limits: []
+- name: Transferência bancária (TED) para contas de outra titularidade
+  description: TED to another holder, any amount.
+  price_text: R$5,00
+  currency: BRL
+  price: 5.0
+  features: []
+  limits: []

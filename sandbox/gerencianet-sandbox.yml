@@ -1,0 +1,17 @@
+name: Efí Pay Homologação (sandbox)
+generated: '2026-10-12'
+method: searched
+source: https://dev.efipay.com.br/docs/api-pix/credenciais
+description: Efí runs a separate homologação (sandbox) environment per API with its own hosts and its own application credentials and certificate;
+  each application chooses produção or homologação, and the request history can be viewed per environment.
+docs: https://dev.efipay.com.br/docs/api-pix/credenciais
+environments:
+- api: Pix
+  sandbox: https://pix-h.api.efipay.com.br
+  production: https://pix.api.efipay.com.br
+- api: Cobranças
+  sandbox: https://cobrancas-h.api.efipay.com.br/v1
+  production: https://cobrancas.api.efipay.com.br/v1
+credentials: Separate client_id/client_secret and .p12 certificate per environment (credenciais pages); Pix requires the certificate for mTLS.
+test_values: []
+note: No published test card numbers or test Pix keys were captured in this pass; none recorded.

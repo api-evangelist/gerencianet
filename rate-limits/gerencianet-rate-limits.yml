@@ -1,69 +1,229 @@
-# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-24 by the file itself), not
-# harvested from the provider. `method: generated` so the economics campaign may replace it with a
-# dated, verbatim transcription; every figure below is unverified until it does.
-method: generated
-generated: '2026-05-24'
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+name: Efí Pay (Gerencianet) API Pix Rate Limits
+generated: '2026-10-12'
+method: searched
+source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+sources:
+- https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
 provider: Efí Pay (Gerencianet)
 providerId: gerencianet
-created: '2026-05-24'
-modified: '2026-05-24'
-reconciled: false
-tags:
-  - Rate Limiting
-  - Pix
-  - Brazil
-description: >-
-  Efí Pay's published rate-limit policy follows Banco Central's Pix specification
-  for endpoints under /v2/cob, /v2/cobv, /v2/pix, /v2/loc, /v2/webhook (token
-  bucket per integration), plus internal limits on Cobranças, Open Finance, and
-  Contas APIs. Exact per-second caps are not published — request raises via
-  developer support.
-sources:
-  - https://dev.efipay.com.br
-  - https://www.bcb.gov.br/estabilidadefinanceira/pix
-headers:
-  retryAfter: Retry-After
-responseCodes:
-  throttled: 429
-  serverBusy: 503
+limit_count: 24
+description: 'API Pix: PUT and POST endpoints are subject to a limit of 500 requests per second. Companion file gerencianet-cobrancas-rate-limits.yml
+  carries the API Cobranças daily limits.'
+notes:
+- Response headers and the HTTP status on exhaustion are not stated on these pages.
 limits:
-  - name: Pix authorization
-    scope: client
-    metric: requests_per_minute
-    limit: 60
-    timeFrame: minute
-    notes: BCB-aligned token-bucket on /oauth/token issuance.
-  - name: Pix immediate charges (cob)
-    scope: client
-    metric: requests_per_second
-    limit: 50
-    timeFrame: second
-    notes: BCB Pix manual reference figure; actual enforcement varies.
-  - name: Pix Cash-Out (pixSend)
-    scope: client
-    metric: requests_per_second
-    limit: 30
-    timeFrame: second
-  - name: Cobranças API
-    scope: client
-    metric: requests_per_second
-    limit: 30
-    timeFrame: second
-  - name: Open Finance
-    scope: client
-    metric: requests_per_second
-    limit: 20
-    timeFrame: second
-    notes: Each request requires a unique x-idempotency-key (72 alphanumeric chars).
-policies:
-  - name: Idempotency
-    description: Open Finance mandates an x-idempotency-key header on every request; Pix Cash-Out also accepts caller-chosen idEnvio for idempotent retries.
-  - name: mTLS exhaustion
-    description: Pix and Open Finance require mutual TLS — invalid certs are rejected before reaching the rate-limit layer.
-  - name: Webhook back-pressure
-    description: Failed webhook deliveries are retried with exponential backoff; use /v2/gn/webhook/reenviar to manually replay.
-  - name: Sandbox isolation
-    description: Homologation (https://*-h.api.efipay.com.br) shares quota separately from production.
+- name: API Pix PUT/POST endpoints
+  scope: per endpoint (PUT and POST methods)
+  window: second
+  max: 500
+  limit: 500
+  limit_text: Os endpoints com métodos PUT e POST da nossa API Pix estão sujeitos a um limite de 500 requisições por segundo
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Cobranças imediatas: POST  /v2/cob'
+  endpoint: POST  /v2/cob
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Cobranças imediatas: PUT  /v2/cob/:txid'
+  endpoint: PUT  /v2/cob/:txid
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Cobranças com vencimento: PUT /v2/cobv/:txid'
+  endpoint: PUT /v2/cobv/:txid
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Pix Automático: POST  /v2/rec'
+  endpoint: POST  /v2/rec
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Pix Automático: POST  /v2/solicrec'
+  endpoint: POST  /v2/solicrec
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Pix Automático: PUT  /v2/cobr/:txid'
+  endpoint: PUT  /v2/cobr/:txid
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Pix Automático: POST  /v2/cobr'
+  endpoint: POST  /v2/cobr
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Pix Automático: POST  /v2/cobr/:txid/retentativa/:data'
+  endpoint: POST  /v2/cobr/:txid/retentativa/:data
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Envio e Pagamento Pix: PUT /v2/gn/pix/:idEnvio'
+  endpoint: PUT /v2/gn/pix/:idEnvio
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Envio e Pagamento Pix: POST /v2/gn/qrcodes/detalhar'
+  endpoint: POST /v2/gn/qrcodes/detalhar
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Envio e Pagamento Pix: PUT /v2/gn/pix/:idEnvio/qrcode'
+  endpoint: PUT /v2/gn/pix/:idEnvio/qrcode
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Gestão de Pix: PUT /v2/gn/pix/:e2eid/devolucao/:id'
+  endpoint: PUT /v2/gn/pix/:e2eid/devolucao/:id
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Payload Locations: POST /v2/loc'
+  endpoint: POST /v2/loc
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Cobranças em Lote: PUT  /v2/lotecobv/:id'
+  endpoint: PUT  /v2/lotecobv/:id
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Split de pagamento Pix: POST  /v2/gn/split/config'
+  endpoint: POST  /v2/gn/split/config
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Split de pagamento Pix: PUT /v2/gn/split/config/:id'
+  endpoint: PUT /v2/gn/split/config/:id
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Split de pagamento Pix: PUT /v2/gn/split/cob/:txid/vinculo/:splitConfigId'
+  endpoint: PUT /v2/gn/split/cob/:txid/vinculo/:splitConfigId
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Split de pagamento Pix: PUT /v2/gn/split/cobv/:txid/vinculo/:splitConfigId'
+  endpoint: PUT /v2/gn/split/cobv/:txid/vinculo/:splitConfigId
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Webhooks: PUT  /v2/webhook/:chave'
+  endpoint: PUT  /v2/webhook/:chave
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Endpoints exclusivos EfÍ: POST /v2/gn/evp'
+  endpoint: POST /v2/gn/evp
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Endpoints exclusivos EfÍ: PUT   /v2/gn/config'
+  endpoint: PUT   /v2/gn/config
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Endpoints exclusivos EfÍ: POST  /v2/gn/infracoes/:idInfracao/defesa'
+  endpoint: POST  /v2/gn/infracoes/:idInfracao/defesa
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo
+- name: 'Pix Endpoints exclusivos EfÍ: POST /v2/gn/relatorios/extrato-conciliacao'
+  endpoint: POST /v2/gn/relatorios/extrato-conciliacao
+  scope: per endpoint
+  window: second
+  max: 500
+  limit: 500
+  limit_text: '500'
+  api: Pix
+  source: https://dev.efipay.com.br/docs/api-pix/limites-de-consumo

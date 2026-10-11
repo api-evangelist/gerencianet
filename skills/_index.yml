@@ -1,0 +1,36 @@
+generated: '2026-10-12'
+method: generated
+source: openapi/
+skills:
+- name: gerencianet-bill-payment
+  file: gerencianet-bill-payment.md
+  description: Read a Brazilian bill barcode and pay it from the Efí account through
+    the Pagamento de Contas API.
+  operations:
+  - payDetailBarCode
+  - payRequestBarCode
+  - payDetailPayment
+  - payListPayments
+- name: gerencianet-boleto-charge
+  file: gerencianet-boleto-charge.md
+  description: Issue a boleto (bank slip) charge on Efí Pay's Cobranças API in one
+    step, track it, and cancel or settle it.
+  operations:
+  - createOneStepCharge
+  - createCharge
+  - definePayMethod
+  - detailCharge
+  - sendBilletEmail
+  - cancelCharge
+  - settleCharge
+- name: gerencianet-pix-charge
+  file: gerencianet-pix-charge.md
+  description: Create an immediate Pix charge on Efí Pay, render its QR code, and
+    confirm payment, with refund (devolução) if needed.
+  operations:
+  - pixCreateImmediateCharge
+  - pixCreateCharge
+  - pixGenerateQRCode
+  - pixDetailCharge
+  - pixReceivedList
+  - pixDevolution

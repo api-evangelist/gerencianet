@@ -1,0 +1,9 @@
+name: Efí Pay (Gerencianet) Lifecycle
+generated: '2026-10-12'
+method: searched
+source: https://status.sejaefi.com.br; openapi/
+versioning: 'URI path versions per API: Cobranças /v1, Pix /v2 (Banco Central Pix API standard), Open Finance, Pagamentos and Contas on their
+  own hosts.'
+deprecation: null
+status_page: https://status.sejaefi.com.br
+note: No published deprecation/sunset policy found; the Boleto docs note a changed rule (previously a fixed 89-day term, now 0-120 days).

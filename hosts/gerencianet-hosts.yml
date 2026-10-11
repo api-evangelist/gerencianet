@@ -1,0 +1,95 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 7
+  own: 3
+  other_domain: 1
+  platform: 3
+  roles:
+  - identity
+  - other
+  - portal
+  - source
+  - status
+  - website
+hosts:
+- host: app.sejaefi.com.br
+  found_by:
+  - pointer
+  types:
+  - Login
+  serves: []
+  registrable_domain: sejaefi.com.br
+  role: identity
+  relation: own
+- host: dev.efipay.com.br
+  found_by:
+  - pointer
+  types:
+  - DeveloperPortal
+  - GettingStarted
+  serves: []
+  registrable_domain: efipay.com.br
+  role: portal
+  relation: other-domain
+- host: discord.gg
+  found_by:
+  - pointer
+  types:
+  - Discord
+  serves: []
+  registrable_domain: discord.gg
+  role: other
+  relation: platform
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - SourceCode
+  - GitHubOrganization
+  - SDKs
+  - Plugin
+  - Tools
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: sejaefi.com.br
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Website
+  - Signup
+  - Pricing
+  - TermsOfService
+  - PrivacyPolicy
+  - Blog
+  - Support
+  - FAQ
+  serves:
+  - cdn
+  vendor: cloudflare
+  registrable_domain: sejaefi.com.br
+  role: website
+  relation: own
+- host: status.sejaefi.com.br
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: sejaefi.com.br
+  role: status
+  relation: own
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform

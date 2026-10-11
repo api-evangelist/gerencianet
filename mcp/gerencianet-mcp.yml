@@ -1,0 +1,199 @@
+name: Efí MCP Server
+generated: '2026-10-12'
+method: searched
+source: https://github.com/efipay/mcp-server-efi (README + src/catalog/domains/*.ts, read 2026-10-12)
+status: official
+deployment:
+  mode: local-stdio
+  install: npx -y mcp-server-efi --apis=pix,open-finance
+  package: https://www.npmjs.com/package/mcp-server-efi
+  auth: api-key
+  verified: searched
+repository: https://github.com/efipay/mcp-server-efi
+version: 1.0.2
+smithery: https://smithery.ai/servers/efipay/mcp-server-efi
+note: 'Official server executed via stdio (README: "Servidor MCP oficial da Efí, executado via `stdio`"); also distributed as Docker image and
+  MCP Bundle via Smithery, still run locally. Credentials EFI_CLIENT_ID / EFI_CLIENT_SECRET. Tool names derived from the catalog method names
+  in snake_case as the README states; not observed from a live tools/list.'
+tool_count: 173
+coverage:
+  Cobranças: 47
+  Pix: 80
+  Open Finance: 26
+  Pagamento de Contas: 7
+  Abertura de Contas: 7
+  Extratos: 6
+tools:
+- name: pix_create_due_charge
+- name: pix_update_due_charge
+- name: pix_detail_due_charge
+- name: pix_list_due_charges
+- name: create_report
+- name: detail_report
+- name: pix_create_charge
+- name: pix_update_charge
+- name: pix_create_immediate_charge
+- name: pix_detail_charge
+- name: pix_list_charges
+- name: pix_detail_received
+- name: pix_received_list
+- name: pix_send
+- name: pix_send_detail
+- name: pix_send_list
+- name: pix_devolution
+- name: pix_detail_devolution
+- name: pix_config_webhook
+- name: pix_detail_webhook
+- name: pix_list_webhook
+- name: pix_delete_webhook
+- name: pix_create_location
+- name: pix_location_list
+- name: pix_detail_location
+- name: pix_generate_qr_code
+- name: pix_unlink_txid_location
+- name: pix_create_evp
+- name: pix_list_evp
+- name: pix_delete_evp
+- name: get_account_balance
+- name: update_account_config
+- name: list_account_config
+- name: pix_split_detail_charge
+- name: pix_split_link_charge
+- name: pix_split_detail_due_charge
+- name: pix_split_link_due_charge
+- name: pix_split_config
+- name: pix_split_config_id
+- name: pix_split_detail_config
+- name: pix_send_detail_id
+- name: pix_create_due_charge_batch
+- name: pix_update_due_charge_batch
+- name: pix_detail_due_charge_batch
+- name: pix_list_due_charge_batch
+- name: med_defense
+- name: med_list
+- name: pix_qr_code_pay
+- name: pix_resend_webhook
+- name: pix_get_receipt
+- name: pix_send_same_ownership
+- name: pix_keys_bucket
+- name: pix_detail_recurrence_automatic
+- name: pix_update_recurrence_automatic
+- name: pix_list_recurrence_automatic
+- name: pix_create_recurrence_automatic
+- name: pix_create_request_recurrence_automatic
+- name: pix_detail_request_recurrence_automatic
+- name: pix_update_request_recurrence_automatic
+- name: pix_create_automatic_charge_txid
+- name: pix_update_automatic_charge
+- name: pix_detail_automatic_charge
+- name: pix_create_automatic_charge
+- name: pix_list_automatic_charge
+- name: pix_retry_request_automatic
+- name: pix_create_location_recurrence_automatic
+- name: pix_list_location_recurrence_automatic
+- name: pix_detail_location_recurrence_automatic
+- name: pix_unlink_location_recurrence_automatic
+- name: pix_config_webhook_recurrence_automatic
+- name: pix_list_webhook_recurrence_automatic
+- name: pix_delete_webhook_recurrence_automatic
+- name: pix_config_webhook_automatic_charge
+- name: pix_list_webhook_automatic_charge
+- name: pix_delete_webhook_automatic_charge
+- name: of_list_participants
+- name: of_start_pix_payment
+- name: of_list_pix_payment
+- name: of_config_update
+- name: of_config_detail
+- name: of_devolution_pix
+- name: of_cancel_schedule_pix
+- name: of_list_schedule_pix_payment
+- name: of_start_schedule_pix_payment
+- name: of_devolution_schedule_pix
+- name: of_start_recurrency_pix_payment
+- name: of_list_recurrency_pix_payment
+- name: of_cancel_recurrency_pix
+- name: of_devolution_recurrency_pix
+- name: of_replace_recurrency_pix_parcel
+- name: of_create_biometric_enrollment
+- name: of_list_biometric_enrollment
+- name: of_create_biometric_pix_payment
+- name: of_list_biometric_pix_payment
+- name: of_revoke_biometric_enrollment
+- name: of_create_automatic_enrollment
+- name: of_list_automatic_enrollment
+- name: of_update_automatic_enrollment
+- name: of_create_automatic_pix_payment
+- name: of_list_automatic_pix_payment
+- name: of_cancel_automatic_pix_payment
+- name: send_subscription_link_email
+- name: settle_carnet
+- name: send_link_email
+- name: create_one_step_link
+- name: create_charge
+- name: detail_charge
+- name: update_charge_metadata
+- name: update_billet
+- name: define_pay_method
+- name: cancel_charge
+- name: create_carnet
+- name: detail_carnet
+- name: update_carnet_parcel
+- name: update_carnet_parcels
+- name: update_carnet_metadata
+- name: get_notification
+- name: list_plans
+- name: create_plan
+- name: delete_plan
+- name: create_subscription
+- name: create_one_step_subscription
+- name: create_one_step_subscription_link
+- name: detail_subscription
+- name: define_subscription_pay_method
+- name: cancel_subscription
+- name: update_subscription_metadata
+- name: get_installments
+- name: send_billet_email
+- name: create_charge_history
+- name: send_carnet_email
+- name: send_carnet_parcel_email
+- name: create_carnet_history
+- name: cancel_carnet
+- name: cancel_carnet_parcel
+- name: define_link_pay_method
+- name: update_charge_link
+- name: update_plan
+- name: update_subscription
+- name: create_subscription_history
+- name: define_balance_sheet_billet
+- name: settle_charge
+- name: settle_carnet_parcel
+- name: create_one_step_charge
+- name: card_payment_retry
+- name: refund_card
+- name: list_charges
+- name: create_account
+- name: create_account_certificate
+- name: get_account_credentials
+- name: account_config_webhook
+- name: account_delete_webhook
+- name: account_detail_webhook
+- name: account_list_webhook
+- name: pay_detail_bar_code
+- name: pay_request_bar_code
+- name: pay_detail_payment
+- name: pay_list_payments
+- name: pay_list_webhook
+- name: list_statement_files
+- name: get_statement_file
+- name: list_statement_recurrences
+- name: create_statement_recurrency
+- name: update_statement_recurrency
+- name: create_sftp_key
+- name: pix_split_unlink_charge
+- name: pix_split_unlink_due_charge
+- name: pix_split_devolution
+- name: pix_qr_code_detail
+- name: pix_generate_static_qr_code
+- name: create_charge_card
+- name: pay_config_webhook
+- name: pay_delete_webhook

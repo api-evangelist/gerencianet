@@ -1,0 +1,123 @@
+name: Efí Pay (Gerencianet) Packages
+generated: '2026-10-12'
+method: searched
+source: https://api.github.com/orgs/efipay/repos + registry metadata endpoints (npm, PyPI, Packagist, RubyGems, NuGet, Maven Central, proxy.golang.org,
+  pub.dev)
+packages:
+- name: sdk-node-apis-efi
+  registry: npm
+  url: https://www.npmjs.com/package/sdk-node-apis-efi
+  language: JavaScript
+  official: true
+  version: 2.0.1
+  published: '2026-07-31'
+  repo: https://github.com/efipay/sdk-node-apis-efi
+  ownership_audit: metadata names sejaefi.com.br
+- name: sdk-typescript-apis-efi
+  registry: npm
+  url: https://www.npmjs.com/package/sdk-typescript-apis-efi
+  language: TypeScript
+  official: true
+  version: 1.2.6
+  published: '2025-02-04'
+  repo: https://github.com/efipay/sdk-typescript-apis-efi
+  ownership_audit: metadata names sejaefi.com.br
+- name: efipay
+  registry: pypi
+  url: https://pypi.org/project/efipay/
+  language: Python
+  official: true
+  version: 1.0.7
+  published: '2025-08-20'
+  repo: https://github.com/efipay/sdk-python-apis-efi
+  ownership_audit: metadata names sejaefi.com.br
+- name: efipay/sdk-php-apis-efi
+  registry: packagist
+  url: https://packagist.org/packages/efipay/sdk-php-apis-efi
+  language: PHP
+  official: true
+  version: 1.19.0
+  published: '2026-06-26'
+  repo: https://github.com/efipay/sdk-php-apis-efi
+  ownership_audit: metadata names efipay.com.br
+- name: sdk_ruby_apis_efi
+  registry: rubygems
+  url: https://rubygems.org/gems/sdk_ruby_apis_efi
+  language: Ruby
+  official: false
+  version: 1.0.2
+  published: '2023-11-06'
+  repo: https://github.com/efipay/sdk-ruby-apis-efi
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+- name: EfiPay
+  registry: nuget
+  url: https://www.nuget.org/packages/EfiPay
+  language: C#
+  official: false
+  version: 2.0.4
+  published: '2025-08-20'
+  repo: https://github.com/efipay/sdk-dotnet-apis-efi
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+- name: br.com.efipay.efisdk:sdk-java-apis-efi
+  registry: maven
+  url: https://central.sonatype.com/artifact/br.com.efipay.efisdk/sdk-java-apis-efi
+  language: Java
+  official: true
+  version: 1.2.3
+  published: '2025-06-13'
+  repo: https://github.com/efipay/sdk-java-apis-efi
+  note: Maven Central search reports 1.2.3 (2025-06-13); the repo README dependency snippet names 1.2.7.
+- name: github.com/efipay/sdk-go-apis-efi
+  registry: go
+  url: https://pkg.go.dev/github.com/efipay/sdk-go-apis-efi
+  language: Go
+  official: true
+  version: v1.4.0
+  published: '2025-09-23'
+  repo: https://github.com/efipay/sdk-go-apis-efi
+- name: efipay
+  registry: pub
+  url: https://pub.dev/packages/efipay
+  language: Dart
+  official: true
+  version: 1.0.6
+  published: '2024-04-25'
+  repo: https://github.com/efipay/sdk-dart-apis-efi
+- name: sdk-delphi-apis-efi
+  registry: github
+  url: https://github.com/efipay/sdk-delphi-apis-efi
+  language: Delphi
+  official: true
+  version: null
+  published: null
+  note: Source-only repository in the efipay GitHub org; no registry metadata endpoint.
+- name: payment-token-efi
+  registry: npm
+  url: https://www.npmjs.com/package/payment-token-efi
+  language: JavaScript
+  official: true
+  version: 3.4.1
+  published: '2026-07-09'
+  repo: https://github.com/efipay/js-payment-token-efi
+  note: Browser card tokenization library.
+  ownership_audit: metadata names efipay.com.br
+- name: mcp-server-efi
+  registry: npm
+  url: https://www.npmjs.com/package/mcp-server-efi
+  language: TypeScript
+  official: false
+  version: 1.0.2
+  published: '2026-07-31'
+  repo: https://github.com/efipay/mcp-server-efi
+  note: Official local stdio MCP server.
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+- name: n8n-nodes-efibank
+  registry: npm
+  url: https://www.npmjs.com/package/n8n-nodes-efibank
+  language: TypeScript
+  official: true
+  version: 1.1.0
+  published: '2026-06-18'
+  repo: https://github.com/efipay/n8n-nodes-efibank
+  note: n8n community node published from the efipay GitHub org.
+  ownership_audit: metadata names efipay.com.br

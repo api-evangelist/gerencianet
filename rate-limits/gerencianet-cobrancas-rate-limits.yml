@@ -1,0 +1,366 @@
+name: Efí Pay (Gerencianet) API Cobranças Rate Limits
+generated: '2026-10-12'
+method: searched
+source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+sources:
+- https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+provider: Efí Pay (Gerencianet)
+providerId: gerencianet
+limit_count: 39
+description: 'API Cobranças: per-endpoint request limits apply to each application individually and reset daily (24-hour interval); an email warning
+  is sent at 80% of a limit and a block notice when it is reached, with automatic unblocking.'
+notes:
+- 'Cobranças: "tais limites se aplicam a cada aplicação individualmente ... sendo estes reiniciados (zerados) diariamente (intervalo de 24 horas)."'
+- Response headers and the HTTP status on exhaustion are not stated on these pages.
+limits:
+- name: 'Cobranças Transações: POST /v1/charge/one-step'
+  endpoint: POST /v1/charge/one-step
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge'
+  endpoint: POST /v1/charge
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: GET /v1/charges'
+  endpoint: GET /v1/charges
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: GET /v1/charge/:id'
+  endpoint: GET /v1/charge/:id
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: PUT /v1/charge/:id/metadata'
+  endpoint: PUT /v1/charge/:id/metadata
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: PUT /v1/charge/:id/billet'
+  endpoint: PUT /v1/charge/:id/billet
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: PUT /v1/charge/:id/cancel'
+  endpoint: PUT /v1/charge/:id/cancel
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge/:id/pay'
+  endpoint: POST /v1/charge/:id/pay
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge/:id/billet/resend'
+  endpoint: POST /v1/charge/:id/billet/resend
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge/:id/history'
+  endpoint: POST /v1/charge/:id/history
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge/:id/link'
+  endpoint: POST /v1/charge/:id/link
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: PUT /v1/charge/:id/link'
+  endpoint: PUT /v1/charge/:id/link
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: POST /v1/charge/:id/balance-sheet'
+  endpoint: POST /v1/charge/:id/balance-sheet
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: PUT /v1/charge/:id/settle'
+  endpoint: PUT /v1/charge/:id/settle
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Transações: GET /v1/installments'
+  endpoint: GET /v1/installments
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: POST /v1/carnet'
+  endpoint: POST /v1/carnet
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: GET /v1/carnet/:id'
+  endpoint: GET /v1/carnet/:id
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/metadata'
+  endpoint: PUT /v1/carnet/:id/metadata
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/parcel/:parcel'
+  endpoint: PUT /v1/carnet/:id/parcel/:parcel
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/cancel'
+  endpoint: PUT /v1/carnet/:id/cancel
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/parcel/:parcel/cancel'
+  endpoint: PUT /v1/carnet/:id/parcel/:parcel/cancel
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: POST /v1/carnet/:id/resend'
+  endpoint: POST /v1/carnet/:id/resend
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: POST /v1/carnet/:id/parcel/:parcel/resend'
+  endpoint: POST /v1/carnet/:id/parcel/:parcel/resend
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: POST /v1/carnet/:id/history'
+  endpoint: POST /v1/carnet/:id/history
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/parcel/ :parcel/settle'
+  endpoint: PUT /v1/carnet/:id/parcel/ :parcel/settle
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Carnês: PUT /v1/carnet/:id/settle'
+  endpoint: PUT /v1/carnet/:id/settle
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST /v1/plan'
+  endpoint: POST /v1/plan
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: GET /v1/plans'
+  endpoint: GET /v1/plans
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: PUT /v1/plan/:id'
+  endpoint: PUT /v1/plan/:id
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: DELETE/v1/plan/:id'
+  endpoint: DELETE/v1/plan/:id
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST /v1/plan/:id/subscription/one-step'
+  endpoint: POST /v1/plan/:id/subscription/one-step
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST /v1/plan/:id/subscription/one-step/link'
+  endpoint: POST /v1/plan/:id/subscription/one-step/link
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST /v1/plan/:id/subscription'
+  endpoint: POST /v1/plan/:id/subscription
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: GET /v1/subscription/:id'
+  endpoint: GET /v1/subscription/:id
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: PUT /v1/subscription/:id/cancel'
+  endpoint: PUT /v1/subscription/:id/cancel
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: PUT /v1/subscription/:id/metadata'
+  endpoint: PUT /v1/subscription/:id/metadata
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST /v1/subscription/:id/pay'
+  endpoint: POST /v1/subscription/:id/pay
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Assinaturas: POST/v1/subscription/:id/history'
+  endpoint: POST/v1/subscription/:id/history
+  scope: per application, per endpoint
+  window: day
+  limit_text: '15.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 15000
+  limit: 15000
+- name: 'Cobranças Notificações: GET /v1/notification/:token'
+  endpoint: GET /v1/notification/:token
+  scope: per application, per endpoint
+  window: day
+  limit_text: '30.000'
+  api: Cobranças
+  source: https://dev.efipay.com.br/docs/api-cobrancas/limites-de-consumo
+  max: 30000
+  limit: 30000

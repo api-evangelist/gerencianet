@@ -1,0 +1,1032 @@
+name: Efí MCP Tool Crosswalk
+generated: '2026-10-12'
+method: derived
+source: https://github.com/efipay/mcp-server-efi (README + src/catalog/domains/*.ts, read 2026-10-12) bound to openapi/*.yml by HTTP method +
+  route
+surfaces:
+  openapi: openapi/
+  mcp: 'local-stdio: npx -y mcp-server-efi'
+coverage:
+  tools: 173
+  mapped: 165
+  unmapped: 8
+crosswalk:
+- tool: pix_create_due_charge
+  category: pix
+  rest:
+  - pixCreateDueCharge
+  binding: PUT /v2/cobv/:txid
+  confidence: high
+- tool: pix_update_due_charge
+  category: pix
+  rest:
+  - pixUpdateDueCharge
+  binding: PATCH /v2/cobv/:txid
+  confidence: high
+- tool: pix_detail_due_charge
+  category: pix
+  rest:
+  - pixDetailDueCharge
+  binding: GET /v2/cobv/:txid
+  confidence: high
+- tool: pix_list_due_charges
+  category: pix
+  rest:
+  - pixListDueCharges
+  binding: GET /v2/cobv/
+  confidence: high
+- tool: create_report
+  category: pix
+  rest:
+  - createReport
+  binding: POST /v2/gn/relatorios/extrato-conciliacao
+  confidence: high
+- tool: detail_report
+  category: pix
+  rest:
+  - detailReport
+  binding: GET /v2/gn/relatorios/:id
+  confidence: high
+- tool: pix_create_charge
+  category: pix
+  rest:
+  - pixCreateCharge
+  binding: PUT /v2/cob/:txid
+  confidence: high
+- tool: pix_update_charge
+  category: pix
+  rest:
+  - pixUpdateCharge
+  binding: PATCH /v2/cob/:txid
+  confidence: high
+- tool: pix_create_immediate_charge
+  category: pix
+  rest:
+  - pixCreateImmediateCharge
+  binding: POST /v2/cob
+  confidence: high
+- tool: pix_detail_charge
+  category: pix
+  rest:
+  - pixDetailCharge
+  binding: GET /v2/cob/:txid
+  confidence: high
+- tool: pix_list_charges
+  category: pix
+  rest:
+  - pixListCharges
+  binding: GET /v2/cob
+  confidence: high
+- tool: pix_detail_received
+  category: pix
+  rest:
+  - pixDetailReceived
+  binding: GET /v2/pix/:e2eId
+  confidence: high
+- tool: pix_received_list
+  category: pix
+  rest:
+  - pixReceivedList
+  binding: GET /v2/pix
+  confidence: high
+- tool: pix_send
+  category: pix
+  rest:
+  - pixSend
+  binding: PUT /v3/gn/pix/:idEnvio
+  confidence: high
+- tool: pix_send_detail
+  category: pix
+  rest:
+  - pixSendDetail
+  binding: GET /v2/gn/pix/enviados/:e2eId
+  confidence: high
+- tool: pix_send_list
+  category: pix
+  rest:
+  - pixSendList
+  binding: GET /v2/gn/pix/enviados
+  confidence: high
+- tool: pix_devolution
+  category: pix
+  rest:
+  - pixDevolution
+  binding: PUT /v2/pix/:e2eId/devolucao/:id
+  confidence: high
+- tool: pix_detail_devolution
+  category: pix
+  rest:
+  - pixDetailDevolution
+  binding: GET /v2/pix/:e2eId/devolucao/:id
+  confidence: high
+- tool: pix_config_webhook
+  category: pix
+  rest:
+  - pixConfigWebhook
+  binding: PUT /v2/webhook/:chave
+  confidence: high
+- tool: pix_detail_webhook
+  category: pix
+  rest:
+  - pixDetailWebhook
+  binding: GET /v2/webhook/:chave
+  confidence: high
+- tool: pix_list_webhook
+  category: pix
+  rest:
+  - pixListWebhook
+  binding: GET /v2/webhook
+  confidence: high
+- tool: pix_delete_webhook
+  category: pix
+  rest:
+  - pixDeleteWebhook
+  binding: DELETE /v2/webhook/:chave
+  confidence: high
+- tool: pix_create_location
+  category: pix
+  rest:
+  - pixCreateLocation
+  binding: POST /v2/loc
+  confidence: high
+- tool: pix_location_list
+  category: pix
+  rest:
+  - pixLocationList
+  binding: GET /v2/loc
+  confidence: high
+- tool: pix_detail_location
+  category: pix
+  rest:
+  - pixDetailLocation
+  binding: GET /v2/loc/:id
+  confidence: high
+- tool: pix_generate_qr_code
+  category: pix
+  rest:
+  - pixGenerateQRCode
+  binding: GET /v2/loc/:id/qrcode
+  confidence: high
+- tool: pix_unlink_txid_location
+  category: pix
+  rest:
+  - pixUnlinkTxidLocation
+  binding: DELETE /v2/loc/:id/txid
+  confidence: high
+- tool: pix_create_evp
+  category: pix
+  rest:
+  - pixCreateEvp
+  binding: POST /v2/gn/evp
+  confidence: high
+- tool: pix_list_evp
+  category: pix
+  rest:
+  - pixListEvp
+  binding: GET /v2/gn/evp
+  confidence: high
+- tool: pix_delete_evp
+  category: pix
+  rest:
+  - pixDeleteEvp
+  binding: DELETE /v2/gn/evp/:chave
+  confidence: high
+- tool: get_account_balance
+  category: pix
+  rest:
+  - getAccountBalance
+  binding: GET /v2/gn/saldo
+  confidence: high
+- tool: update_account_config
+  category: pix
+  rest:
+  - updateAccountConfig
+  binding: PUT /v2/gn/config
+  confidence: high
+- tool: list_account_config
+  category: pix
+  rest:
+  - listAccountConfig
+  binding: GET /v2/gn/config
+  confidence: high
+- tool: pix_split_detail_charge
+  category: pix
+  rest:
+  - pixSplitDetailCharge
+  binding: GET /v2/gn/split/cob/:txid
+  confidence: high
+- tool: pix_split_link_charge
+  category: pix
+  rest:
+  - pixSplitLinkCharge
+  binding: PUT /v2/gn/split/cob/:txid/vinculo/:splitConfigId
+  confidence: high
+- tool: pix_split_detail_due_charge
+  category: pix
+  rest:
+  - pixSplitDetailDueCharge
+  binding: GET /v2/gn/split/cobv/:txid
+  confidence: high
+- tool: pix_split_link_due_charge
+  category: pix
+  rest:
+  - pixSplitLinkDueCharge
+  binding: PUT /v2/gn/split/cobv/:txid/vinculo/:splitConfigId
+  confidence: high
+- tool: pix_split_config
+  category: pix
+  rest:
+  - pixSplitConfig
+  binding: POST /v2/gn/split/config
+  confidence: high
+- tool: pix_split_config_id
+  category: pix
+  rest:
+  - pixSplitConfigId
+  binding: PUT /v2/gn/split/config/:id
+  confidence: high
+- tool: pix_split_detail_config
+  category: pix
+  rest:
+  - pixSplitDetailConfig
+  binding: GET /v2/gn/split/config/:id
+  confidence: high
+- tool: pix_send_detail_id
+  category: pix
+  rest:
+  - pixSendDetailId
+  binding: GET /v2/gn/pix/enviados/id-envio/:idEnvio
+  confidence: high
+- tool: pix_create_due_charge_batch
+  category: pix
+  rest:
+  - pixCreateDueChargeBatch
+  binding: PUT /v2/lotecobv/:id
+  confidence: high
+- tool: pix_update_due_charge_batch
+  category: pix
+  rest:
+  - pixUpdateDueChargeBatch
+  binding: PATCH /v2/lotecobv/:id
+  confidence: high
+- tool: pix_detail_due_charge_batch
+  category: pix
+  rest:
+  - pixDetailDueChargeBatch
+  binding: GET /v2/lotecobv/:id
+  confidence: high
+- tool: pix_list_due_charge_batch
+  category: pix
+  rest:
+  - pixListDueChargeBatch
+  binding: GET /v2/lotecobv
+  confidence: high
+- tool: med_defense
+  category: pix
+  rest:
+  - medDefense
+  binding: POST /v2/gn/infracoes/:idInfracao/defesa
+  confidence: high
+- tool: med_list
+  category: pix
+  rest:
+  - medList
+  binding: GET /v2/gn/infracoes
+  confidence: high
+- tool: pix_qr_code_pay
+  category: pix
+  rest:
+  - pixQrCodePay
+  binding: PUT /v2/gn/pix/:idEnvio/qrcode
+  confidence: high
+- tool: pix_resend_webhook
+  category: pix
+  rest:
+  - pixResendWebhook
+  binding: POST /v2/gn/webhook/reenviar
+  confidence: high
+- tool: pix_get_receipt
+  category: pix
+  rest:
+  - pixGetReceipt
+  binding: GET /v2/gn/pix/comprovantes
+  confidence: high
+- tool: pix_send_same_ownership
+  category: pix
+  rest:
+  - pixSendSameOwnership
+  binding: PUT /v2/gn/pix/:idEnvio/mesma-titularidade
+  confidence: high
+- tool: pix_keys_bucket
+  category: pix
+  rest:
+  - pixKeysBucket
+  binding: GET /v2/gn/chaves/balde
+  confidence: high
+- tool: pix_detail_recurrence_automatic
+  category: pix
+  rest:
+  - pixDetailRecurrenceAutomatic
+  binding: GET /v2/rec/:idRec
+  confidence: high
+- tool: pix_update_recurrence_automatic
+  category: pix
+  rest:
+  - pixUpdateRecurrenceAutomatic
+  binding: PATCH /v2/rec/:idRec
+  confidence: high
+- tool: pix_list_recurrence_automatic
+  category: pix
+  rest:
+  - pixListRecurrenceAutomatic
+  binding: GET /v2/rec
+  confidence: high
+- tool: pix_create_recurrence_automatic
+  category: pix
+  rest:
+  - pixCreateRecurrenceAutomatic
+  binding: POST /v2/rec
+  confidence: high
+- tool: pix_create_request_recurrence_automatic
+  category: pix
+  rest:
+  - pixCreateRequestRecurrenceAutomatic
+  binding: POST /v2/solicrec
+  confidence: high
+- tool: pix_detail_request_recurrence_automatic
+  category: pix
+  rest:
+  - pixDetailRequestRecurrenceAutomatic
+  binding: GET /v2/solicrec/:idSolicRec
+  confidence: high
+- tool: pix_update_request_recurrence_automatic
+  category: pix
+  rest:
+  - pixUpdateRequestRecurrenceAutomatic
+  binding: PATCH /v2/solicrec/:idSolicRec
+  confidence: high
+- tool: pix_create_automatic_charge_txid
+  category: pix
+  rest:
+  - pixCreateAutomaticChargeTxid
+  binding: PUT /v2/cobr/:txid
+  confidence: high
+- tool: pix_update_automatic_charge
+  category: pix
+  rest:
+  - pixUpdateAutomaticCharge
+  binding: PATCH /v2/cobr/:txid
+  confidence: high
+- tool: pix_detail_automatic_charge
+  category: pix
+  rest:
+  - pixDetailAutomaticCharge
+  binding: GET /v2/cobr/:txid
+  confidence: high
+- tool: pix_create_automatic_charge
+  category: pix
+  rest:
+  - pixCreateAutomaticCharge
+  binding: POST /v2/cobr
+  confidence: high
+- tool: pix_list_automatic_charge
+  category: pix
+  rest:
+  - pixListAutomaticCharge
+  binding: GET /v2/cobr
+  confidence: high
+- tool: pix_retry_request_automatic
+  category: pix
+  rest:
+  - pixRetryRequestAutomaticCharge
+  binding: POST /v2/cobr/:txid/retentativa/:data
+  confidence: high
+- tool: pix_create_location_recurrence_automatic
+  category: pix
+  rest:
+  - pixCreateLocationRecurrenceAutomatic
+  binding: POST /v2/locrec
+  confidence: high
+- tool: pix_list_location_recurrence_automatic
+  category: pix
+  rest:
+  - pixListLocationRecurrenceAutomatic
+  binding: GET /v2/locrec
+  confidence: high
+- tool: pix_detail_location_recurrence_automatic
+  category: pix
+  rest:
+  - pixDetailLocationRecurrenceAutomatic
+  binding: GET /v2/locrec/:id
+  confidence: high
+- tool: pix_unlink_location_recurrence_automatic
+  category: pix
+  rest:
+  - pixUnlinkLocationRecurrenceAutomatic
+  binding: DELETE /v2/locrec/:id/idRec
+  confidence: high
+- tool: pix_config_webhook_recurrence_automatic
+  category: pix
+  rest:
+  - pixConfigWebhookRecurrenceAutomatic
+  binding: PUT /v2/webhookrec
+  confidence: high
+- tool: pix_list_webhook_recurrence_automatic
+  category: pix
+  rest:
+  - pixListWebhookRecurrenceAutomatic
+  binding: GET /v2/webhookrec
+  confidence: high
+- tool: pix_delete_webhook_recurrence_automatic
+  category: pix
+  rest:
+  - pixDeleteWebhookRecurrenceAutomatic
+  binding: DELETE /v2/webhookrec
+  confidence: high
+- tool: pix_config_webhook_automatic_charge
+  category: pix
+  rest:
+  - pixConfigWebhookAutomaticCharge
+  binding: PUT /v2/webhookcobr
+  confidence: high
+- tool: pix_list_webhook_automatic_charge
+  category: pix
+  rest:
+  - pixListWebhookAutomaticCharge
+  binding: GET /v2/webhookcobr
+  confidence: high
+- tool: pix_delete_webhook_automatic_charge
+  category: pix
+  rest:
+  - pixDeleteWebhookAutomaticCharge
+  binding: DELETE /v2/webhookcobr
+  confidence: high
+- tool: of_list_participants
+  category: openFinance
+  rest:
+  - ofListParticipants
+  binding: GET /participantes/
+  confidence: high
+- tool: of_start_pix_payment
+  category: openFinance
+  rest:
+  - ofStartPixPayment
+  binding: POST /pagamentos/pix
+  confidence: high
+- tool: of_list_pix_payment
+  category: openFinance
+  rest:
+  - ofListPixPayment
+  binding: GET /pagamentos/pix
+  confidence: high
+- tool: of_config_update
+  category: openFinance
+  rest:
+  - ofConfigUpdate
+  binding: PUT /config
+  confidence: high
+- tool: of_config_detail
+  category: openFinance
+  rest:
+  - ofConfigDetail
+  binding: GET /config
+  confidence: high
+- tool: of_devolution_pix
+  category: openFinance
+  rest:
+  - ofDevolutionPix
+  binding: POST /pagamentos/pix/:identificadorPagamento/devolver
+  confidence: high
+- tool: of_cancel_schedule_pix
+  category: openFinance
+  rest:
+  - ofCancelSchedulePix
+  binding: PATCH /pagamentos-agendados/pix/:identificadorPagamento/cancelar
+  confidence: high
+- tool: of_list_schedule_pix_payment
+  category: openFinance
+  rest:
+  - ofListSchedulePixPayment
+  binding: GET /pagamentos-agendados/pix
+  confidence: high
+- tool: of_start_schedule_pix_payment
+  category: openFinance
+  rest:
+  - ofStartSchedulePixPayment
+  binding: POST /pagamentos-agendados/pix
+  confidence: high
+- tool: of_devolution_schedule_pix
+  category: openFinance
+  rest:
+  - ofDevolutionSchedulePix
+  binding: POST /pagamentos-agendados/pix/:identificadorPagamento/devolver
+  confidence: high
+- tool: of_start_recurrency_pix_payment
+  category: openFinance
+  rest:
+  - ofStartRecurrencyPixPayment
+  binding: POST /pagamentos-recorrentes/pix
+  confidence: high
+- tool: of_list_recurrency_pix_payment
+  category: openFinance
+  rest:
+  - ofListRecurrencyPixPayment
+  binding: GET /pagamentos-recorrentes/pix
+  confidence: high
+- tool: of_cancel_recurrency_pix
+  category: openFinance
+  rest:
+  - ofCancelRecurrencyPix
+  binding: PATCH /pagamentos-recorrentes/pix/:identificadorPagamento/cancelar
+  confidence: high
+- tool: of_devolution_recurrency_pix
+  category: openFinance
+  rest:
+  - ofDevolutionRecurrencyPix
+  binding: POST /pagamentos-recorrentes/pix/:identificadorPagamento/devolver
+  confidence: high
+- tool: of_replace_recurrency_pix_parcel
+  category: openFinance
+  rest:
+  - ofReplaceRecurrencyPixParcel
+  binding: PATCH /pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId
+  confidence: high
+- tool: of_create_biometric_enrollment
+  category: openFinance
+  rest:
+  - ofCreateBiometricEnrollment
+  binding: POST /pagamentos-biometria/vinculos
+  confidence: high
+- tool: of_list_biometric_enrollment
+  category: openFinance
+  rest:
+  - ofListBiometricEnrollment
+  binding: GET /pagamentos-biometria/vinculos
+  confidence: high
+- tool: of_create_biometric_pix_payment
+  category: openFinance
+  rest:
+  - ofCreateBiometricPixPayment
+  binding: POST /pagamentos-biometria/pix
+  confidence: high
+- tool: of_list_biometric_pix_payment
+  category: openFinance
+  rest:
+  - ofListBiometricPixPayment
+  binding: GET /pagamentos-biometria/pix
+  confidence: high
+- tool: of_revoke_biometric_enrollment
+  category: openFinance
+  rest:
+  - ofRevokeBiometricEnrollment
+  binding: PATCH /pagamentos-biometria/vinculos
+  confidence: high
+- tool: of_create_automatic_enrollment
+  category: openFinance
+  rest:
+  - ofCreateAutomaticEnrollment
+  binding: POST /pagamentos-automaticos/adesao
+  confidence: high
+- tool: of_list_automatic_enrollment
+  category: openFinance
+  rest:
+  - ofListAutomaticEnrollment
+  binding: GET /pagamentos-automaticos/adesao
+  confidence: high
+- tool: of_update_automatic_enrollment
+  category: openFinance
+  rest:
+  - ofUpdateAutomaticEnrollment
+  binding: PATCH /pagamentos-automaticos/adesao
+  confidence: high
+- tool: of_create_automatic_pix_payment
+  category: openFinance
+  rest:
+  - ofCreateAutomaticPixPayment
+  binding: POST /pagamentos-automaticos/pix
+  confidence: high
+- tool: of_list_automatic_pix_payment
+  category: openFinance
+  rest:
+  - ofListAutomaticPixPayment
+  binding: GET /pagamentos-automaticos/pix
+  confidence: high
+- tool: of_cancel_automatic_pix_payment
+  category: openFinance
+  rest:
+  - ofCancelAutomaticPixPayment
+  binding: PATCH /pagamentos-automaticos/pix
+  confidence: high
+- tool: send_subscription_link_email
+  category: cobrancas
+  rest:
+  - sendSubscriptionLinkEmail
+  binding: POST /v1/charge/:id/subscription/resend
+  confidence: medium
+- tool: settle_carnet
+  category: cobrancas
+  rest:
+  - settleCarnet
+  binding: PUT /v1/carnet/:id/settle
+  confidence: medium
+- tool: send_link_email
+  category: cobrancas
+  rest:
+  - sendLinkEmail
+  binding: POST /v1/charge/:id/link/resend
+  confidence: medium
+- tool: create_one_step_link
+  category: cobrancas
+  rest:
+  - createOneStepLink
+  binding: POST /v1/charge/one-step/link
+  confidence: medium
+- tool: create_charge
+  category: cobrancas
+  rest:
+  - createCharge
+  binding: POST /v1/charge
+  confidence: medium
+- tool: detail_charge
+  category: cobrancas
+  rest:
+  - detailCharge
+  - payDetailPayment
+  binding: GET /v1/charge/:id
+  confidence: medium
+- tool: update_charge_metadata
+  category: cobrancas
+  rest:
+  - updateChargeMetadata
+  binding: PUT /v1/charge/:id/metadata
+  confidence: medium
+- tool: update_billet
+  category: cobrancas
+  rest:
+  - updateBillet
+  binding: PUT /v1/charge/:id/billet
+  confidence: medium
+- tool: define_pay_method
+  category: cobrancas
+  rest:
+  - definePayMethod
+  binding: POST /v1/charge/:id/pay
+  confidence: medium
+- tool: cancel_charge
+  category: cobrancas
+  rest:
+  - cancelCharge
+  binding: PUT /v1/charge/:id/cancel
+  confidence: medium
+- tool: create_carnet
+  category: cobrancas
+  rest:
+  - createCarnet
+  binding: POST /v1/carnet
+  confidence: medium
+- tool: detail_carnet
+  category: cobrancas
+  rest:
+  - detailCarnet
+  - payDetailPayment
+  binding: GET /v1/carnet/:id
+  confidence: medium
+- tool: update_carnet_parcel
+  category: cobrancas
+  rest:
+  - updateCarnetParcel
+  binding: PUT /v1/carnet/:id/parcel/:parcel
+  confidence: medium
+- tool: update_carnet_parcels
+  category: cobrancas
+  rest:
+  - updateCarnetParcels
+  binding: PUT /v1/carnet/:id/parcels
+  confidence: medium
+- tool: update_carnet_metadata
+  category: cobrancas
+  rest:
+  - updateCarnetMetadata
+  binding: PUT /v1/carnet/:id/metadata
+  confidence: medium
+- tool: get_notification
+  category: cobrancas
+  rest:
+  - getNotification
+  - payDetailPayment
+  binding: GET /v1/notification/:token
+  confidence: medium
+- tool: list_plans
+  category: cobrancas
+  rest:
+  - listPlans
+  binding: GET /v1/plans
+  confidence: medium
+- tool: create_plan
+  category: cobrancas
+  rest:
+  - createPlan
+  binding: POST /v1/plan
+  confidence: medium
+- tool: delete_plan
+  category: cobrancas
+  rest:
+  - deletePlan
+  binding: DELETE /v1/plan/:id
+  confidence: medium
+- tool: create_subscription
+  category: cobrancas
+  rest:
+  - createSubscription
+  binding: POST /v1/plan/:id/subscription
+  confidence: medium
+- tool: create_one_step_subscription
+  category: cobrancas
+  rest:
+  - createOneStepSubscription
+  binding: POST /v1/plan/:id/subscription/one-step
+  confidence: medium
+- tool: create_one_step_subscription_link
+  category: cobrancas
+  rest:
+  - createOneStepSubscriptionLink
+  binding: POST /v1/plan/:id/subscription/one-step/link
+  confidence: medium
+- tool: detail_subscription
+  category: cobrancas
+  rest:
+  - detailSubscription
+  - payDetailPayment
+  binding: GET /v1/subscription/:id
+  confidence: medium
+- tool: define_subscription_pay_method
+  category: cobrancas
+  rest:
+  - defineSubscriptionPayMethod
+  binding: POST /v1/subscription/:id/pay
+  confidence: medium
+- tool: cancel_subscription
+  category: cobrancas
+  rest:
+  - cancelSubscription
+  binding: PUT /v1/subscription/:id/cancel
+  confidence: medium
+- tool: update_subscription_metadata
+  category: cobrancas
+  rest:
+  - updateSubscriptionMetadata
+  binding: PUT /v1/subscription/:id/metadata
+  confidence: medium
+- tool: get_installments
+  category: cobrancas
+  rest:
+  - getInstallments
+  binding: GET /v1/installments
+  confidence: medium
+- tool: send_billet_email
+  category: cobrancas
+  rest:
+  - sendBilletEmail
+  binding: POST /v1/charge/:id/billet/resend
+  confidence: medium
+- tool: create_charge_history
+  category: cobrancas
+  rest:
+  - createChargeHistory
+  binding: POST /v1/charge/:id/history
+  confidence: medium
+- tool: send_carnet_email
+  category: cobrancas
+  rest:
+  - sendCarnetEmail
+  binding: POST /v1/carnet/:id/resend
+  confidence: medium
+- tool: send_carnet_parcel_email
+  category: cobrancas
+  rest:
+  - sendCarnetParcelEmail
+  binding: POST /v1/carnet/:id/parcel/:parcel/resend
+  confidence: medium
+- tool: create_carnet_history
+  category: cobrancas
+  rest:
+  - createCarnetHistory
+  binding: POST /v1/carnet/:id/history
+  confidence: medium
+- tool: cancel_carnet
+  category: cobrancas
+  rest:
+  - cancelCarnet
+  binding: PUT /v1/carnet/:id/cancel
+  confidence: medium
+- tool: cancel_carnet_parcel
+  category: cobrancas
+  rest:
+  - cancelCarnetParcel
+  binding: PUT /v1/carnet/:id/parcel/:parcel/cancel
+  confidence: medium
+- tool: define_link_pay_method
+  category: cobrancas
+  rest:
+  - linkCharge
+  binding: POST /v1/charge/:id/link
+  confidence: medium
+- tool: update_charge_link
+  category: cobrancas
+  rest:
+  - updateChargeLink
+  binding: PUT /v1/charge/:id/link
+  confidence: medium
+- tool: update_plan
+  category: cobrancas
+  rest:
+  - updatePlan
+  binding: PUT /v1/plan/:id
+  confidence: medium
+- tool: update_subscription
+  category: cobrancas
+  rest:
+  - updateSubscription
+  binding: PUT /v1/subscription/:id
+  confidence: medium
+- tool: create_subscription_history
+  category: cobrancas
+  rest:
+  - createSubscriptionHistory
+  binding: POST /v1/subscription/:id/history
+  confidence: medium
+- tool: define_balance_sheet_billet
+  category: cobrancas
+  rest:
+  - defineBalanceSheetBillet
+  binding: POST /v1/charge/:id/balance-sheet
+  confidence: medium
+- tool: settle_charge
+  category: cobrancas
+  rest:
+  - settleCharge
+  binding: PUT /v1/charge/:id/settle
+  confidence: medium
+- tool: settle_carnet_parcel
+  category: cobrancas
+  rest:
+  - settleCarnetParcel
+  binding: PUT /v1/carnet/:id/parcel/:parcel/settle
+  confidence: medium
+- tool: create_one_step_charge
+  category: cobrancas
+  rest:
+  - createOneStepCharge
+  binding: POST /v1/charge/one-step
+  confidence: medium
+- tool: card_payment_retry
+  category: cobrancas
+  rest:
+  - cardPaymentRetry
+  binding: POST /v1/charge/:id/retry
+  confidence: medium
+- tool: refund_card
+  category: cobrancas
+  rest:
+  - refundCard
+  binding: POST /v1/charge/card/:id/refund
+  confidence: medium
+- tool: list_charges
+  category: cobrancas
+  rest:
+  - listCharges
+  binding: GET /v1/charges
+  confidence: medium
+- tool: create_account
+  category: aberturaContas
+  rest:
+  - createAccount
+  binding: POST /conta-simplificada
+  confidence: high
+- tool: create_account_certificate
+  category: aberturaContas
+  rest:
+  - getAccountCertificate
+  binding: POST /conta-simplificada/:idContaSimplificada/certificado
+  confidence: high
+- tool: get_account_credentials
+  category: aberturaContas
+  rest:
+  - getAccountCredentials
+  binding: GET /conta-simplificada/:idContaSimplificada/credenciais
+  confidence: high
+- tool: account_config_webhook
+  category: aberturaContas
+  rest:
+  - accountConfigWebhook
+  binding: POST /webhook
+  confidence: high
+- tool: account_delete_webhook
+  category: aberturaContas
+  rest:
+  - accountDeleteWebhook
+  binding: DELETE /webhook/:identificadorWebhook
+  confidence: high
+- tool: account_detail_webhook
+  category: aberturaContas
+  rest:
+  - accountDetailWebhook
+  binding: GET /webhook/:identificadorWebhook
+  confidence: high
+- tool: account_list_webhook
+  category: aberturaContas
+  rest:
+  - accountListWebhook
+  binding: GET /webhooks
+  confidence: high
+- tool: pay_detail_bar_code
+  category: pagamentoContas
+  rest:
+  - payDetailBarCode
+  binding: GET /codBarras/:codBarras
+  confidence: high
+- tool: pay_request_bar_code
+  category: pagamentoContas
+  rest:
+  - payRequestBarCode
+  binding: POST /codBarras/:codBarras
+  confidence: high
+- tool: pay_detail_payment
+  category: pagamentoContas
+  rest:
+  - payDetailPayment
+  binding: GET /:idPagamento
+  confidence: high
+- tool: pay_list_payments
+  category: pagamentoContas
+  rest:
+  - payListPayments
+  binding: GET /resumo
+  confidence: high
+- tool: pay_list_webhook
+  category: pagamentoContas
+  rest:
+  - pixListWebhook
+  binding: GET /webhook
+  confidence: medium
+- tool: list_statement_files
+  category: extratos
+  rest:
+  - listStatementFiles
+  binding: GET /extrato-cnab/arquivos
+  confidence: high
+- tool: get_statement_file
+  category: extratos
+  rest:
+  - getStatementFile
+  binding: GET /extrato-cnab/download/:nome_arquivo
+  confidence: high
+- tool: list_statement_recurrences
+  category: extratos
+  rest:
+  - listStatementRecurrences
+  binding: GET /extrato-cnab/agendamentos
+  confidence: high
+- tool: create_statement_recurrency
+  category: extratos
+  rest:
+  - createStatementRecurrency
+  binding: POST /extrato-cnab/agendar
+  confidence: high
+- tool: update_statement_recurrency
+  category: extratos
+  rest:
+  - updateStatementRecurrency
+  binding: PATCH /extrato-cnab/agendar/:identificador
+  confidence: high
+- tool: create_sftp_key
+  category: extratos
+  rest:
+  - createSftpKey
+  binding: POST /extrato-cnab/gerar-chaves
+  confidence: high
+mcp_only:
+- tool: pix_split_unlink_charge
+  category: pix
+  reason: DELETE /v2/gn/split/cob/:txid/vinculo not in captured OpenAPI
+- tool: pix_split_unlink_due_charge
+  category: pix
+  reason: DELETE /v2/gn/split/cobv/:txid/vinculo not in captured OpenAPI
+- tool: pix_split_devolution
+  category: pix
+  reason: PUT /v2/gn/split/pix/:e2eid/devolucao/:id not in captured OpenAPI
+- tool: pix_qr_code_detail
+  category: pix
+  reason: LOCAL local:pix-qrcode-detail not in captured OpenAPI
+- tool: pix_generate_static_qr_code
+  category: pix
+  reason: LOCAL local:pix-qrcode-static not in captured OpenAPI
+- tool: create_charge_card
+  category: cobrancas
+  reason: POST /v2/charge/card not in captured OpenAPI
+- tool: pay_config_webhook
+  category: pagamentoContas
+  reason: PUT /webhook not in captured OpenAPI
+- tool: pay_delete_webhook
+  category: pagamentoContas
+  reason: DELETE /webhook not in captured OpenAPI
