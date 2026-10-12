@@ -1,0 +1,209 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: gerencianet
+workflows:
+- file: gerencianet-n8n-pix-webhook-workflow.yml
+  title: Efí (Gerencianet) Pix Webhook into n8n
+  partner: n8n
+  template: null
+  repos:
+  - n8n
+  - gerencianet
+  steps:
+  - step: create-workflow
+    repo: n8n
+    spec_file: n8n-workflow-api-openapi.yml
+    operationId: createWorkflow
+    tag: Workflow
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: activate-workflow
+    repo: n8n
+    spec_file: n8n-workflow-api-openapi.yml
+    operationId: activateWorkflow
+    tag: Workflow
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: configure-pix-webhook
+    repo: gerencianet
+    spec_file: gerencianet-webhooks-api-openapi.yml
+    operationId: pixConfigWebhook
+    tag: Webhooks
+    capability_id: BC-4270.80
+    capability: Webhook & Event Subscription Management
+    capability_l1: BC-4270
+    intent: Set the webhook for a Pix key
+    effect: write
+    unmapped: null
+  connects:
+    n8n:
+      capabilities: []
+      tags:
+      - Workflow
+    gerencianet:
+      capabilities:
+      - BC-4270.80
+      tags:
+      - Webhooks
+  intents:
+  - Set the webhook for a Pix key
+- file: gerencianet-opencart-order-to-pix.yml
+  title: Efí (Gerencianet) OpenCart Order to Pix Charge
+  partner: opencart
+  template: null
+  repos:
+  - gerencianet
+  - opencart
+  steps:
+  - step: create-pix-charge
+    repo: gerencianet
+    spec_file: gerencianet-immediate-charges-api-openapi.yml
+    operationId: pixCreateImmediateCharge
+    tag: Immediate Charges
+    capability_id: BC-1340.50
+    capability: Real-Time Payment Management
+    capability_l1: BC-1340
+    intent: Create an immediate Pix charge
+    effect: write
+    unmapped: null
+  - step: add-order-history
+    repo: opencart
+    spec_file: opencart-orders-api-openapi.yml
+    operationId: manageOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    gerencianet:
+      capabilities:
+      - BC-1340.50
+      tags:
+      - Immediate Charges
+    opencart:
+      capabilities: []
+      tags:
+      - Orders
+  intents:
+  - Create an immediate Pix charge
+- file: gerencianet-whmcs-invoice-to-pix.yml
+  title: Efí (Gerencianet) WHMCS Invoice to Pix Charge
+  partner: whmcs
+  template: null
+  repos:
+  - whmcs
+  - gerencianet
+  steps:
+  - step: get-invoice
+    repo: whmcs
+    spec_file: whmcs-billing-api-openapi.yml
+    operationId: getInvoice
+    tag: Billing
+    capability_id: BC-4250.30
+    capability: Invoicing & Statement Management
+    capability_l1: BC-4250
+    intent: null
+    effect: null
+    unmapped: null
+  - step: get-client
+    repo: whmcs
+    spec_file: whmcs-clients-api-openapi.yml
+    operationId: getClientsDetails
+    tag: Clients
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: null
+    effect: null
+    unmapped: null
+  - step: create-pix-charge
+    repo: gerencianet
+    spec_file: gerencianet-immediate-charges-api-openapi.yml
+    operationId: pixCreateImmediateCharge
+    tag: Immediate Charges
+    capability_id: BC-1340.50
+    capability: Real-Time Payment Management
+    capability_l1: BC-1340
+    intent: Create an immediate Pix charge
+    effect: write
+    unmapped: null
+  connects:
+    whmcs:
+      capabilities:
+      - BC-420.10
+      - BC-4250.30
+      tags:
+      - Billing
+      - Clients
+    gerencianet:
+      capabilities:
+      - BC-1340.50
+      tags:
+      - Immediate Charges
+  intents:
+  - Create an immediate Pix charge
+- file: gerencianet-wordpress-woocommerce-order-to-pix.yml
+  title: Efí (Gerencianet) WooCommerce Order to Pix Charge
+  partner: wordpress
+  template: null
+  repos:
+  - woocommerce
+  - gerencianet
+  steps:
+  - step: get-order
+    repo: woocommerce
+    spec_file: woocommerce-orders-api-openapi.yml
+    operationId: getOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: create-pix-charge
+    repo: gerencianet
+    spec_file: gerencianet-immediate-charges-api-openapi.yml
+    operationId: pixCreateImmediateCharge
+    tag: Immediate Charges
+    capability_id: BC-1340.50
+    capability: Real-Time Payment Management
+    capability_l1: BC-1340
+    intent: Create an immediate Pix charge
+    effect: write
+    unmapped: null
+  - step: update-order
+    repo: woocommerce
+    spec_file: woocommerce-orders-api-openapi.yml
+    operationId: updateOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    woocommerce:
+      capabilities: []
+      tags:
+      - Orders
+    gerencianet:
+      capabilities:
+      - BC-1340.50
+      tags:
+      - Immediate Charges
+  intents:
+  - Create an immediate Pix charge
