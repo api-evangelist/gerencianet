@@ -95,3 +95,83 @@ plans:
   price: 5.0
   features: []
   limits: []
+x-canonical:
+  generated: '2026-10-18'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Boleto, Bolix e folha de carnê pago
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Antecipação de recebíveis — tarifa de borderô
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Consulta Serasa
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Crédito à vista
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Crédito parcelado em até 12x (receba o valor total)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Crédito parcelado 2x a 6x
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Crédito parcelado 7x a 12x
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pix pela API — Receber por QR Code dinâmico
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pix Cobrança (Pix Cob e Pix CobV via API)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pix Automático
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Integração por API
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Transferência bancária (TED) para contas de outra titularidade
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
