@@ -8,10 +8,17 @@ source:
 - https://monid.ai/tools/gerencianet
 checked:
 - https://api.github.com/orgs/efipay/repos
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/gerencianet
+- https://crates.io/api/v1
 - https://dev.efipay.com.br/docs/modulos/introducao-modulos
 - https://monid.ai/tools/gerencianet
 - https://n8n.io/integrations/gerencianet/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/apps/ef-pay-gerencianet/integrations
 - https://zapier.com/apps/gerencianet/integrations
 summary: null
@@ -71,4 +78,64 @@ edges:
   category: Billing
   operations: []
   use_case: null
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/efipay/sdk-go-apis-efi
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/efipay/sdk-go-apis-efi
+      version: v1.4.0
+      released: '2025-09-23'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/efipay/sdk-go-apis-efi
+      repo_leg: github-org:efipay
+      publisher_leg: org:efipay
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/sdk_ruby_apis_efi
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: sdk_ruby_apis_efi
+      version: 1.0.2
+      released: '2023-11-06'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/sdk_ruby_apis_efi
+      repo_leg: github-org:efipay
+      publisher_leg: org:efipay
+      matched_by: github-org
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 templates: []
