@@ -1,4 +1,4 @@
-# Efí Pay (Gerencianet) (gerencianet)
+# Efí Pay (Gerencianet)
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,220 +66,286 @@
 
 Efí Pay (formerly Gerencianet) is a Brazilian fintech and Banco Central-licensed payment institution headquartered in Belo Horizonte, Brazil. It provides a developer-first payments stack covering Pix (instant payments), Boleto / Bolix / Carnê (Brazilian bank slips), credit-card processing, recurring billing (assinaturas + carnês), marketplace splits, programmatic account opening (BaaS), Open Finance payment initiation, bill-payment automation, and CNAB statement extraction. The company rebranded from Gerencianet to Efí Pay / Efí Bank in 2022 and is rated at the top tier by Banco Central for its Pix API. The technical surface is exposed as five distinct REST APIs (Cobranças, Pix, Open Finance, Pagamentos, Contas) with twelve official SDKs plus e-commerce plugins.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/gerencianet/main/apis.yml)
+**Areas:** Payments · Pix · Boleto · Subscription · Recurring Billing · Marketplace · Split Payments · Open Finance · Banking as a Service · Account Opening · Bill Payments · CNAB
 
-## Tags
+## Efí Pay (Gerencianet) on APIs.io
 
-- Payments
-- Pix
-- Boleto
-- Subscriptions
-- Recurring Billing
-- Marketplace
-- Split Payments
-- Open Finance
-- Banking as a Service
-- Account Opening
-- Bill Payment
-- CNAB
-- Brazil
-- Fintech
+Everything profiled for Efí Pay (Gerencianet) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gerencianet/](https://apis.io/providers/gerencianet/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (36)
 
-- **Created:** 2026-05-24
-- **Modified:** 2026-05-24
+- [Efí Pay (Gerencianet) Account API](https://apis.io/apis/gerencianet/gerencianet-account-api/) — The Account API from Efí Pay (Gerencianet) — 2 operation(s) for account.
+- [Efí Pay (Gerencianet) Accounts API](https://apis.io/apis/gerencianet/gerencianet-accounts-api/) — The Accounts API from Efí Pay (Gerencianet) — 3 operation(s) for accounts.
+- [Efí Pay (Gerencianet) Authorization API](https://apis.io/apis/gerencianet/gerencianet-authorization-api/) — The Authorization API from Efí Pay (Gerencianet) — 2 operation(s) for authorization.
+- [Efí Pay (Gerencianet) Automatic Charges API](https://apis.io/apis/gerencianet/gerencianet-automatic-charges-api/) — The Automatic Charges API from Efí Pay (Gerencianet) — 3 operation(s) for automatic charges.
+- [Efí Pay (Gerencianet) Automatic Pix API](https://apis.io/apis/gerencianet/gerencianet-automatic-pix-api/) — The Automatic Pix API from Efí Pay (Gerencianet) — 2 operation(s) for automatic pix.
+- [Efí Pay (Gerencianet) Bill Payments API](https://apis.io/apis/gerencianet/gerencianet-bill-payments-api/) — The Bill Payments API from Efí Pay (Gerencianet) — 3 operation(s) for bill payments.
+- [Efí Pay (Gerencianet) Biometric Pix API](https://apis.io/apis/gerencianet/gerencianet-biometric-pix-api/) — The Biometric Pix API from Efí Pay (Gerencianet) — 2 operation(s) for biometric pix.
+- [Efí Pay (Gerencianet) Card Payments API](https://apis.io/apis/gerencianet/gerencianet-card-payments-api/) — The Card Payments API from Efí Pay (Gerencianet) — 3 operation(s) for card payments.
+- [Efí Pay (Gerencianet) Carnets API](https://apis.io/apis/gerencianet/gerencianet-carnets-api/) — The Carnets API from Efí Pay (Gerencianet) — 12 operation(s) for carnets.
+- [Efí Pay (Gerencianet) Charges API](https://apis.io/apis/gerencianet/gerencianet-charges-api/) — The Charges API from Efí Pay (Gerencianet) — 12 operation(s) for charges.
+- [Efí Pay (Gerencianet) Configuration API](https://apis.io/apis/gerencianet/gerencianet-configuration-api/) — The Configuration API from Efí Pay (Gerencianet) — 1 operation(s) for configuration.
+- [Efí Pay (Gerencianet) Devolutions API](https://apis.io/apis/gerencianet/gerencianet-devolutions-api/) — The Devolutions API from Efí Pay (Gerencianet) — 1 operation(s) for devolutions.
+- [Efí Pay (Gerencianet) Due Charge Batches API](https://apis.io/apis/gerencianet/gerencianet-due-charge-batches-api/) — The Due Charge Batches API from Efí Pay (Gerencianet) — 2 operation(s) for due charge batches.
+- [Efí Pay (Gerencianet) Due Charges API](https://apis.io/apis/gerencianet/gerencianet-due-charges-api/) — The Due Charges API from Efí Pay (Gerencianet) — 2 operation(s) for due charges.
+- [Efí Pay (Gerencianet) Immediate Charges API](https://apis.io/apis/gerencianet/gerencianet-immediate-charges-api/) — The Immediate Charges API from Efí Pay (Gerencianet) — 2 operation(s) for immediate charges.
+- [Efí Pay (Gerencianet) Immediate Pix API](https://apis.io/apis/gerencianet/gerencianet-immediate-pix-api/) — The Immediate Pix API from Efí Pay (Gerencianet) — 2 operation(s) for immediate pix.
+- [Efí Pay (Gerencianet) Locations API](https://apis.io/apis/gerencianet/gerencianet-locations-api/) — The Locations API from Efí Pay (Gerencianet) — 3 operation(s) for locations.
+- [Efí Pay (Gerencianet) MED Infractions API](https://apis.io/apis/gerencianet/gerencianet-med-infractions-api/) — The MED Infractions API from Efí Pay (Gerencianet) — 2 operation(s) for med infractions.
+- [Efí Pay (Gerencianet) Notifications API](https://apis.io/apis/gerencianet/gerencianet-notifications-api/) — The Notifications API from Efí Pay (Gerencianet) — 1 operation(s) for notifications.
+- [Efí Pay (Gerencianet) Participants API](https://apis.io/apis/gerencianet/gerencianet-participants-api/) — The Participants API from Efí Pay (Gerencianet) — 1 operation(s) for participants.
+- [Efí Pay (Gerencianet) Payment Links API](https://apis.io/apis/gerencianet/gerencianet-payment-links-api/) — The Payment Links API from Efí Pay (Gerencianet) — 3 operation(s) for payment links.
+- [Efí Pay (Gerencianet) Pix Keys API](https://apis.io/apis/gerencianet/gerencianet-pix-keys-api/) — The Pix Keys API from Efí Pay (Gerencianet) — 3 operation(s) for pix keys.
+- [Efí Pay (Gerencianet) Pix Send API](https://apis.io/apis/gerencianet/gerencianet-pix-send-api/) — The Pix Send API from Efí Pay (Gerencianet) — 6 operation(s) for pix send.
+- [Efí Pay (Gerencianet) Plans API](https://apis.io/apis/gerencianet/gerencianet-plans-api/) — The Plans API from Efí Pay (Gerencianet) — 3 operation(s) for plans.
+- [Efí Pay (Gerencianet) QR Codes API](https://apis.io/apis/gerencianet/gerencianet-qr-codes-api/) — The QR Codes API from Efí Pay (Gerencianet) — 2 operation(s) for qr codes.
+- [Efí Pay (Gerencianet) Receipts API](https://apis.io/apis/gerencianet/gerencianet-receipts-api/) — The Receipts API from Efí Pay (Gerencianet) — 1 operation(s) for receipts.
+- [Efí Pay (Gerencianet) Received Pix API](https://apis.io/apis/gerencianet/gerencianet-received-pix-api/) — The Received Pix API from Efí Pay (Gerencianet) — 2 operation(s) for received pix.
+- [Efí Pay (Gerencianet) Recurring Pix API](https://apis.io/apis/gerencianet/gerencianet-recurring-pix-api/) — The Recurring Pix API from Efí Pay (Gerencianet) — 11 operation(s) for recurring pix.
+- [Efí Pay (Gerencianet) Reports API](https://apis.io/apis/gerencianet/gerencianet-reports-api/) — The Reports API from Efí Pay (Gerencianet) — 2 operation(s) for reports.
+- [Efí Pay (Gerencianet) Scheduled Pix API](https://apis.io/apis/gerencianet/gerencianet-scheduled-pix-api/) — The Scheduled Pix API from Efí Pay (Gerencianet) — 3 operation(s) for scheduled pix.
+- [Efí Pay (Gerencianet) SFTP API](https://apis.io/apis/gerencianet/gerencianet-sftp-api/) — The SFTP API from Efí Pay (Gerencianet) — 1 operation(s) for sftp.
+- [Efí Pay (Gerencianet) Splits API](https://apis.io/apis/gerencianet/gerencianet-splits-api/) — The Splits API from Efí Pay (Gerencianet) — 6 operation(s) for splits.
+- [Efí Pay (Gerencianet) Statement Files API](https://apis.io/apis/gerencianet/gerencianet-statement-files-api/) — The Statement Files API from Efí Pay (Gerencianet) — 2 operation(s) for statement files.
+- [Efí Pay (Gerencianet) Statement Schedules API](https://apis.io/apis/gerencianet/gerencianet-statement-schedules-api/) — The Statement Schedules API from Efí Pay (Gerencianet) — 3 operation(s) for statement schedules.
+- [Efí Pay (Gerencianet) Subscriptions API](https://apis.io/apis/gerencianet/gerencianet-subscriptions-api/) — The Subscriptions API from Efí Pay (Gerencianet) — 9 operation(s) for subscriptions.
+- [Efí Pay (Gerencianet) Webhooks API](https://apis.io/apis/gerencianet/gerencianet-webhooks-api/) — The Webhooks API from Efí Pay (Gerencianet) — 8 operation(s) for webhooks.
 
-## APIs
+### Published properties
 
-### Efí Pay Cobranças API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Brazilian billing API for boletos, Bolix (next-business-day boletos), carnês (installment booklets), payment links, credit cards, subscriptions, and marketplace splits. OAuth2 with HTTP Basic authentication; cobrancas-h.api.efipay.com.br for sandbox.
+#### Arazzo workflows (12)
 
-#### Tags
+Multi-step workflows that chain operations into a business task.
 
-- Cobranças
-- Boleto
-- Bolix
-- Carnê
-- Credit Card
-- Subscriptions
-- Payment Links
-- Marketplace Split
+- [Efí Account Onboarding](https://apis.io/arazzos/gerencianet/gerencianet-account-onboarding-workflow/)
+- [Efí Account Webhook Setup](https://apis.io/arazzos/gerencianet/gerencianet-account-webhook-setup-workflow/)
+- [Efí Bill Payment by Bar Code](https://apis.io/arazzos/gerencianet/gerencianet-bill-payment-workflow/)
+- [Efí Boleto Charge Issue](https://apis.io/arazzos/gerencianet/gerencianet-boleto-charge-issue-workflow/)
+- [Efí Card Charge Refund](https://apis.io/arazzos/gerencianet/gerencianet-card-charge-refund-workflow/)
+- [Efí Pix Immediate Charge to QR Code](https://apis.io/arazzos/gerencianet/gerencianet-pix-charge-qrcode-workflow/)
+- [Efí Pix Charge Revise](https://apis.io/arazzos/gerencianet/gerencianet-pix-charge-revise-workflow/)
+- [Efí Pix Charge Status and Refund](https://apis.io/arazzos/gerencianet/gerencianet-pix-charge-status-refund-workflow/)
+- [Efí Pix Due Charge to QR Code](https://apis.io/arazzos/gerencianet/gerencianet-pix-due-charge-qrcode-workflow/)
+- [Efí Pix Cash-Out Send](https://apis.io/arazzos/gerencianet/gerencianet-pix-send-cashout-workflow/)
+- [Efí Pix Webhook Setup](https://apis.io/arazzos/gerencianet/gerencianet-pix-webhook-setup-workflow/)
+- [Efí CNAB Statement Schedule](https://apis.io/arazzos/gerencianet/gerencianet-statement-schedule-workflow/)
 
-#### Properties
+#### MCP servers (1)
 
-- [Documentation](https://dev.efipay.com.br/docs/api-cobrancas/credenciais)
-- [API Reference](https://dev.efipay.com.br)
-- [Base U R L](https://cobrancas.api.efipay.com.br/v1)
-- [Sandbox U R L](https://cobrancas-h.api.efipay.com.br/v1)
-- [OpenAPI](openapi/efi-cobrancas-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-cobrancas.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-cobrancas.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/efi-cobrancas-charge-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/efi-cobrancas-charge-structure.json)
-- [Example](examples/efi-cobrancas-onestep-example.json)
+Model Context Protocol servers that expose the API to agents.
 
-### Efí Pay Pix API
+- [Efí MCP Server](https://apis.io/servers/gerencianet/ef-mcp-server/)
 
-Banco Central Pix API plus Efí Pay extensions (Cash-Out, splits, MED, automatic and recurring Pix, statements, signed PDF receipts, webhooks). OAuth2 client_credentials with mandatory mutual TLS (P12 or PEM certificate) and granular scopes.
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Pix
-- Cob
-- CobV
-- Cobr
-- Recurring Pix
-- Cash Out
-- Marketplace Split
-- MED
-- Reconciliation
+- [Gerencianet Agentic Access](https://apis.io/agentic-access/gerencianet/gerencianet-agentic-access/)
 
-#### Properties
+#### JSON Schema (3)
 
-- [Documentation](https://dev.efipay.com.br/docs/api-pix/credenciais)
-- [API Reference](https://dev.efipay.com.br/docs/api-pix)
-- [Base U R L](https://pix.api.efipay.com.br)
-- [Sandbox U R L](https://pix-h.api.efipay.com.br)
-- [OpenAPI](openapi/efi-pix-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-pix.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-pix.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/efi-pix-cob-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/efi-pix-pix-received-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/efi-pix-cob-structure.json)
-- [Example](examples/efi-pix-create-cob-example.json)
-- [Example](examples/efi-pix-send-example.json)
+The data models the API reads and writes.
 
-### Efí Pay Open Finance API
+- [Efí Pay Charge](https://apis.io/schemas/gerencianet/efi-cobrancas-charge/)
+- [Pix Immediate Charge (Cob)](https://apis.io/schemas/gerencianet/efi-pix-cob/)
+- [Received Pix](https://apis.io/schemas/gerencianet/efi-pix-pix-received/)
 
-Open Finance Brasil payment-initiation flows — initiate, schedule, refund, and recur Pix payments from any participating bank/fintech directly inside your app. Requires mTLS, OAuth2, and a 72-char x-idempotency-key per request.
+#### JSON Structure (2)
 
-#### Tags
+Data models expressed in JSON Structure.
 
-- Open Finance
-- Payment Initiation
-- Pix
-- Biometric Pix
-- Automatic Pix
+- [Efi Cobrancas Charge Structure](https://apis.io/json-structure/gerencianet/efi-cobrancas-charge-structure/)
+- [Efi Pix Cob Structure](https://apis.io/json-structure/gerencianet/efi-pix-cob-structure/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://dev.efipay.com.br/docs/open-finance)
-- [Base U R L](https://openfinance.api.efipay.com.br/v1)
-- [Sandbox U R L](https://openfinance-h.api.efipay.com.br/v1)
-- [OpenAPI](openapi/efi-openfinance-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-openfinance.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-openfinance.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-### Efí Pay Contas (Account Opening) API
+- [Gerencianet Context](https://apis.io/jsonld/gerencianet/gerencianet-context/)
 
-Open Brazilian conta-simplificada accounts programmatically for end-customers, generate per-account P12 certificates, retrieve generated API credentials, and listen for account lifecycle events.
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
-- Account Opening
-- Banking as a Service
-- KYC
-- Conta-Simplificada
+- [Gerencianet Vocabulary](https://apis.io/vocabularies/gerencianet/gerencianet-vocabulary/)
 
-#### Properties
+#### Examples (3)
 
-- [Documentation](https://dev.efipay.com.br/docs/abertura-de-contas)
-- [Base U R L](https://abrircontas.api.efipay.com.br/v1)
-- [Sandbox U R L](https://abrircontas-h.api.efipay.com.br/v1)
-- [OpenAPI](openapi/efi-contas-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-contas.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-contas.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Example requests and responses.
 
-### Efí Pay Pagamentos (Bill Payment) API
+- [Efi Cobrancas Onestep Example](https://apis.io/examples/gerencianet/efi-cobrancas-onestep-example/)
+- [Efi Pix Create Cob Example](https://apis.io/examples/gerencianet/efi-pix-create-cob-example/)
+- [Efi Pix Send Example](https://apis.io/examples/gerencianet/efi-pix-send-example/)
 
-Decode a Brazilian boleto or utility-bill barcode (linha digitável) and schedule its payment from the Efí account balance, then track payment status through completion.
+#### Collections (48)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Bill Payment
-- Boleto
-- Pagar Contas
+- [Efí Pay Cobranças API](https://apis.io/collections/gerencianet/open-efi-cobrancas/)
+- [Efí Pay Contas (Account Opening) API](https://apis.io/collections/gerencianet/open-efi-contas/)
+- [Efí Pay Extratos (Statements) API](https://apis.io/collections/gerencianet/open-efi-extratos/)
+- [Efí Pay Open Finance API](https://apis.io/collections/gerencianet/open-efi-openfinance/)
+- [Efí Pay Pagamentos (Bill Payment) API](https://apis.io/collections/gerencianet/open-efi-pagamentos/)
+- [Efí Pay Pix API](https://apis.io/collections/gerencianet/open-efi-pix/)
+- [Efí Pay Cobranças Account API](https://apis.io/collections/gerencianet/open-gerencianet-account-api/)
+- [Efí Pay Cobranças Account Accounts API](https://apis.io/collections/gerencianet/open-gerencianet-accounts-api/)
+- [Efí Pay Cobranças Account Authorization API](https://apis.io/collections/gerencianet/open-gerencianet-authorization-api/)
+- [Efí Pay Cobranças Account Automatic Charges API](https://apis.io/collections/gerencianet/open-gerencianet-automatic-charges-api/)
+- [Efí Pay Cobranças Account Automatic Pix API](https://apis.io/collections/gerencianet/open-gerencianet-automatic-pix-api/)
+- [Efí Pay Cobranças Account Bill Payments API](https://apis.io/collections/gerencianet/open-gerencianet-bill-payments-api/)
+- [Efí Pay Cobranças Account Biometric Pix API](https://apis.io/collections/gerencianet/open-gerencianet-biometric-pix-api/)
+- [Efí Pay Cobranças Account Card Payments API](https://apis.io/collections/gerencianet/open-gerencianet-card-payments-api/)
+- [Efí Pay Cobranças Account Carnets API](https://apis.io/collections/gerencianet/open-gerencianet-carnets-api/)
+- [Efí Pay Cobranças Account Charges API](https://apis.io/collections/gerencianet/open-gerencianet-charges-api/)
+- [Efí Pay Cobranças Account Configuration API](https://apis.io/collections/gerencianet/open-gerencianet-configuration-api/)
+- [Efí Pay Cobranças Account Devolutions API](https://apis.io/collections/gerencianet/open-gerencianet-devolutions-api/)
+- [Efí Pay Cobranças Account Due Charge Batches API](https://apis.io/collections/gerencianet/open-gerencianet-due-charge-batches-api/)
+- [Efí Pay Cobranças Account Due Charges API](https://apis.io/collections/gerencianet/open-gerencianet-due-charges-api/)
+- [Efí Pay Cobranças Account Immediate Charges API](https://apis.io/collections/gerencianet/open-gerencianet-immediate-charges-api/)
+- [Efí Pay Cobranças Account Immediate Pix API](https://apis.io/collections/gerencianet/open-gerencianet-immediate-pix-api/)
+- [Efí Pay Cobranças Account Locations API](https://apis.io/collections/gerencianet/open-gerencianet-locations-api/)
+- [Efí Pay Cobranças Account MED Infractions API](https://apis.io/collections/gerencianet/open-gerencianet-med-infractions-api/)
+- [Efí Pay Cobranças Account Notifications API](https://apis.io/collections/gerencianet/open-gerencianet-notifications-api/)
+- …and 23 more published on APIs.io
 
-#### Properties
+#### Overlays (36)
 
-- [Documentation](https://dev.efipay.com.br/docs/api-pagamentos)
-- [Base U R L](https://pagarcontas.api.efipay.com.br/v1)
-- [Sandbox U R L](https://pagarcontas-h.api.efipay.com.br/v1)
-- [OpenAPI](openapi/efi-pagamentos-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-pagamentos.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-pagamentos.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### Efí Pay Extratos (Statements) API
+- [Gerencianet Account Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-account-api-phrasing-overlay/)
+- [Gerencianet Accounts Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-accounts-api-phrasing-overlay/)
+- [Gerencianet Authorization Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-authorization-api-phrasing-overlay/)
+- [Gerencianet Automatic Charges Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-automatic-charges-api-phrasing-overlay/)
+- [Gerencianet Automatic Pix Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-automatic-pix-api-phrasing-overlay/)
+- [Gerencianet Bill Payments Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-bill-payments-api-phrasing-overlay/)
+- [Gerencianet Biometric Pix Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-biometric-pix-api-phrasing-overlay/)
+- [Gerencianet Card Payments Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-card-payments-api-phrasing-overlay/)
+- [Gerencianet Carnets Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-carnets-api-phrasing-overlay/)
+- [Gerencianet Charges Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-charges-api-phrasing-overlay/)
+- [Gerencianet Configuration Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-configuration-api-phrasing-overlay/)
+- [Gerencianet Devolutions Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-devolutions-api-phrasing-overlay/)
+- [Gerencianet Due Charge Batches Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-due-charge-batches-api-phrasing-overlay/)
+- [Gerencianet Due Charges Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-due-charges-api-phrasing-overlay/)
+- [Gerencianet Immediate Charges Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-immediate-charges-api-phrasing-overlay/)
+- [Gerencianet Immediate Pix Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-immediate-pix-api-phrasing-overlay/)
+- [Gerencianet Locations Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-locations-api-phrasing-overlay/)
+- [Gerencianet Med Infractions Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-med-infractions-api-phrasing-overlay/)
+- [Gerencianet Notifications Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-notifications-api-phrasing-overlay/)
+- [Gerencianet Participants Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-participants-api-phrasing-overlay/)
+- [Gerencianet Payment Links Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-payment-links-api-phrasing-overlay/)
+- [Gerencianet Pix Keys Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-pix-keys-api-phrasing-overlay/)
+- [Gerencianet Pix Send Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-pix-send-api-phrasing-overlay/)
+- [Gerencianet Plans Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-plans-api-phrasing-overlay/)
+- [Gerencianet Qr Codes Api Phrasing Overlay](https://apis.io/overlays/gerencianet/gerencianet-qr-codes-api-phrasing-overlay/)
+- …and 11 more published on APIs.io
 
-Recurring CNAB (Brazilian banking text-file) statement extraction. Schedule jobs, list/download generated files, and provision SFTP keys for automated pickup.
+#### Governance rules (3)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Statements
-- CNAB
-- Reconciliation
-- SFTP
+- [Efí Pay (Gerencianet) — efi rules](https://apis.io/rules/gerencianet/efi-rules/)
+- [Efí Pay (Gerencianet) — jsonschema rules](https://apis.io/rules/gerencianet/gerencianet-jsonschema-spectral-rules/)
+- [Efí Pay (Gerencianet) API Rules](https://apis.io/rules/gerencianet/gerencianet-rules/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://dev.efipay.com.br/docs/extrato-cnab)
-- [Base U R L](https://extratos.api.efipay.com.br/v1)
-- [Sandbox U R L](https://extratos-h.api.efipay.com.br/v1)
-- [OpenAPI](openapi/efi-extratos-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/efi-extratos.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/efi-extratos.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Gerencianet Authentication](https://apis.io/security/gerencianet/gerencianet-authentication/)
+- [Gerencianet Domain Security](https://apis.io/security/gerencianet/gerencianet-domain-security/)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://sejaefi.com.br)
-- [Getting Started](https://dev.efipay.com.br)
-- [Console](https://app.efipay.com.br)
-- [Sign Up](https://sejaefi.com.br/cadastro)
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Gerencianet Scopes](https://apis.io/scopes/gerencianet/gerencianet-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Gerencianet Plans Pricing](https://apis.io/plans/gerencianet/gerencianet-plans-pricing/)
+
+#### Rate limits (2)
+
+Published request limits.
+
+- [Gerencianet Cobrancas Rate Limits](https://apis.io/rate-limits/gerencianet/gerencianet-cobrancas-rate-limits/)
+- [Gerencianet Rate Limits](https://apis.io/rate-limits/gerencianet/gerencianet-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Gerencianet Finops](https://apis.io/finops/gerencianet/gerencianet-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://sejaefi.com.br)
+- [Getting started](https://dev.efipay.com.br/docs/api-pix/credenciais)
 - [Pricing](https://sejaefi.com.br/tarifas)
-- [Terms of Service](https://sejaefi.com.br/termos-e-contratos)
-- [Privacy Policy](https://sejaefi.com.br/termos-e-contratos/politica-de-privacidade)
-- [Blog](https://sejaefi.com.br/blog)
-- [Status Page](https://status.sejaefi.com.br)
 - [Support](https://sejaefi.com.br/central-de-ajuda)
-- [F A Q](https://sejaefi.com.br/central-de-ajuda)
-- [GitHub Organization](https://github.com/efipay)
-- [Discord](https://discord.gg/efipay)
-- [SDK](https://github.com/efipay/sdk-php-apis-efi)
-- [SDK](https://github.com/efipay/sdk-node-apis-efi)
-- [SDK](https://github.com/efipay/sdk-python-apis-efi)
-- [SDK](https://github.com/efipay/sdk-java-apis-efi)
-- [SDK](https://github.com/efipay/sdk-go-apis-efi)
-- [SDK](https://github.com/efipay/sdk-ruby-apis-efi)
-- [SDK](https://github.com/efipay/sdk-dotnet-apis-efi)
-- [SDK](https://github.com/efipay/sdk-typescript-apis-efi)
-- [SDK](https://github.com/efipay/sdk-dart-apis-efi)
-- [SDK](https://github.com/efipay/sdk-delphi-apis-efi)
-- [Plugin](https://github.com/efipay/Plugin-Wordpress-Efi)
-- [Plugin](https://github.com/efipay/Plugin-Magento2-Efi)
-- [Plugin](https://github.com/efipay/prestashop-efi-module)
-- [Plugin](https://github.com/efipay/opencart-efi-module)
-- [Plugin](https://github.com/efipay/whmcs-efi-module)
-- [Tool](https://github.com/efipay/n8n-nodes-efibank)
-- [Tool](https://github.com/efipay/mcp-server-efi-bank)
-- [Tool](https://github.com/efipay/js-payment-token-efi)
-- [Tool](https://github.com/efipay/conversor-p12-efi)
-- [Tool](https://github.com/efipay/mtls-webhook)
-- [Plans](plans/gerencianet-plans-pricing.yml)
-- [Rate Limits](rate-limits/gerencianet-rate-limits.yml)
-- [Fin Ops](finops/gerencianet-finops.yml)
-- [Spectral Rules](rules/efi-rules.yml)
-- [Vocabulary](vocabulary/gerencianet-vocabulary.yml)
-- [J S O N- L D](json-ld/gerencianet-context.jsonld)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Blog](https://sejaefi.com.br/blog)
+- [Terms of service](https://sejaefi.com.br/termos-e-contratos)
+- [Privacy policy](https://sejaefi.com.br/termos-e-contratos/politica-de-privacidade)
+- [GitHub](https://github.com/efipay)
+- [Status](https://status.sejaefi.com.br)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 63.4** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 53.3 |
+| Contract quality | 59.9 |
+| Contract governance | 22.0 |
+| Operational transparency | 63.2 |
+| Developer ergonomics | 76.8 |
+| Access clarity | 76.3 |
+
+**Agent readiness 34.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 36.2** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gerencianet/](https://apis.io/providers/gerencianet/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Efí Pay (Gerencianet): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gerencianet/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
